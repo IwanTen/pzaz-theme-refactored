@@ -1,0 +1,29 @@
+{
+  "sections": {
+    "hero": {
+      "type": "pzaz_hero",
+      "settings": {}
+    },
+    "power": {
+      "type": "pzaz_power",
+      "settings": {}
+    },
+    "testimonials": {
+      "type": "pzaz_testimonials",
+      "settings": {}
+    },
+    "focus": {
+      "type": "pzaz_focus",
+      "settings": {}
+    },
+    "science": {
+      "type": "pzaz_science",
+      "settings": {}
+    },
+    "cards": {
+      "type": "pzaz_cards",
+      "settings": {}
+    }
+  },
+  "order": ["hero", "power", "testimonials","focus","science","cards"]
+}

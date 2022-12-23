@@ -1,0 +1,105 @@
+{{ 'cards.css' | asset_url | stylesheet_tag }}
+
+<div class="cards embla">
+  <div class="embla__viewport">
+    <div class="embla__container">
+      <div class="embla__slide card bg-red">
+        {% comment %} <div class="card__inner debug-3"> {% endcomment %}
+        <div class="card__image">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/red_2-vetical.png?v=1670004418"
+            width="auto"
+            height="auto"
+            loading="lazy"
+          >
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">berry blast</h2>
+          <p class="card__copy">
+            “Juicy summer strawberries with a hint of blackberry and guava. So delicious and I love I can choose how
+            much I want.”
+          </p>
+          <div class="flex justify-center align-center">
+            {% render 'cta-button', color: 'dark', size: 'small', text: 'shop now' %}
+          </div>
+        </div>
+        {% comment %} </div> {% endcomment %}
+      </div>
+      <div class="embla__slide card bg-blue">
+        <div class="card__image">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/blue_2_-_vertical.png?v=1670004416"
+            width="auto"
+            height="auto"
+            loading="lazy"
+          >
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">mint frost</h2>
+          <p class="card__copy">
+            “Icy fresh breath with a kick of energy...better than gum, mints, coffee, and energy drinks combined.”
+          </p>
+          <div class="flex justify-center align-center">
+            {% render 'cta-button', color: 'dark', size: 'small', text: 'shop now' %}
+          </div>
+        </div>
+      </div>
+      <div class="embla__slide card bg-green">
+        <div class="card__image">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/green_2-vertical.png?v=1670004411"
+            width="auto"
+            height="auto"
+            loading="lazy"
+          >
+        </div>
+        <div class="card__body">
+          <h2 class="card__title">super sour</h2>
+          <p class="card__copy">
+            “Mouth puckering deliciousness. The green apple sour spray of my dreams. 6 sprays and I’m energized af.”
+          </p>
+          <div class="flex justify-center align-center">
+            {% render 'cta-button', color: 'dark', size: 'small', text: 'shop now' %}
+          </div>
+        </div>
+      </div>
+      <div class="embla__slide card bg-gray">
+        <div class="card__image">
+          <img
+            src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/black_2_-_vertical.png?v=1670004405"
+            width="auto"
+            height="auto"
+            loading="lazy"
+          >
+        </div>
+        <div class="card__body card__body--alt">
+          <h2 class="card__title">XXXTRA STRONG</h2>
+          <p class="card__copy  color-light">
+            “Tastes so good and mysterious. A little spicy? The increased caffeine definitely gives me even more energy
+            than the other flavors.”
+          </p>
+          <div class=" flex justify-center align-center">
+            {% render 'cta-button', color: 'light', size: 'small', text: 'shop now' %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="toggle-wrapper flex justify-center">
+    <span class="card__toggle">{% render 'icon-plus' %} </span>
+    <span class="card__toggle">{% render 'icon-plus' %} </span>
+    <span class="card__toggle">{% render 'icon-plus' %} </span>
+    <span class="card__toggle">{% render 'icon-plus' %} </span>
+  </div>
+</div>
+
+<script src="{{ 'cards.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "card-section",
+  "tag": "section",
+  "class": "section bg-dark",
+  "settings": []
+}
+{% endschema %}

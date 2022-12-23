@@ -1,0 +1,74 @@
+{{ 'footer.css' | asset_url | stylesheet_tag }}
+
+{%- comment -%} <div class="footer-marquee">
+<div class="marquee-wrapper">
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+</div>
+<div class="marquee-wrapper">
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+  <span class="marquee_text">&nbspshop now</span>
+</div>
+</div> {%- endcomment -%}
+<footer>
+    <div class="footer-nav">
+      <div class="vertical-items">
+        <span>MAP</span>
+        <a href="/pages/faqs">FAQ</a>
+        <a href="/pages/store-locator">Store Locator</a>
+        <a href="/blogs/research">Research + Writing</a>
+        <a href="/blogs/research">Sustainability</a>
+         <a href="/blogs/info/contact-us">Contact Us</a>
+        <a href="/blogs/info/careers">Careers</a>
+        <a href="/blogs/info/careers">College Associates</a>
+      </div>
+      <div class="vertical-items">
+        <span>FOLLOW US ON</span>
+        <a href="https://www.instagram.com/pzaz_energy/">Instagram</a>
+        <a href="https://in.tiktok.com/@pzaz">TikTok</a>
+        <a href="https://twitter.com/pzaz_energy">Twitter</a>
+      </div>
+  </div>
+  
+  <div class= "footer-button-wrapper">
+  {%- comment -%} <div class = "x">
+    <img src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/PZAZ-Web_FreeZaz-01.png?v=1650398779" id = "ztoggle" class="y" width="90" height="auto" loading="lazy">
+  </div> {%- endcomment -%}
+  </div>
+  
+  <div class="footer-bottom">
+    <ul>
+      <li>
+        <a href="/policies/privacy-policy">Privacy Policy</a>
+      </li>
+      <li>
+        <a href="/blogs/info/disclaimers">Disclaimers</a>
+      </li>
+      <li>
+        <a href="/policies/shipping-policy">Shipping Policies</a>
+      </li>
+      <li>
+        <a href="/policies/terms-of-service">Terms of Service</a>
+      </li>
+      <li>
+        <a href="/policies/refund-policy">Returns and Refunds</a>
+      </li>
+    </ul>
+    <p>
+      Copyright @ 2022 Pzaz, Inc. All rights reserved. Patents Pending.
+    </p>
+  </footer>
+
+
+{% schema %}
+  {
+    "name": "Footer",
+    "settings": []
+  }
+{% endschema %}

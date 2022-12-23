@@ -1,0 +1,58 @@
+/* ------------------- */
+/*      collage        */
+/* ------------------- */
+.collage {
+  padding: 0;
+}
+.collage {
+  padding: 0;
+  min-height: 100vh;
+  display: grid;
+  grid-template-areas:
+    "one one one one one one one one"
+    "two two two two two two two two"
+    "two two two two two two two two"
+    "three three three four four five five five"
+    "six six six six six six six six "
+    "seven seven seven seven seven seven seven seven";
+}
+
+.collage div {
+}
+
+.collage :nth-child(1) {
+  grid-area: one;
+}
+.collage :nth-child(2) {
+  grid-area: two;
+}
+.collage :nth-child(3) {
+  grid-area: three;
+}
+.collage :nth-child(4) {
+  grid-area: four;
+}
+.collage :nth-child(5) {
+  grid-area: five;
+}
+.collage :nth-child(6) {
+  grid-area: six;
+}
+.collage :nth-child(7) {
+  grid-area: seven;
+}
+
+@media (min-width: 768px) {
+  .collage {
+    min-height: 100vw;
+    grid-template-areas:
+      "one one one two two two two two"
+      "one one one two two two two two"
+      "one one one two two two two two"
+      "three three three four four five five five"
+      "three three three four four five five five"
+      "three three three four four five five five"
+      "six six six seven seven seven seven seven"
+      "six six six seven seven seven seven seven";
+  }
+}

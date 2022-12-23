@@ -1,0 +1,67 @@
+/* ------------------- */
+/*  Embla Testimonial  */
+/* ------------------- */
+
+.testimonial.embla {
+  overflow: hidden;
+  padding-block: 12vh;
+}
+
+.testimonial .embla__container {
+  width: min(100%, 768px);
+  margin-inline: auto;
+  display: flex;
+  padding: 2rem;
+  gap: 1rem;
+  height: 18rem;
+  user-select: none;
+}
+
+.testimonial .embla__slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  min-width: 100%;
+  padding: 2vw 7vw;
+  /* gap: 1rem; */
+  background-color: rgba(var(--color-light));
+  border-radius: var(--br-large);
+  opacity: 0.4;
+}
+
+.testimonial .embla__slide.is-selected {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.testimonial__copy {
+  color: var(--color-dark);
+  font-family: var(--font-heading);
+  font-size:clamp(var(--fs-xs),4vw,var(--fs-xl));
+  font-weight:var(--fw-heading-heavy);
+  font-style: italic;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.testimonial__image {
+max-height: 4rem;
+ max-width: 15rem;
+}
+
+.testimonial__image img {
+  height: 100%;
+  width: 100%;
+  -o-object-fit: contain;
+  object-fit: contain;
+}
+
+@media (min-width: 768px) {
+  .testimonial .embla__container {
+    height: 22rem;
+  }
+  .testimonial__copy {
+    font-size: var(--fs-2xl);
+  }
+}

@@ -1,0 +1,10 @@
+{{ 'reward-bar.css' | asset_url | stylesheet_tag }}
+<pzaz-reward-bar>
+  <div class="reward-bar" data-level=0>
+    <span class="reward-bar__slider"></span>
+    <span class="reward-bar__icon">{% render "icon-smiley" %}</span>
+    <span class="reward-bar__text">Free Shipping</span>
+
+  </div>
+  <script src={{ "reward.js" | asset_url }} defer="defer"></script>
+</pzaz-reward-bar>

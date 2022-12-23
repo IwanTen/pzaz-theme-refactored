@@ -1,0 +1,463 @@
+/* ------------------- */
+/* Reset               */
+/* ------------------- */
+
+/* https://piccalil.li/blog/a-modern-css-reset/ */
+
+/* Box sizing */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+ul {
+  padding: 0;
+}
+
+/* Reset margins */
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+p,
+figure,
+picture {
+  margin: 0;
+}
+
+/* set up the body */
+body {
+  font-family: "SpaceGrotesk", ui-sans-serif, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  min-height: 100vh;
+  line-height: 1.5;
+  overflow-x: hidden;
+  background-color: rgba(var(--color-dark));
+}
+
+/* make images easier to work with */
+img,
+picture {
+  max-width: 100%;
+  display: block;
+}
+
+/* make form elements easier to work with */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+fieldset {
+  border: 0;
+  padding: 0;
+}
+
+/* remove animations for people who've turned them off */
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ------------------- */
+/* Font Faces          */
+/* ------------------- */
+
+/* DECLARED IN SNIPPET: "pzaz-fonts" */
+
+/* ------------------- */
+/* custom properties   */
+/* ------------------- */
+
+:root {
+  --color-primary: 253, 255, 2;
+  --color-secondary: 235, 0, 180;
+  --color-light: 255, 255, 255;
+  --color-dark: 12, 12, 12;
+
+  --color-red: 241, 15, 59;
+  --color-green: 56, 235, 56;
+  --color-gray: 50, 50, 50;
+  --color-blue: 54, 239, 239;
+
+  --fs-tiny: 0.5rem; /*8px*/
+  --fs-xs: 0.75rem; /*12px*/
+  --fs-sm: 0.875rem; /*14px*/
+  --fs-base: 1rem; /*16px*/
+  --fs-lg: 1.125rem; /*18px*/
+  --fs-xl: 1.25rem; /*20px*/
+  --fs-2xl: 1.5rem; /*24px*/
+  --fs-3xl: 1.875rem; /*30px*/
+  --fs-4xl: 2.25rem; /*36px*/
+  --fs-5xl: 3rem; /*48px*/
+  --fs-6xl: 3.75rem; /*60px*/
+  --fs-7xl: 4.5rem; /*72x*/
+  --fs-8xl: 6rem; /*96px*/
+  --fs-9xl: 8rem; /*128px*/
+
+  --font-heading: "DrukWide";
+  --font-body: "SpaceGrotesk";
+
+  --fw-heading-bold: 600;
+  --fw-heading-heavy: 700;
+  --fw-heading-super: 800;
+
+  --fw-body-regular: 400;
+  --fw-body-medium: 500;
+  --fw-body-semibold: 600;
+  --fw-body-bold: 700;
+
+  --container-width: 1200;
+  --header-height: 100px;
+
+  --screen-small: 480;
+  --screen-med: 768;
+  --screen-large: 1024;
+  --screen-xl: 1280;
+
+  --br-small: 6px;
+  --br-base: 10px;
+  --br-large: 15px;
+  --br-round: 100%;
+
+  --base-padding: 2rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --base-padding: 4rem;
+  }
+}
+
+/* ------------------- */
+/* Utility classes     */
+/* ------------------- */
+
+/* STANDARD UTILITIES */
+.flex {
+  display: flex;
+  gap: var(--gap, 1rem);
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.items-center {
+  place-items: center;
+}
+
+.grid {
+  display: grid;
+  gap: var(--gap, 1rem);
+}
+
+.full-height {
+  min-height: 100vh;
+}
+
+.overflow-x {
+  overflow-x: hidden;
+}
+
+.overflow-y {
+  overflow-y: hidden;
+}
+
+.overflow {
+  overflow: hidden;
+}
+
+.space-between {
+  justify-content: space-between;
+}
+
+.text-left {
+  text-align: left;
+}
+.text-right {
+  text-align: right;
+}
+.text-center {
+  text-align: center;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap; /* added line */
+  border: 0;
+}
+
+/* CUSTOM UTILITIES */
+.debug-1{
+  outline:2px solid coral !important;
+}
+.debug-2{
+  outline:2px solid lightskyblue !important;
+}
+.debug-3{
+  outline:2px solid lightgreen !important;
+}
+.container {
+  margin-inline: auto;
+  max-width: calc(var(--container-width, 1280) * 1px);
+}
+
+/* .section__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-900);
+  font-size: 2.5rem;
+  font-style: italic;
+  text-transform: uppercase;
+  line-height: 1;
+  margin-bottom: 1.5rem;
+} */
+
+.button-wrapper{
+  min-height: 10rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.start{
+  justify-content: flex-start;
+}
+
+.end{
+  justify-content: flex-end;
+}
+.desktop-end{
+  justify-content: none;
+}
+.desktop-start{
+justify-content: none;
+}
+@media (min-width: 768px) {
+  .desktop-start{
+    justify-content: flex-start;
+    }
+    .desktop-end{
+      justify-content: flex-end;
+    }
+}
+
+
+.heading-main{
+  font-family: var(--font-heading);
+  font-style: italic;
+  font-size:clamp(var(--fs-2xl),9vw,var(--fs-6xl)) ;
+  text-transform: uppercase;
+  line-height: 1.1;
+}
+
+@media (min-width: 768px) {
+  .heading-main{
+    font-size: var(--fs-7xl);
+  }
+}
+
+.padding-base {
+  padding: 2rem;
+  padding: var(--base-padding, 2rem);
+}
+
+.section {
+  position: relative;
+  overflow:clip;
+}
+
+
+/*BACKGROUND COLOR CLASSES */
+
+.bg-primary {
+  background-color: rgba(var(--color-primary));
+}
+.bg-secondary {
+  background-color: rgba(var(--color-secondary));
+}
+.bg-light {
+  background-color: rgba(var(--color-light));
+}
+
+.bg-dark {
+  background-color: rgba(var(--color-dark));
+}
+
+/*TEXT COLOR CLASSES */
+
+.color-primary {
+  color: rgba(var(--color-primary));
+}
+.color-secondary {
+  color: rgba(var(--color-secondary));
+}
+.color-light {
+  color: rgba(var(--color-light));
+}
+
+.color-dark {
+  color: rgba(var(--color-dark));
+}
+
+/*FLAVOR COLOR CLASSES */
+
+.bg-red {
+  background-color: rgba(var(--color-red));
+}
+
+.bg-green {
+  background-color: rgba(var(--color-green));
+}
+
+.bg-gray {
+  background-color: rgba(var(--color-gray));
+}
+
+.bg-blue {
+  background-color: rgba(var(--color-blue));
+}
+
+.color-red {
+  color: rgba(var(--color-red));
+}
+
+.color-green {
+  color: rgba(var(--color-green));
+}
+
+.color-gray {
+  color: rgba(var(--color-gray));
+}
+
+.color-blue {
+  color: rgba(var(--color-blue));
+}
+
+@media (min-width: 768px) {
+  .section__title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+  }
+}
+
+/* ------------------- */
+/*      MISC        */
+/* ------------------- */
+
+
+* .embla__slide {
+  cursor: grab;
+}
+
+/* ------------------- */
+/*      Buttons        */
+/* ------------------- */
+
+:root {
+  /* --button-width-large: 20rem;
+  --button-width-small: 12rem; */
+}
+
+.button {
+  cursor: pointer;
+  position: relative;
+  display: block;
+  padding: 0.5em 2em;
+  border-radius: var(--br-base);
+  font-size: var(--fs-lg);
+  font-weight: var(--fw-heading-bold);
+  font-family: var(--font-heading);
+  font-style: italic;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+  transition: 0.2s ease-out;
+}
+
+@media (min-width: 768px) {
+.button {
+  font-size: var(--fs-lg);
+}
+}
+
+.button:hover {
+  /* transform: translate(0, -0.5em); */
+  transition: 0.3s ease-out;
+  padding: 0.75em 2em;
+  min-width: calc(inherit + 3em);
+}
+ 
+.button--large {
+  min-width: var(--button-width-large);
+  padding: 0.5em 5em;
+}
+
+.button--large:hover {
+  min-width: calc(var(--button-width-large) + 3em);
+  padding: 0.5em 8em;
+}
+
+.button--small {
+  min-width: var(--button-width-small);
+  padding: 0.5em 2em;
+}
+
+.button--small:hover {
+  min-width: calc(var(--button-width-small) + 3em);
+  padding: 0.5em 5em;
+}
+
+.button--dark {
+  background-color: rgba(var(--color-dark));
+  color: rgba(var(--color-light));
+}
+.button--dark:hover {
+  outline: 3px solid rgba(var(--color-dark));
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(var(--color-dark));
+}
+
+.button--light {
+  background-color: rgba(var(--color-light));
+  color: rgba(var(--color-dark));
+}
+
+.button--light:hover {
+  outline: 3px solid rgba(var(--color-light));
+  background-color: rgba(0, 0, 0, 0);
+  color: rgba(var(--color-light));
+}

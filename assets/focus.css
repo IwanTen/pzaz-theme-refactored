@@ -1,0 +1,45 @@
+/* ------------------- */
+/* Wakeup Section      */
+/* ------------------- */
+
+
+.focus {
+  /* min-height: min(100vh, 100vw); */
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  /* justify-content: space-evenly; */
+}
+
+.focus__body{
+  /* position: relative; */
+  z-index: 50;
+  position: sticky;
+  top: var(--header-height);
+
+}
+.focus__title{
+  margin-bottom: 1rem;
+}
+
+.focus__copy {
+  margin-bottom: 0.5rem;
+  max-width: 75%;
+  font-weight: var(--fw-body-medium);
+  font-size: var(--fs-xl);
+}
+
+@media (min-width: 768px) {
+  .focus__copy {
+    font-size: var(--fs-4xl);
+  }
+}
+.focus__image {
+  position: absolute;
+  max-width: none;
+  width: 150%;
+  top: 60%;
+  right: -75%;
+  transform: translateY(-50%) rotate(230deg);
+}

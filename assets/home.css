@@ -1,0 +1,114 @@
+#wlo-trigger-button {
+  display: none !important;
+}
+
+/* ------------------- */
+/*     Embla Cards     */
+/* ------------------- */
+
+:root {
+  --product-carousel-width: 20rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --product-carousel-width: 30rem;
+  }
+}
+
+.product-cards.embla {
+  padding-block: 2rem;
+  margin-top: 2rem;
+  width: 100%;
+  height: 25rem;
+  /* overflow: hidden; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.product-cards .embla__viewport {
+  width: calc(var(--product-carousel-width) / 2);
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(calc(-1 * (var(--product-carousel-width) / 4)));
+}
+
+.product-cards .embla__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.product-cards .embla__slide {
+  position: relative;
+  height: 21rem;
+  min-width: calc(var(--product-carousel-width) / 2);
+  display: block;
+  border-radius: 15px;
+  filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.25));
+  transition: 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-cards .embla__slide.is-selected {
+  min-width: var(--product-carousel-width);
+  height: 23rem;
+  transform: translateY(-1rem);
+  transition: 0.4s;
+}
+
+.product-card__image {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 9rem;
+}
+
+.product-card__image img {
+  object-fit: fill;
+  object-position: center;
+  width: 100%;
+}
+.product-card__text {
+  /* display: none; */
+  align-items: flex-start;
+  flex-direction: column;
+  flex: 1 1 auto;
+  padding-right: 1rem;
+  color: black;
+  opacity: 0;
+}
+
+.product-card__text--alt {
+  color: rgba(var(--color-primary));
+}
+
+.product-cards .embla__slide.is-selected .product-card__text {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.product-card__title {
+  font-family: var(--font-heading);
+  text-transform: uppercase;
+}
+
+.product-card__description {
+  /* width: 9rem; */
+}
+
+.is-selected .product-card__image {
+}
+.is-selected .product-card__description {
+  opacity: 1;
+  transition: 2;
+  display: flex;
+}

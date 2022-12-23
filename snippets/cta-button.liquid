@@ -1,0 +1,26 @@
+{% assign button_color = color %}
+{% assign button_size = size %}
+{% assign button_text = text %}
+
+<a
+  class="
+    button
+    {% if color == "dark" %}
+      button--dark
+    {% elsif color == "light" %}
+      button--light
+    {% endif %}
+    {% if size == "large" %}
+      button--large
+    {% elsif size == "small" %}
+      button--small
+    {% endif %}
+  "
+  href="/products/pzaz"
+>
+  {% if text %}
+    {{ button_text }}
+  {% else %}
+    Shop Now
+  {% endif %}
+</a>

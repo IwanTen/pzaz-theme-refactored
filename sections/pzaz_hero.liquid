@@ -1,0 +1,32 @@
+{{ 'hero.css' | asset_url | stylesheet_tag }}
+
+<div
+  class="hero container"
+>
+  <video
+    class="hero__video"
+  >
+    <source
+      src="https://cdn.shopify.com/videos/c/o/v/ed401cb5728544efa59e8d125fe715fd.mp4"
+      type="video/mp4"
+    >
+  </video>
+  <span class="hero__button">
+    {% render 'cta-button', color: 'dark', size: 'large', text: 'Shop Now' %}
+  </span>
+</div>
+
+{% comment %}
+  <script
+  src="{{ 'hero.js' | asset_url }}"
+  defer="defer"></script>
+{% endcomment %}
+
+{% schema %}
+{
+  "name": "hero",
+  "tag": "section",
+  "class": "section",
+  "settings": []
+}
+{% endschema %}

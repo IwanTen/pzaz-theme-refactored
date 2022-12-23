@@ -1,0 +1,72 @@
+{{ 'power.css' | asset_url | stylesheet_tag }}
+
+<div class="container power padding-base color-primary">
+  <div class="power__body">
+    <h1 class="power__title heading-main">
+      Instantly<br>
+      power up
+    </h1>
+    <p class="power__copy">Pzaz is a breath spray for perfect on-the-go energy.</p>
+  </div>
+  <div class="diagram">
+    <div class="diagram__content">
+      <img
+        width="auto"
+        height="auto"
+        class="diagram__image"
+        src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/bottle-spray.png?v=1669854211"
+        loading="lazy"
+      >
+      <div class="diagram__item" data-item="zinc">
+        <svg width="200" height="50">
+          <rect x="0" y="0" rx="10" ry="10" width="150" height="60" class="diagram__border"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="diagram__text">zinc💎</text>
+        </svg>
+      </div>
+      <div class="diagram__item" data-item="caffeine">
+        <svg width="200" height="50">
+          <rect x="0" y="0" rx="10" ry="10" width="150" height="60" class="diagram__border"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="diagram__text">Natural Caffeine🌱</text>
+        </svg>
+      </div>
+      <div class="diagram__item" data-item="vit-c">
+        <svg width="200" height="50">
+          <rect x="0" y="0" rx="10" ry="10" width="150" height="60" class="diagram__border"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="diagram__text">Vitamin C💫</text>
+        </svg>
+      </div>
+      <div class="diagram__item" data-item="vit-b">
+        <svg width="200" height="50">
+          <rect x="0" y="0" rx="10" ry="10" width="150" height="60" class="diagram__border"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="diagram__text">Vitamin B⚡</text>
+        </svg>
+      </div>
+      <div class="diagram__item" data-item="calories">
+        <svg width="200" height="50">
+          <rect x="0" y="0" rx="10" ry="10" width="150" height="60" class="diagram__border"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="diagram__text">Zero Calories😇</text>
+        </svg>
+      </div>
+      <div class="diagram__item" data-item="electrolytes">
+        <svg width="200" height="50">
+          <rect x="0" y="0" rx="10" ry="10" width="150" height="60" class="diagram__border"/>
+          <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" class="diagram__text">Electrolytes💦</text>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div class="button-wrapper">
+    {% render 'cta-button', color: 'light', size: 'small', text: 'Power Up' %}
+  </div>
+</div>
+
+<script src="{{ 'diagram.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "wakeup-section",
+  "tag": "section",
+  "class": "section bg-dark",
+  "settings": []
+}
+{% endschema %}
