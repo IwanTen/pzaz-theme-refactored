@@ -1,25 +1,24 @@
-{% assign button_color = color %}
+{% comment %} {% assign button_color = color %}
 {% assign button_size = size %}
-{% assign button_text = text %}
+{% assign button_text = text %} {% endcomment %}
 
 <a
   class="
-    button
-    {% if color == "dark" %}
-      button--dark
-    {% elsif color == "light" %}
-      button--light
-    {% endif %}
-    {% if size == "large" %}
-      button--large
-    {% elsif size == "small" %}
-      button--small
-    {% endif %}
+  button
+  {% if color == "dark" %}
+    button--dark
+  {% elsif color == "light" %}
+    button--light
+  {% endif %}
+  {% if size == "large" %}
+    button--large
+  {% elsif size == "small" %}
+    button--small
+  {% endif %}
   "
-  href="/products/pzaz"
->
+  href="/products/pzaz">
   {% if text %}
-    {{ button_text }}
+    {{ text }}
   {% else %}
     Shop Now
   {% endif %}

@@ -1,0 +1,231 @@
+:root {
+  --product-carousel-height: 14rem;
+  --product-carousel-width: 18rem;
+}
+
+@media (min-width: 768px) {
+  :root {
+    --product-carousel-height: 26rem;
+    --product-carousel-width: 38rem;
+  }
+}
+
+.cards .embla {
+  --slide-spacing: 1rem;
+  --slide-width: 100%;
+  --slide-height: 14rem;
+  --viewport-width: 18rem;
+  padding: 1.6rem;
+}
+
+@media (min-width: 768px) {
+  .cards {
+    --slide-spacing: 1rem;
+    --slide-width: 100%;
+    --slide-height: 19rem;
+    --viewport-width: 38rem;
+    padding: 1.6rem;
+  }
+}
+.cards .embla__viewport {
+  width: var(--viewport-width);
+  margin-left: auto;
+  margin-right: auto;
+  /* transform: translateX(calc(var(--slide-width) / 2 * -1)); */
+  transform: translateX(-50%);
+}
+.cards .embla__container {
+  gap: var(--slide-spacing);
+  display: flex;
+  flex-direction: row;
+  height: auto;
+  width: 100%;
+}
+.cards .embla__slide {
+  /* flex: 0 0 calc(var(--slide-width)); */
+  flex: 0 0 100%;
+  max-height: var(--slide-height);
+  min-width: 0;
+  position: relative;
+  border-radius: 10px;
+}
+
+.cards .embla__slide.is-selected {
+  /* flex: 0 0 calc(var(--slide-width) * 2); */
+  flex: 0 0 200%;
+  transition: 0.3s;
+  border: 3px solid red;
+}
+
+/* OLD */
+
+/* .cards {
+  padding-top: 20vh;
+}
+.cards .embla {
+  overflow: hidden;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+}
+.cards .embla__viewport {
+  width: calc(var(--product-carousel-width) / 2);
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateX(calc(-1 * (var(--product-carousel-width) / 4)));
+}
+
+.cards .embla__container {
+  background-color: bisque;
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -khtml-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.card.embla__slide {
+  position: relative;
+  overflow: hidden;
+  min-width: calc(var(--product-carousel-width) / 2);
+  height: var(--product-carousel-height);
+  min-height: var(--product-carousel-height);
+  display: block;
+  border-radius: 15px;
+  filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.25));
+  transition: 0.3s;
+}
+
+.card.embla__slide.is-selected {
+  min-width: var(--product-carousel-width);
+} */
+
+.card__inner {
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  transform: translate(0, 50%);
+  height: 100%;
+  width: var(--product-carousel-width);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.is-selected .card__inner {
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  transform: translate(100%, 50%);
+}
+
+.card__image {
+  height: 100%;
+  width: 100%;
+}
+
+.is-selected .card__image {
+  transition: 0.4s;
+}
+
+.card__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: all 0.4s;
+}
+.is-selected .card__image img {
+  transform: rotate(90deg) translateX(-15%) scale(1);
+}
+.card__body {
+  bottom: 0;
+  top: 50%;
+  width: 100%;
+  padding: 1rem;
+  opacity: 0;
+  position: absolute;
+}
+
+.card__text--alt {
+  color: rgba(var(--color-primary));
+}
+
+.card__title {
+  display: none;
+  font-family: var(--font-heading);
+  font-style: italic;
+  text-transform: uppercase;
+}
+
+.card__copy {
+  font-weight: var(--fw-body-bold);
+  font-size: var(--fs-sm);
+  margin-bottom: 1rem;
+}
+
+.card .button {
+  display: none;
+}
+
+@media (min-width: 768px) {
+  .card__body {
+    bottom: 0;
+    top: 50%;
+    opacity: 0;
+    position: absolute;
+    padding: 1rem;
+    padding-left: 4rem;
+    width: 34rem;
+  }
+  .card__title {
+    display: block;
+  }
+
+  .card .button {
+    display: block;
+  }
+  .card__copy {
+    font-size: var(--fs-xl);
+  }
+}
+
+.is-selected .card__body {
+  opacity: 1;
+  transition: 0.5s;
+}
+
+.is-selected .card__image {
+}
+
+.card__toggles {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(56, 56, 56);
+  padding: 2rem;
+}
+
+.card__toggle {
+  background-color: rgba(var(--color-light));
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  border-radius: var(--br-round);
+  padding: 0.3rem;
+  cursor: pointer;
+}
+
+.card__toggle polygon {
+  fill: rgba(var(--color-dark));
+  height: 100%;
+}
+
+.card__toggle:hover {
+  background-color: rgba(var(--color-primary));
+  transform: scale(1.1);
+  transition: 0.2s;
+}

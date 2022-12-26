@@ -1,23 +1,3 @@
-//Zazzy Global JS
-
-// function debounce(fn, wait) {
-//   let t;
-//   return (...args) => {
-//     clearTimeout(t);
-//     t = setTimeout(() => fn.apply(this, args), wait);
-//   };
-// }
-
-// function fetchConfig(type = "json") {
-//   return {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: `application/${type}`,
-//     },
-//   };
-// }
-
 function debounce(fn, wait) {
   let t;
   return (...args) => {
@@ -26,109 +6,98 @@ function debounce(fn, wait) {
   };
 }
 
-console.log("Zazzy Global JS Loaded");
+let addButtons = [...document.querySelectorAll("[data-action=add]")];
+console.log("addButtons", addButtons);
+let removeButtons = [...document.querySelectorAll("[data-action=subtract]")];
+console.log("removeButtons", removeButtons);
 
-class PzazVariantPicker extends HTMLElement {
-  constructor() {
-    super();
-    //get all of the variants
-    this.variants = [...document.querySelectorAll(".variant")];
-    //get all of the quantity buttons
-    this.quantityButtons = [...document.querySelectorAll(".variant__button")];
-    this.quantityButtons.forEach((button) => {
-      button.addEventListener("click", this.handleQuantityChange.bind(this));
-    });
-    //Submit button goes to cart (were not actually adding to cart here)
-    this.querySelector(".product__submit").addEventListener("click", () => {
-      openCart();
-    });
-  }
-
-  handleQuantityChange(event) {
-    console.log("quantity change");
-    const button = event.currentTarget;
-    const variant = button.closest(".variant");
-    if (button.dataset.value != variant.dataset.value) return;
-    const currentQuantity = parseInt(variant.dataset.quantity);
-
-    let newQuantity;
-    if (button.dataset.action == "add") {
-      newQuantity = currentQuantity + 1;
-    } else if (button.dataset.action == "subtract") {
-      newQuantity = currentQuantity - 1;
-      this.decrementQuantity(variant);
-    }
-
-    console.log("new quantity", newQuantity);
-    variant.dataset.quantity = newQuantity < 0 ? 0 : newQuantity;
-    const quantityDisplay = variant.querySelector(".variant__quantity");
-    quantityDisplay.innerHTML = `${variant.dataset.quantity}`;
-  }
-
-  decrementQuantity(variant) {
-    let current = CartJS.cart.items.find((item) => {
-      return item.variant_id == variant.dataset.value;
-    });
-    if (!current) return;
-    CartJS.updateItemById(current.variant_id, current.quantity - 1);
-  }
-}
-
-customElements.define("pzaz-variant-picker", PzazVariantPicker);
-
-const emblaNode = document.querySelector(".product__carousel.embla");
-// const plugins = [EmblaCarouselAutoplay(), EmblaCarouselClassNames()];
-const options = {
-  align: "center",
-  inViewThreshold: 1,
-  loop: false,
-};
-
-const productEmbla = EmblaCarousel(emblaNode, options);
-console.log("product page carousel intialized");
-
-console.log(productEmbla.scrollSnapList());
-console.log(productEmbla.slideNodes());
-
-function initEmblaVariantToggles() {
-  [...document.querySelectorAll(".variant")].forEach((variant, index) => {
-    variant.addEventListener("click", () => {
-      productEmbla.scrollTo(index);
+if (addButtons) {
+  addButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      console.log("add button clicked", event.currentTarget.dataset.id);
+      AddToCart(event);
     });
   });
 }
 
-function updateVariantQuantities() {
-  const variants = [...document.querySelectorAll(".variant")];
-  const cartItems = CartJS.cart.items;
-  variants.forEach((variant) => {
-    const cartItem = cartItems.find((item) => {
-      return item.variant_id == variant.dataset.value;
+if (removeButtons) {
+  removeButtons.forEach((button) => {
+    button.addEventListener("click", (event) => {
+      console.log("remove button clicked", event.currentTarget.dataset.id);
+      SubtractFromCart(event);
     });
-    if (cartItem) {
-      variant.dataset.quantity = cartItem.quantity;
-      variant.querySelector(
-        ".variant__quantity"
-      ).innerHTML = `${cartItem.quantity}`;
-    }
   });
 }
 
-window.onload = () => {
-  initEmblaVariantToggles();
-  updateVariantQuantities();
-};
-
-$(document).on("cart.requestComplete", function (event, cart) {
-  updateVariantQuantities();
+//Submit button goes to cart (were not actually adding to cart here)
+document.querySelector(".product__submit").addEventListener("click", () => {
+  openCart();
 });
+
+function AddToCart(event) {
+  liquidAjaxCart.cartRequestAdd(
+    {
+      items: [
+        {
+          id: event.currentTarget.dataset.id,
+          quantity: 1,
+        },
+      ],
+    },
+    { newQueue: true }
+  );
+}
+
+function SubtractFromCart(event) {
+  liquidAjaxCart.cartRequestChange(
+    {
+      id: event.currentTarget.dataset.id,
+      quantity: event.currentTarget.closest(".variant").dataset.quantity - 1,
+    },
+    { newQueue: true }
+  );
+}
+
+window.addEventListener("load", function () {
+  if ("liquidAjaxCart" in window) {
+    liquidAjaxCart.subscribeToCartStateUpdate((state, isCartUpdated) => {
+      UpdateVariantQuantities(state, isCartUpdated);
+    });
+  } else {
+    console.log("no liquidAjaxCart");
+  }
+});
+
+function UpdateVariantQuantities(state, isCartUpdated) {
+  const variants = [...document.querySelectorAll(".variant")];
+  if (!variants) {
+    console.log("cant access product variant selectors");
+    return;
+  }
+  if (state.cart.item_count == 0) {
+    console.log("no items in cart");
+    variants.forEach((variant) => {
+      variant.querySelector(".variant__quantity").innerText = 0;
+      variant.dataset.quantity = 0;
+    });
+    return;
+  }
+  if (!isCartUpdated) {
+    console.log("cart not updated");
+    return;
+  }
+  state.cart.items.forEach((item) => {
+    variants.forEach((variant) => {
+      if (item.id == variant.dataset.id) {
+        variant.querySelector(".variant__quantity").innerText = item.quantity;
+        variant.dataset.quantity = item.quantity;
+      }
+    });
+  });
+}
 
 document.querySelectorAll(".accordion-item").forEach((item) => {
   item.addEventListener("click", (event) => {
-    // document.querySelectorAll(".accordion-item").forEach((item) => {
-    //   item.classList.remove("active");
-    // });
-    // console.log("accordion item clicked");
     event.currentTarget.classList.toggle("active");
   });
 });

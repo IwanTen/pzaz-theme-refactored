@@ -107,7 +107,7 @@ function closeCart() {
 class PzazCart extends HTMLElement {
   constructor() {
     super();
-    this.cart = this.querySelector(".zazzy-cart");
+    // this.cart = this.querySelector(".zazzy-cart");
 
     this.querySelector(".cart-subscribe__toggle").addEventListener(
       "click",
@@ -122,6 +122,13 @@ class PzazCart extends HTMLElement {
 
 customElements.define("pzaz-cart", PzazCart);
 
-$(document).on("cart.requestComplete", function (event, cart) {
-  updateDiscountMessage();
+document.querySelector("*[data-action=clear]").addEventListener("click", () => {
+  liquidAjaxCart.cartRequestClear();
+  console.log("cart clear button clicked");
+});
+
+window.addEventListener("load", function () {
+  liquidAjaxCart.subscribeToCartSectionsUpdate((sections) => {
+    console.log("Sections are updated: ", sections);
+  });
 });

@@ -8,17 +8,16 @@
       class="logo"
       width="auto"
       height="auto"
-      loading="lazy"
-    >
+      loading="lazy">
   </div>
   <a class="cart-toggle" data-cart-view="data-cart-view">
     {% render 'icon-cart' %}
-    <span class="cart-toggle__quantity" rv-text="cart.item_count">{{ cart.item_count }}</span>
+    <span class="cart-toggle__quantity" data-ajax-cart-section>{{ cart.item_count }}</span>
   </a>
 </div>
 {% schema %}
-{
-  "name": "Header",
-  "settings": []
-}
+  {
+    "name": "Header",
+    "settings": []
+  }
 {% endschema %}

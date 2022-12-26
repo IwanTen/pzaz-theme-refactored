@@ -5,6 +5,8 @@
 .testimonial.embla {
   overflow: hidden;
   padding-block: 12vh;
+  position: relative;
+  z-index: 10;
 }
 
 .testimonial .embla__container {
@@ -38,16 +40,16 @@
 .testimonial__copy {
   color: var(--color-dark);
   font-family: var(--font-heading);
-  font-size:clamp(var(--fs-xs),4vw,var(--fs-xl));
-  font-weight:var(--fw-heading-heavy);
+  font-size: clamp(var(--fs-xs), 4vw, var(--fs-xl));
+  font-weight: var(--fw-heading-heavy);
   font-style: italic;
   text-align: center;
   text-transform: uppercase;
 }
 
 .testimonial__image {
-max-height: 4rem;
- max-width: 15rem;
+  max-height: 4rem;
+  max-width: 15rem;
 }
 
 .testimonial__image img {

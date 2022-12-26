@@ -1,9 +1,9 @@
 .header {
   position: relative;
-  height:var(--header-height);
+  height: var(--header-height);
   display: flex;
-align-items: center;
-justify-content: center;
+  align-items: center;
+  justify-content: center;
   position: fixed;
   top: 0;
   left: 0;

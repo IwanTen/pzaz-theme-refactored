@@ -1,12 +1,9 @@
 {
   "sections": {
-    "main": {
+    "product": {
       "type": "pzaz-product",
-      "settings": {
-      }
+      "settings": {}
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["product"]
 }

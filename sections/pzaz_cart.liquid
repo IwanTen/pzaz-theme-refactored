@@ -3,19 +3,17 @@
 {% assign addons = section.settings.collection.products %}
 
 <pzaz-cart>
-
-
-  <div class="cart" data-cart-view="data-cart-view">
+  <div class="cart">
     <div class="cart__header">
       <span class="cart__close">X</span>
     </div>
-    <div class="cart cart-hidden" rv-show="cart.item_count | eq 0">
-      Your cart is empty.
-      <p>test ets  test
-      </p>
-      {% render "zazzy-cta-button" %}
-    </div>
-    <div rv-show="cart.item_count | gt 0">
+    {% comment %} <div class="cart cart-hidden">
+    Your cart is empty.
+    <p>test ets  test
+    </p>
+    {% render "zazzy-cta-button" %}
+    </div> {% endcomment %}
+    <div>
       <span class="discount-message">
         <p class="discount-message__text">
           One tube, sixty sprays, $3.99.
@@ -23,25 +21,31 @@
         </p>
       </span>
       <h3 class="cart__title cart__title--line">your flavors</h3>
-      <div class="cart__line">
+      <div class="cart__line" data-ajax-cart-section>
         <div class="cart__line-items">
-          <div class="cart__line-item" rv-each-item="cart.items">
-            <h3 class="cart__line-item--info">
-              <span rv-text="item.quantity | append 'x ' "></span>
-              <span rv-text="item.title"></span><br>
-            </h3>
-          </div>
+          {% for item in cart.items %}
+            <div class="cart__line-item">
+
+              <h3 class="cart__line-item--info">
+                <span>{{ item.quantity }}x</span>
+                <span>{{ item.title }}</span><br>
+              </h3>
+            </div>
+          {% endfor %}
         </div>
         <div class="cart__line-info">
           <div>
-            <span class="cart__line-info--original-price" rv-text="cart.original_total_price | money Currency.currentCurrency">
+            <span class="cart__line-info--original-price">
               {{ cart.total_discount | money }}</span>
-            <span class="cart__line-info--total-price" rv-text="cart.total_price | money Currency.currentCurrency">
+            <span class="cart__line-info--total-price">
               {{ cart.total_price | money }}</span>
           </div>
 
 
-          <a class="cart__line-info--button" data-cart-clear>CLEAR</a>
+          <a
+            class="cart__line-info--button"
+            data-ajax-cart-static-element
+            data-action="clear">CLEAR</a>
         </div>
       </div>
       <div class="cart__highlights">
@@ -102,11 +106,11 @@
         <h1 class="cart__title cart-title--summary">Summary</h1>
         <div class="cart-summary__item" data-type="total">
           <h3 class="cart-summary__key">Product total</h3>
-          <span class="cart-summary__value" rv-text="cart.original_total_price | money Currency.currentCurrency">{{ cart.original_total_price | money }}</span>
+          <span class="cart-summary__value">{{ cart.original_total_price | money }}</span>
         </div>
         <div class="cart-summary__item" data-type="savings">
           <h3 class="cart-summary__key">Total savings</h3>
-          <span class="cart-summary__value" rv-text="cart.total_discount | money Currency.currentCurrency | prepend '-'">{{ cart.total_discount | money }}</span>
+          <span class="cart-summary__value">{{ cart.total_discount | money }}</span>
         </div>
         <div class="cart-summary__item" data-type="shipping">
           <h3 class="cart-summary__key">Shipping</h3>
@@ -116,7 +120,7 @@
 
       <div class="cart__total">
         <h3 class="cart-total__key">Cart Total</h3>
-        <span class="cart-total__value" rv-html="cart.total_price | money Currency.currentCurrency"></span>
+        <span class="cart-total__value">{{ cart.total_price | money }}</span>
       </div>
 
 
@@ -127,11 +131,6 @@
     {{ cart | json }}
   </script>
 </pzaz-cart>
-
-<a class="cart-toggle" data-cart-view="data-cart-view">
-  {% render "icon-cart" %}
-  <span class="cart-toggle__quantity" rv-text="cart.item_count">{{ cart.item_count }}</span>
-</a>
 
 
 

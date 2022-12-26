@@ -2,24 +2,22 @@
 /* Wakeup Section      */
 /* ------------------- */
 
-
 .focus {
   /* min-height: min(100vh, 100vw); */
   position: relative;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* justify-content: space-evenly; */
+  /* overflow: hidden; */
 }
 
-.focus__body{
+.focus__body {
   /* position: relative; */
   z-index: 50;
   position: sticky;
   top: var(--header-height);
-
 }
-.focus__title{
+.focus__title {
   margin-bottom: 1rem;
 }
 
@@ -42,4 +40,5 @@
   top: 60%;
   right: -75%;
   transform: translateY(-50%) rotate(230deg);
+  z-index: 0;
 }

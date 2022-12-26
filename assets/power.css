@@ -2,7 +2,6 @@
 /* Power Section       */
 /* ------------------- */
 
-
 .power {
   border-radius: var(--br-large);
   /* background-color: red; */
@@ -13,13 +12,13 @@
   min-height: 100vh;
 }
 
-.power__title{
-margin-bottom: 2rem;
+.power__title {
+  margin-bottom: 2rem;
 }
 
 .power__copy {
   margin-bottom: 0.5rem;
-  max-width: max(70%,10rem);
+  max-width: max(70%, 10rem);
   max-width: 26rem;
   font-weight: var(--fw-body-bold);
   font-size: var(--fs-3xl);
@@ -31,20 +30,21 @@ margin-bottom: 2rem;
     font-size: var(--fs-5xl);
     max-width: 30rem;
   }
-  .power__title{
+  .power__title {
     margin-bottom: 2rem;
-    }
+  }
 }
 
 .diagram {
   overflow: hidden;
   position: relative;
   width: 100%;
-  padding-bottom: 100%;
+  padding-bottom: min(100vh, 100%);
+  /* max-width: 40rem; */
   border-radius: var(--br-large);
   /* background-color: red; */
+  margin-inline: auto;
 }
-
 
 .diagram__content {
   position: absolute;
@@ -76,17 +76,17 @@ margin-bottom: 2rem;
   height: auto;
   text-align: center;
   fill: rgba(var(--color-primary));
-  font-size:max(var(--fs-tiny), 2vw);
+  font-size: max(var(--fs-tiny), 2vw);
   font-weight: 400;
   letter-spacing: 0.5px;
   text-transform: uppercase;
 }
 
-/* @media (min-width: 768px) {
+@media (min-width: 768px) {
   .diagram__text {
-    font-size: var(--fs-400);
+    font-size: var(--fs-lg);
   }
-} */
+}
 
 [data-item="zinc"] {
   left: 15%;
