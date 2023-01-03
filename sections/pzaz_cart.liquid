@@ -4,23 +4,21 @@
 
 <pzaz-cart>
   <div class="cart">
-    <div class="cart__header">
-      <span class="cart__close">X</span>
-    </div>
-    {% comment %} <div class="cart cart-hidden">
-    Your cart is empty.
-    <p>test ets  test
-    </p>
-    {% render "zazzy-cta-button" %}
-    </div> {% endcomment %}
-    <div>
-      <span class="discount-message">
-        <p class="discount-message__text">
-          One tube, sixty sprays, $3.99.
-          Select a four-pack of your favorite flavor:
-        </p>
-      </span>
-      <h3 class="cart__title cart__title--line">your flavors</h3>
+
+    <div class="cart__main">
+      <div class="cart__header">
+        <span class="cart__close">{% render "icon-plus" %}</span>
+      </div>
+      {% comment %} <div
+      class="filler"></div> {% endcomment %}
+      {% comment %} <div class="cart cart-hidden">
+      Your cart is empty.
+      <p>test ets  test
+      </p>
+      {% render "zazzy-cta-button" %}
+      </div> {% endcomment %}
+      <h3 class="cart__title cart__title--line">
+        your flavors</h3>
       <div class="cart__line" data-ajax-cart-section>
         <div class="cart__line-items">
           {% for item in cart.items %}
@@ -45,7 +43,7 @@
           <a
             class="cart__line-info--button"
             data-ajax-cart-static-element
-            data-action="clear">CLEAR</a>
+            data-action="clear">EDIT</a>
         </div>
       </div>
       <div class="cart__highlights">
@@ -70,26 +68,38 @@
               <h3 class="cart-addon__name">{{ addon.title }}</h3>
               <span class="cart-addon__price">{{ addon.price | money }}</span>
             </div>
-            <label class="cart-addon__button">
-              <input
-                class="cart-addon__input"
-                type="checkbox"
-                data-cart-toggle="{{ addon.first_available_variant.id }}" />
+
+            {% assign selected = false %}
+            {% for item in cart.items %}
+              {% if item.id == addon.selected_or_first_available_variant.id %}
+                {% assign selected = true %}
+              {% endif %}
+            {% endfor %}
+            <a
+              data-ajax-cart-section
+              {% assign selected = false %}
               {% for item in cart.items %}
-                {% if item.variant_id == addon.first_available_variant.id %}
-                  {% assign checked = true %}
-                {% endif %}
-              {% else %}
-                {% assign checked = false %}
-              {% endfor %}
-              <p class="cart-addon__button-text">
-                {% if checked %}
-                  remove
-                {% else %}
-                  add
-                {% endif %}
-              </p>
-            </label>
+              {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="
+                                                                                              {% if selected %}
+                                                                                                {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
+                                                                                              {% else %}
+                                                                                                {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
+                                                                                              {% endif %}"data-ajax-cart-request-button>
+              {% render "spinner" %}
+              <label class="cart-addon__button {% if selected %} active {% endif %}">
+                <input class="cart-addon__input" type="checkbox" />
+                {% for item in cart.items %}{% endfor %}
+                <p class="cart-addon__button-text">
+                  {% if selected == true %}
+                    remove
+                  {% else %}
+                    add
+
+                  {% endif %}
+                </p>
+
+              </label>
+            </a>
           </div>
         {% endfor %}
       </div>
@@ -101,6 +111,11 @@
           <p class="cart-subscribe__description">Get 10% off your first order and 10% off every order after that. Cancel anytime.</p>
         </div>
       </div>
+
+    </div>
+
+
+    <div class=cart__footer>
 
       <div class="cart__summary">
         <h1 class="cart__title cart-title--summary">Summary</h1>
@@ -126,6 +141,7 @@
 
     </div>
   </div>
+
 
   <script type="application/json">
     {{ cart | json }}

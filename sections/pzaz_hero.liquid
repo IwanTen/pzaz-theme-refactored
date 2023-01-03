@@ -10,19 +10,19 @@
   </video>
   <span
     class="hero__button">
-    {% render 'cta-button', color: 'dark', size: 'large', text: 'Shop Now' %}
+    {% render 'cta-button', color: 'light', border: true size: 'large', text: 'Shop Now' %}
   </span>
 </div>
 
-{% comment %}
+
 <script
-src="{{ 'hero.js' | asset_url }}"
-defer="defer"></script>
-{% endcomment %}{% schema %}
+  src="{{ 'hero.js' | asset_url }}"
+  defer="defer"></script>
+{% schema %}
   {
     "name": "hero",
     "tag": "section",
-    "class": "section",
+    "class": "section bg-primary",
     "settings": []
   }
 {% endschema %}

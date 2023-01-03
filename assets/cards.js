@@ -14,7 +14,7 @@ function InitProductCardsEmbla() {
   };
   cardsEmbla = EmblaCarousel(emblaNode, options, plugins);
   createEmblaToggles(cardsEmbla, ".card__toggle");
-  convertSlidesToToggles(cardsEmbla);
+  // convertSlidesToToggles(cardsEmbla);
 }
 
 const createEmblaToggles = (embla, selector) => {

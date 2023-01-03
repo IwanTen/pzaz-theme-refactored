@@ -1,24 +1,33 @@
 {{ 'focus.css' | asset_url | stylesheet_tag }}
 
-<div class="container focus padding-base color-primary">
+<div
+  class="container focus padding-base color-primary">
   <img
     width="auto"
     height="auto"
     class="focus__image"
     src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/bottle-spray.png?v=1669854211"
     loading="lazy">
-  <div class="focus__body">
-    <h1 class="focus__title heading-main">
+  <div
+    class="focus__body">
+    <h1
+      class="focus__title heading-main">
       FASTER FUN<br>
       AND FOCUS.
     </h1>
-    <div class="flex flex-column">
-      <p class="focus__copy">Coffee and energy drinks take 30 minutes to kick in.</p>
-      <p class="focus__copy">Our breath spray uses patent-pending technology and formulations to wake you up fast.</p>
-      <p class="focus__copy">No crash. No jitters. No need to pee.</p>
+    <div
+      class="flex flex-column">
+      <p
+        class="focus__copy">Coffee and energy drinks take 30 minutes to kick in.</p>
+      <p
+        class="focus__copy">Our breath spray uses patent-pending technology and formulations to wake you up fast.</p>
+      <p
+        class="focus__copy">No crash. No jitters. No need to pee.</p>
     </div>
-    <span class="button-wrapper desktop-start">
-      {% render 'cta-button', color: 'light', size: 'small', text: 'get focused' %}
+    <span
+      class="button-wrapper desktop-start"
+      style="--height:150px;">
+      {% render 'cta-button', color: 'dark', size: 'small', text: 'get focused' %}
     </span>
   </div>
 </div>

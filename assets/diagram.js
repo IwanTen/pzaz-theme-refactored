@@ -1,5 +1,3 @@
-
-
 function throttle(fn, wait = 100) {
   var time = Date.now();
   return function () {
@@ -9,17 +7,18 @@ function throttle(fn, wait = 100) {
     }
   };
 }
-console.log("diagram.js")
+console.log("diagram.js");
 const __item = ".diagram__item";
 const __text = ".diagram__text";
 const __border = ".diagram__border";
 
-
-window.addEventListener("DOMContentLoaded", ResizeDiagramItems);
-window.onresize = throttle(ResizeDiagramItems,200);
-
-
-
+window.addEventListener("DOMContentLoaded", () => {
+  ResizeDiagramItems();
+  InitDiagramAnimation();
+  // InitTestimonialAnimation();
+  InitScienceAnimation();
+});
+window.onresize = throttle(ResizeDiagramItems, 200);
 
 function ResizeDiagramItems() {
   console.log("resize");
@@ -38,50 +37,98 @@ function ResizeDiagramItems() {
   });
 }
 
+function InitDiagramAnimation() {
+  const diagramItems = gsap.utils.toArray(".diagram__item");
+  let diagramTimeline = gsap.timeline({
+    defaults: { duration: 1, ease: "ease1" },
+    scrollTrigger: {
+      // markers: true,
+      id: "diagram",
+      trigger: ".diagram",
+      start: "top bottom",
+      toggleActions: "play none none reset",
+      onLeaveBack: () => {
+        diagramItems.forEach((item) => {
+          item.querySelector(".diagram__border").classList.remove("active");
+        });
+      },
+    },
+  });
 
-// const diagramItems = gsap.utils.toArray(".diagram-item");
+  diagramTimeline
+    .from(".diagram__image", {
+      opacity: 0,
+      scale: 0.1,
+      rotation: 20,
+      duration: 1,
+    })
+    .from(
+      diagramItems,
+      {
+        opacity: 0,
+        scale: 0.1,
+        // y: -50,
+        duration: 0.5,
+        stagger: {
+          amount: 1,
+          onStart: function () {
+            this.targets()[0]
+              .querySelector(".diagram__border")
+              .classList.add("active");
+          },
+        },
+      },
+      "<0.2"
+    );
+}
 
-//   let diagramTimeline = gsap.timeline({
-//     defaults: { duration: 1, ease: "ease1" },
-//     scrollTrigger: {
-//       // markers: true,
-//       id: "diagram",
-//       trigger: ".diagram",
-//       start: "top bottom",
-//       toggleActions: "play none none reset",
-//       onLeaveBack: () => {
-//         diagramItems.forEach((item) => {
-//           item
-//             .querySelector(".diagram-item__border")
-//             .classList.remove("active");
-//         });
-//       },
-//     },
-//   });
+function InitTestimonialAnimation() {
+  const testimonials = gsap.utils.toArray(".testimonial .embla__slide__inner");
+  let testimonialTimeline = gsap.timeline({
+    defaults: { duration: 1, ease: "ease1" },
+    scrollTrigger: {
+      // markers: true,
+      id: "testimonial",
+      trigger: ".testimonial",
+      start: "top bottom",
+      toggleActions: "play none none reset",
+      onLeaveBack: () => {},
+    },
+  });
 
-//   diagramTimeline
-//     .from(".diagram__image", {
-//       opacity: 0,
-//       scale: 0.1,
-//       rotation: 20,
-//       duration: 1,
-//     })
-//     .from(
-//       diagramItems,
-//       {
-//         opacity: 0,
-//         scale: 0.1,
-//         // y: -50,
-//         duration: 0.5,
-//         stagger: {
-//           amount: 1,
-//           onStart: function () {
-//             this.targets()[0]
-//               .querySelector(".diagram-item__border")
-//               .classList.add("active");
-//           },
-//         },
-//       },
-//       "<0.2"
-//     );
-// }
+  testimonialTimeline.from(testimonials, {
+    opacity: 0,
+    scale: 1,
+    duration: 0.5,
+    stagger: {
+      amount: 1,
+      onStart: function () {},
+    },
+  });
+}
+
+function InitScienceAnimation() {
+  const testimonials = gsap.utils.toArray(".science__item");
+  let testimonialTimeline = gsap.timeline({
+    defaults: { duration: 1, ease: "ease1" },
+    scrollTrigger: {
+      // markers: true,
+      id: "science",
+      trigger: ".science",
+      start: "top bottom",
+      toggleActions: "play none none reset",
+      onLeaveBack: () => {},
+    },
+  });
+
+  testimonialTimeline.from(testimonials, {
+    opacity: 0,
+    scale: 1,
+    y: 50,
+    duration: 0.5,
+    stagger: {
+      amount: 1,
+      onStart: function () {},
+    },
+  });
+}

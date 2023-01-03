@@ -3,6 +3,7 @@
   --slide-height: 14rem;
   --slide-width: 9rem;
   padding: 1.6rem;
+  margin-top: 10rem;
 }
 
 @media (min-width: 768px) {
@@ -120,74 +121,32 @@
 }
 
 .card__toggle {
-  background-color: rgba(var(--color-light));
-  width: 1.5rem;
-  height: 1.5rem;
+  background-color: black;
+  border: 3px solid rgba(var(--color-light));
+  height: 2em;
+  width: 2rem;
   display: flex;
   border-radius: var(--br-round);
   padding: 0.3rem;
   cursor: pointer;
-  margin: 1rem;
-}
-
-.card__toggle[data-active="true"] {
-  background-color: rgba(var(--color-primary));
-  transform: scale(1.1);
-  transition: 0.2s;
+  margin: 0.7rem;
+  filter: drop-shadow(2px 1px 0px rgba(var(--color-light)));
 }
 
 .card__toggle polygon {
-  fill: rgba(var(--color-dark));
+  fill: rgba(var(--color-light));
   height: 100%;
 }
 
-.card__toggle:hover {
-  background-color: rgba(var(--color-primary));
+.card__toggle:hover,
+.card__toggle[data-active="true"] {
   transform: scale(1.1);
   transition: 0.2s;
+  border-color: rgba(var(--color-primary));
+  filter: drop-shadow(2px 1px 0px rgba(var(--color-primary)));
 }
 
-/* OLD */
-
-/* .cards {
-  padding-top: 20vh;
+.card__toggle:hover polygon,
+.card__toggle[data-active="true"] polygon {
+  fill: rgba(var(--color-primary));
 }
-.cards .embla {
-  overflow: hidden;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-.cards .embla__viewport {
-  width: calc(var(--product-carousel-width) / 2);
-  margin-left: auto;
-  margin-right: auto;
-  transform: translateX(calc(-1 * (var(--product-carousel-width) / 4)));
-}
-
-.cards .embla__container {
-  background-color: bisque;
-  display: flex;
-  justify-content: flex-start;
-  gap: 0.5rem;
-  user-select: none;
-  -webkit-touch-callout: none;
-  -khtml-user-select: none;
-  -webkit-tap-highlight-color: transparent;
-}
-
-.card.embla__slide {
-  position: relative;
-  overflow: hidden;
-  min-width: calc(var(--product-carousel-width) / 2);
-  height: var(--product-carousel-height);
-  min-height: var(--product-carousel-height);
-  display: block;
-  border-radius: 15px;
-  filter: drop-shadow(4px 4px 7px rgba(0, 0, 0, 0.25));
-  transition: 0.3s;
-}
-
-.card.embla__slide.is-selected {
-  min-width: var(--product-carousel-width);
-} */

@@ -54,7 +54,6 @@
     "sections/product-recommendations.liquid": true,
     "sections/pzaz_collage.liquid": true,
     "sections/pzaz_footer.liquid": true,
-    "sections/pzaz_reviews.liquid": true,
     "sections\\rich-text.liquid": true,
     "sections\\slideshow.liquid": true,
     "sections\\video.liquid": true,
@@ -64,10 +63,7 @@
     "sections\\pzaz_cards-backup.liquid": true,
     "assets\\cards-old-style.css": true,
     "assets\\reward-bar.css": true,
-    "assets\\reward.js": true,
-    "assets\\wakeup copy.js": true,
-    "assets\\product-old.js": true,
-    "assets\\product -old-2.js": true
+    "assets\\reward.js": true
   },
   "hide-files.files": []
 }

@@ -19,7 +19,6 @@ if (addButtons) {
     });
   });
 }
-
 if (removeButtons) {
   removeButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
@@ -28,11 +27,6 @@ if (removeButtons) {
     });
   });
 }
-
-//Submit button goes to cart (were not actually adding to cart here)
-document.querySelector(".product__submit").addEventListener("click", () => {
-  openCart();
-});
 
 function AddToCart(event) {
   liquidAjaxCart.cartRequestAdd(
@@ -49,55 +43,166 @@ function AddToCart(event) {
 }
 
 function SubtractFromCart(event) {
+  let items = liquidAjaxCart.getCartState().cart.items;
+  let line_item = items.find((item) => {
+    return item.id == event.currentTarget.dataset.id;
+  });
+
+  let quantity = line_item ? line_item.quantity - 1 : 0;
   liquidAjaxCart.cartRequestChange(
     {
       id: event.currentTarget.dataset.id,
-      quantity: event.currentTarget.closest(".variant").dataset.quantity - 1,
+      quantity: quantity,
     },
     { newQueue: true }
   );
 }
 
-window.addEventListener("load", function () {
-  if ("liquidAjaxCart" in window) {
-    liquidAjaxCart.subscribeToCartStateUpdate((state, isCartUpdated) => {
-      UpdateVariantQuantities(state, isCartUpdated);
-    });
-  } else {
-    console.log("no liquidAjaxCart");
-  }
-});
-
-function UpdateVariantQuantities(state, isCartUpdated) {
+function updateVariantCount(items) {
   const variants = [...document.querySelectorAll(".variant")];
   if (!variants) {
     console.log("cant access product variant selectors");
     return;
   }
-  if (state.cart.item_count == 0) {
-    console.log("no items in cart");
-    variants.forEach((variant) => {
-      variant.querySelector(".variant__quantity").innerText = 0;
-      variant.dataset.quantity = 0;
+
+  let data = items.map((item) => {
+    return {
+      id: item.id,
+      quantity: item.quantity,
+    };
+  });
+
+  console.log(data);
+
+  variants.forEach((variant) => {
+    let match = data.find((item) => {
+      return item.id == variant.dataset.id;
     });
-    return;
-  }
-  if (!isCartUpdated) {
-    console.log("cart not updated");
-    return;
-  }
-  state.cart.items.forEach((item) => {
-    variants.forEach((variant) => {
-      if (item.id == variant.dataset.id) {
-        variant.querySelector(".variant__quantity").innerText = item.quantity;
-        variant.dataset.quantity = item.quantity;
-      }
-    });
+
+    if (match) {
+      variant.querySelector(".variant__quantity").innerText = match.quantity;
+      variant.dataset.quantity = match.quantity;
+      return;
+    }
+
+    variant.querySelector(".variant__quantity").innerText = 0;
+    variant.dataset.quantity = 0;
   });
 }
+
+function updateDiscountMessage(items, data) {
+  // const current = data.find((item) => item.count === count);
+  // document.querySelector(".discount-message").innerText = current.message;
+  let count = 0;
+  items.forEach((item) => {
+    console.log(item);
+    if (item.handle == "pzaz") {
+      count += item.quantity;
+    }
+  });
+
+  if (count >= data.length) {
+    count = data.length - 1;
+    document.querySelector(".discount-message p").innerText =
+      data[data.length - 1].message;
+  } else if (count <= 0) {
+    document.querySelector(".discount-message p").innerText = data[0].message;
+  } else {
+    document.querySelector(".discount-message p").innerText = data.find(
+      (item) => item.count === count
+    ).message;
+  }
+}
+
+//Submit button goes to cart (were not actually adding to cart here)
+document.querySelector(".product__submit").addEventListener("click", () => {
+  openCart();
+});
+
+function handleAjaxResults() {
+  const cart = liquidAjaxCart.getCartState().cart;
+  updateVariantCount(cart.items);
+  updateDiscountMessage(cart.items, discountMessageData);
+}
+
+window.addEventListener("load", function () {
+  if ("liquidAjaxCart" in window) {
+    liquidAjaxCart.subscribeToCartAjaxRequests((data, resultFunction) => {
+      resultFunction(handleAjaxResults);
+    });
+  } else {
+    console.log("no liquidAjaxCart");
+  }
+  initEmblaVariantToggles();
+});
 
 document.querySelectorAll(".accordion-item").forEach((item) => {
   item.addEventListener("click", (event) => {
     event.currentTarget.classList.toggle("active");
   });
 });
+
+const emblaNode = document.querySelector(".product .embla__viewport");
+const emblaoptions = {
+  align: "center",
+  inViewThreshold: 1,
+  loop: false,
+};
+
+const productEmbla = EmblaCarousel(emblaNode, emblaoptions);
+console.log("product page carousel intialized");
+
+console.log(productEmbla.scrollSnapList());
+console.log(productEmbla.slideNodes());
+
+function initEmblaVariantToggles() {
+  [...document.querySelectorAll(".variant")].forEach((variant, index) => {
+    variant.addEventListener("click", () => {
+      productEmbla.scrollTo(index);
+    });
+  });
+}
+
+const discountMessageData = [
+  {
+    count: 0,
+    reward: null,
+    message:
+      "Welcome to the world of fast, fun, and effective energy. Select a four-pack of your favorite flavor.",
+  },
+  {
+    count: 1,
+    reward: null,
+    message: "Buy one more pack and receive free shipping!",
+  },
+  {
+    count: 2,
+    reward: "Free Shipping",
+    message:
+      "You’ve unlocked free shipping and saved $5. Add one more pack to save 20% off your entire order!",
+  },
+  {
+    count: 3,
+    reward: "20% off",
+    message:
+      "You’ve unlocked free shipping and 20% off your entire order, saving $18. Want to save more? Add three more packs of Pzaz :-) ",
+  },
+  {
+    count: 4,
+    reward: null,
+    message:
+      "You’ve unlocked free shipping and 20% off your entire order. add two more packs and recieve 30% off your entire order.",
+  },
+  {
+    count: 5,
+    reward: null,
+    message:
+      "You’ve unlocked free shipping and 20% off your entire order. add just one more pack and recieve 30% off your entire order.",
+  },
+  {
+    count: 6,
+    reward: "30% off",
+    message:
+      "You've unlocked 30% off your entire order. Subscribe during checkout to recieve a whopping 60% off.",
+  },
+];

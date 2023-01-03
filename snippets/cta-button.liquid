@@ -3,18 +3,25 @@
 {% assign button_text = text %} {% endcomment %}
 
 <a
-  class="
-  button
+  class="button
   {% if color == "dark" %}
     button--dark
   {% elsif color == "light" %}
     button--light
+  {% elsif color == "primary" %}
+    button--primary
+  {% elsif color == "gradient" %}
+    button--gradient
   {% endif %}
   {% if size == "large" %}
     button--large
   {% elsif size == "small" %}
     button--small
   {% endif %}
+  {% if border == true %}
+    button--border
+  {% endif %}
+
   "
   href="/products/pzaz">
   {% if text %}

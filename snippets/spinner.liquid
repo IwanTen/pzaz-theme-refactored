@@ -1,0 +1,57 @@
+{% style %}
+
+  .sp {
+    width: 1.5rem;
+    height: 1.5rem;
+    clear: both;
+    margin: 20px auto;
+    display: none;
+  }
+
+  .js-ajax-cart-request-in-progress .sp {
+    display: block;
+  }
+  .sp-hydrogen {
+    position: relative;
+    border: 2px solid #000;
+    box-shadow: 0 2px black;
+    border-radius: 50%;
+    -webkit-animation: spHydro 0.6s infinite linear;
+    animation: spHydro 0.6s infinite linear;
+  }
+  .sp-hydrogen:before,
+  .sp-hydrogen:after {
+    content: '';
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    border-radius: 50%;
+  }
+  .sp-hydrogen:before {
+    top: calc(50% - 20px);
+    left: calc(50% - 5px);
+  }
+  .sp-hydrogen:after {
+    top: -1px;
+    left: -1px;
+  }
+  @-webkit-keyframes spHydro {
+    from {
+      -webkit-transform: rotate(0deg);
+    }
+    to {
+      -webkit-transform: rotate(359deg);
+    }
+  }
+  @keyframes spHydro {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(359deg);
+    }
+  }
+{%  endstyle %}
+
+<div class="sp sp-hydrogen"></div>

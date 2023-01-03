@@ -1,7 +1,7 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
 <div class="header">
-  <div class="header__logo">
+  <a class="header__logo" href="/">
     <img
       src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/Pzaz_BreathSpray_Logo-25_10031bf3-bbc6-4258-990e-170168d8a48e.png?v=1666200627"
       alt="Logo"
@@ -9,7 +9,7 @@
       width="auto"
       height="auto"
       loading="lazy">
-  </div>
+  </a>
   <a class="cart-toggle" data-cart-view="data-cart-view">
     {% render 'icon-cart' %}
     <span class="cart-toggle__quantity" data-ajax-cart-section>{{ cart.item_count }}</span>

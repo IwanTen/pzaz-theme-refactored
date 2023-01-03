@@ -22,8 +22,20 @@
     },
     "cards": {
       "type": "pzaz_cards",
-      "settings": {}
+      "settin gs": {}
+    },
+    "reviews": {
+      "type": "pzaz_reviews",
+      "settin gs": {}
     }
   },
-  "order": ["hero", "power", "testimonials","focus","science","cards"]
+  "order": [
+    "hero",
+    "power",
+    "testimonials",
+    "focus",
+    "science",
+    "cards",
+    "reviews"
+  ]
 }

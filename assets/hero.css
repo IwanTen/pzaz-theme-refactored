@@ -3,13 +3,11 @@
 /* ------------------- */
 
 .hero {
-  background-color: rgba(var(--color-primary));
+  /* background-color: rgba(var(--color-primary));
   border-bottom-left-radius: var(--br-base);
-  border-bottom-right-radius: var(--br-base);
+  border-bottom-right-radius: var(--br-base); */
   min-height: 100vh;
   padding: 1rem;
-  /* min-height: calc(100vh - 1rem); */
-  /* margin: 0 1rem 1rem 1rem; */
 
   position: relative;
   display: flex;

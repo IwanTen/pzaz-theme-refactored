@@ -1,12 +1,13 @@
 window.onload = InitTestimonialsEmbla;
 
 function InitTestimonialsEmbla() {
-  const emblaNode = document.querySelector(".testimonial.embla");
+  const emblaNode = document.querySelector(".testimonial .embla__viewport");
   const plugins = [EmblaCarouselAutoplay(), EmblaCarouselClassNames()];
   const options = {
-    align: "center",
+    // align: "center",
     inViewThreshold: 1,
     loop: true,
+    dragFree: true,
   };
   const testimonials = EmblaCarousel(emblaNode, options, plugins);
   convertSlidesToToggles(testimonials);

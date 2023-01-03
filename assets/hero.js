@@ -1,12 +1,12 @@
 window.addEventListener("load", init);
 gsap.registerPlugin(ScrollTrigger);
 const heroVideo = document.querySelector(".hero__video");
-const heroButton = document.querySelector(".hero .button-wrapper");
+const heroButton = document.querySelector(".hero__button");
 let vEnd = heroVideo.getBoundingClientRect().bottom;
 let bTop = heroButton.getBoundingClientRect().top;
 
 function init() {
-  AnimateHero();
+  // AnimateHero();
   AnimateCartButton();
 }
 
@@ -21,7 +21,7 @@ function AnimateHero() {
       end: "40% top",
       scrub: 1.5,
       pin: false,
-      // markers: true,
+      markers: true,
     },
   });
   tl.fromTo(
@@ -38,11 +38,11 @@ function AnimateCartButton() {
   const cartTimeline = gsap.timeline({
     defaults: { duration: 0.5 },
     scrollTrigger: {
-      trigger: ".wakeup",
+      trigger: [".power"],
       start: "top 100px",
       // end: "40% top",
       // markers: true,
-      toggleActions: "play reverse play reverse",
+      toggleActions: "play none play reverse",
     },
   });
   cartTimeline

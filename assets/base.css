@@ -75,6 +75,10 @@ fieldset {
   }
 }
 
+button {
+  border: none;
+}
+
 /* ------------------- */
 /* Font Faces          */
 /* ------------------- */
@@ -236,19 +240,9 @@ fieldset {
   max-width: calc(var(--container-width, 1280) * 1px);
 }
 
-/* .section__title {
-  font-family: var(--font-heading);
-  font-size: var(--fs-900);
-  font-size: 2.5rem;
-  font-style: italic;
-  text-transform: uppercase;
-  line-height: 1;
-  margin-bottom: 1.5rem;
-} */
-
 .button-wrapper {
   /* min-height: 10rem; */
-  min-height: (var(--height, 10) * 1rem);
+  min-height: var(--height, 10rem);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -297,6 +291,7 @@ fieldset {
 
 .section {
   position: relative;
+  overflow: hidden;
   /* overflow: clip; */
 }
 
@@ -396,7 +391,7 @@ fieldset {
   display: block;
   padding: 0.5em 2em;
   border-radius: var(--br-base);
-  font-size: var(--fs-lg);
+  font-size: var(--fs-sm);
   font-weight: var(--fw-heading-bold);
   font-family: var(--font-heading);
   font-style: italic;
@@ -404,6 +399,8 @@ fieldset {
   text-align: center;
   text-decoration: none;
   transition: 0.2s ease-out;
+  width: fit-content;
+  white-space: nowrap;
 }
 
 @media (min-width: 768px) {
@@ -415,8 +412,9 @@ fieldset {
 .button:hover {
   /* transform: translate(0, -0.5em); */
   transition: 0.3s ease-out;
-  padding: 0.75em 2em;
-  min-width: calc(inherit + 3em);
+  /* padding: 0.75em 2em; */
+  /* min-width: calc(inherit + 2em); */
+  /* border: none; */
 }
 
 .button--large {
@@ -424,29 +422,65 @@ fieldset {
   padding: 0.5em 5em;
 }
 
-.button--large:hover {
+/* .button--large:hover {
   min-width: calc(var(--button-width-large) + 3em);
   padding: 0.5em 8em;
-}
+} */
 
 .button--small {
   min-width: var(--button-width-small);
   padding: 0.5em 2em;
 }
 
-.button--small:hover {
+/* .button--small:hover {
   min-width: calc(var(--button-width-small) + 3em);
-  padding: 0.5em 5em;
-}
+  padding: 0.5em 3em;
+} */
 
 .button--dark {
   background-color: rgba(var(--color-dark));
+  background-color: #000000;
   color: rgba(var(--color-light));
+  border: 3px solid rgba(var(--color-light));
+  box-shadow: 4px 4px rgba(var(--color-light));
 }
+
 .button--dark:hover {
+  transform: translate(3px, 3px);
+  border: 3px solid rgba(var(--color-light));
+  box-shadow: 1px 1px rgba(var(--color-light));
+}
+/* .button--dark:hover {
   outline: 3px solid rgba(var(--color-dark));
   background-color: rgba(0, 0, 0, 0);
   color: rgba(var(--color-dark));
+} */
+
+.button--primary {
+  background-color: rgba(var(--color-primary));
+  color: rgba(var(--color-dark));
+}
+
+.button--border {
+  border: 3px solid #000000;
+  box-shadow: 4px 4px #000000;
+}
+
+.button--border:hover {
+  transform: translate(3px, 3px);
+  border: 3px solid #000000;
+  box-shadow: 1px 1px #000000;
+}
+
+.button__border--light {
+  border: 3px solid rgba(var(--color-light));
+  box-shadow: 4px 4px rgba(var(--color-light));
+}
+
+.button__border--light:hover {
+  transform: translate(3px, 3px);
+  border: 3px solid rgba(var(--color-light));
+  box-shadow: 1px 1px rgba(var(--color-light));
 }
 
 .button--light {
@@ -454,8 +488,22 @@ fieldset {
   color: rgba(var(--color-dark));
 }
 
-.button--light:hover {
+.button--gradient {
+  background: linear-gradient(
+    to right,
+    rgba(var(--color-primary), 0.8) 25%,
+    rgba(var(--color-green), 0.8) 25%,
+    rgba(var(--color-green), 0.8) 50%,
+    rgba(var(--color-blue), 0.8) 50%,
+    rgba(var(--color-blue), 0.8) 75%,
+    rgba(var(--color-red), 0.8) 75%,
+    rgba(var(--color-red), 0.8) 100%
+  );
+  color: rgba(var(--color-dark));
+}
+
+/* .button--light:hover {
   outline: 3px solid rgba(var(--color-light));
   background-color: rgba(0, 0, 0, 0);
   color: rgba(var(--color-light));
-}
+} */
