@@ -61,8 +61,6 @@ function closeCart() {
 class PzazCart extends HTMLElement {
   constructor() {
     super();
-    // this.cart = this.querySelector(".zazzy-cart");
-
     this.querySelector(".cart-subscribe__toggle").addEventListener(
       "click",
       this.toggleSubscriptions.bind(this)
@@ -71,6 +69,7 @@ class PzazCart extends HTMLElement {
 
   toggleSubscriptions(event) {
     event.target.classList.toggle("active");
+    this.querySelector(".cart-subscribe").classList.toggle("active");
   }
 }
 

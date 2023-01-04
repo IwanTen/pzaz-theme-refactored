@@ -2,31 +2,65 @@
   "sections": {
     "hero": {
       "type": "pzaz_hero",
-      "settings": {}
+      "settings": {
+      }
     },
     "power": {
       "type": "pzaz_power",
-      "settings": {}
+      "settings": {
+      }
     },
     "testimonials": {
       "type": "pzaz_testimonials",
-      "settings": {}
+      "settings": {
+      }
     },
     "focus": {
       "type": "pzaz_focus",
-      "settings": {}
+      "settings": {
+      }
     },
     "science": {
       "type": "pzaz_science",
-      "settings": {}
+      "settings": {
+      }
     },
     "cards": {
       "type": "pzaz_cards",
-      "settin gs": {}
+      "settings": {
+      }
     },
     "reviews": {
       "type": "pzaz_reviews",
-      "settin gs": {}
+      "blocks": {
+        "1baf31d5-86a0-4a9a-b136-f0464c9ca9ae": {
+          "type": "shopify:\/\/apps\/loox-product-reviews-photos\/blocks\/loox-card-carousel-section\/5c3b337f-fd14-4df5-b1d6-80ec13e6e28e",
+          "settings": {
+            "maxWidth": 1100,
+            "borderRadius": 8,
+            "itemsPerView": 4,
+            "maxNumberOfCharacters": 100,
+            "imageRatio": "0.72",
+            "reviewerNameColor": "#fdff02",
+            "textColor": "#fdff02",
+            "itemBackgroundColor": "#020202",
+            "starsColor": "#fdff02",
+            "starsBackgroundColor": "#020202",
+            "arrows_backgroundColor": "#FFFFFF",
+            "arrows_iconColor": "#020202",
+            "shadow": "offset-dark",
+            "border_active": true,
+            "border_width": 2,
+            "border_color": "#fdff02",
+            "productIds": ""
+          }
+        }
+      },
+      "block_order": [
+        "1baf31d5-86a0-4a9a-b136-f0464c9ca9ae"
+      ],
+      "settings": {
+      }
     }
   },
   "order": [

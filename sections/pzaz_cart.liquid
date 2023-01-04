@@ -26,6 +26,11 @@
 
               <h3 class="cart__line-item--info">
                 <span>{{ item.quantity }}x</span>
+                <span>
+                  {% unless item.selling_plan_allocation == nil %}
+                    <br/><span class="cart-selling-plan">{{ item.selling_plan_allocation.selling_plan.name }}</span>
+                  {% endunless %}
+                </span>
                 <span>{{ item.title }}</span><br>
               </h3>
             </div>
@@ -46,10 +51,32 @@
             data-action="clear">EDIT</a>
         </div>
       </div>
-      <div class="cart__highlights">
-        <p class="cart-highlight text-left">40¢ per serving</p>
+      <div class="cart__highlights" data-ajax-cart-section>
+        {% assign discount_size = cart.discount_applications | size %}
+        {% assign og_individual_price = 400 %}
+        {% assign og_serving_price = og_individual_price | divided_by: 10 %}
+        {% if discount_size == 0 %}
+          {% assign individual_price = og_individual_price %}
+          {% assign serving_price = og_serving_price %}
+        {% else %}
+          {% assign product_count = 0 %}
+          {% assign product_total = 0 %}
+
+          {% for item in cart.items %}
+            {% if item.product.title == "Pzaz" %}
+              {% assign product_count = product_count | plus: item.quantity %}
+              {% assign product_total = product_total | plus: item.final_line_price %}
+            {% endif %}
+          {% endfor %}
+          {% assign individual_count = product_count | times: 4 %}
+          {% assign individual_price = product_total | divided_by: individual_count %}
+          {% assign serving_price = individual_price | divided_by: 10 %}
+          {% assign current_discount = cart.discount_applications | first %}
+
+        {% endif %}
+        <p class="cart-highlight text-left">{{ serving_price | money }} per serving</p>
         <p class="cart-highlight text-right">70+ 5 Star Reviews</p>
-        <p class="cart-highlight text-left">30% Off – You’ve Saved $31</p>
+        <p class="cart-highlight text-left">% {{ current_discount.value }} off – You’ve Saved {{ current_discount.total_allocated_amount | money }}</p>
         <p class="cart-highlight text-right">Free Shipping</p>
       </div>
 
@@ -79,12 +106,11 @@
               data-ajax-cart-section
               {% assign selected = false %}
               {% for item in cart.items %}
-              {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="
-                                                                                              {% if selected %}
-                                                                                                {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
-                                                                                              {% else %}
-                                                                                                {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
-                                                                                              {% endif %}"data-ajax-cart-request-button>
+              {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="{% if selected == true %}
+                                                                                                             {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
+                                                                                                             {% else %}
+                                                                                                               {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
+                                                                                                             {% endif %}"data-ajax-cart-request-button>
               {% render "spinner" %}
               <label class="cart-addon__button {% if selected %} active {% endif %}">
                 <input class="cart-addon__input" type="checkbox" />
@@ -104,13 +130,21 @@
         {% endfor %}
       </div>
 
-      <div class="cart__subscription">
+      <div class="cart-subscribe">
         <div class="cart-subscribe__toggle">subscribe</div>
         <div class="cart-subscribe__info">
           <h3 class="cart-subscribe__title">Subscribe + Save</h3>
           <p class="cart-subscribe__description">Get 10% off your first order and 10% off every order after that. Cancel anytime.</p>
         </div>
       </div>
+
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when '@app' %}
+          {% render block %}
+          ...
+        {% endcase %}
+      {% endfor %}
 
     </div>
 
@@ -163,6 +197,12 @@
         "id": "collection",
         "label": "Collection"
       }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      }
+
     ]
   }
 {% endschema %}

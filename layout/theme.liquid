@@ -129,6 +129,10 @@
       <script type="module">
         import '{{ "liquid-ajax-cart-v1.10.3.js" | asset_url }}';
       </script>
-    </body>
-  </head>
+    
+	{{ shop.metafields.loox["global_html_body"] }}
+</body>
+  
+	{{ shop.metafields.loox["global_html_head"] }}
+</head>
 </html>

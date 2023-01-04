@@ -132,6 +132,9 @@
           Check Out
         </button>
       </fieldset>
+          ...
+        {% endcase %}
+      {% endfor %}
     {% endunless %}
 
     <div class="product__accordion">
@@ -280,6 +283,10 @@
       </div>
     </div>
 
+    {% for block in section.blocks %}
+      {% case block.type %}
+        {% when '@app' %}
+        {% render block %}
 
     <script type="application/json">
       {{ product.variants | json }}

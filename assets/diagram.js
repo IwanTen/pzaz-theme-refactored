@@ -14,8 +14,8 @@ const __border = ".diagram__border";
 
 window.addEventListener("DOMContentLoaded", () => {
   ResizeDiagramItems();
+  HandleDiagramCards();
   InitDiagramAnimation();
-  // InitTestimonialAnimation();
   InitScienceAnimation();
 });
 window.onresize = throttle(ResizeDiagramItems, 200);
@@ -80,6 +80,18 @@ function InitDiagramAnimation() {
       },
       "<0.2"
     );
+}
+
+function HandleDiagramCards() {
+  items = document.querySelectorAll(".diagram__item");
+  items.forEach((item) => {
+    item.addEventListener("mouseenter", function () {
+      item.querySelector(".diagram__card").classList.add("active");
+    });
+    item.addEventListener("mouseleave", function () {
+      item.querySelector(".diagram__card").classList.remove("active");
+    });
+  });
 }
 
 function InitTestimonialAnimation() {
