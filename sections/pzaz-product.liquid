@@ -1,11 +1,14 @@
 {{ 'product.css' | asset_url | stylesheet_tag }}
 
+<script>
+  window.discountStrings = {{product.metafields.custom.discount_data.value  }}
+</script>
 {% assign product_price = product.price %}
 
 {% assign test = 5 %}
 <div class="product container">
   <div class="product__header">
-    <a class="product__to-home" href="/">{% render "icon-home" %}</a>
+    <a class="product__to-home" href="/">X</a>
   </div>
   <div class="product__grid">
     {% comment %} <div class="product__media"> {% endcomment %}
@@ -99,7 +102,6 @@
             {% assign individual_count = product_count | times: 4 %}
             {% assign individual_price = product_total | divided_by: individual_count %}
             {% assign serving_price = individual_price | divided_by: 10 %}
-
           {% endif %}
           <p>
             {% if discount_size > 0 %}
@@ -132,10 +134,10 @@
           Check Out
         </button>
       </fieldset>
-          ...
-        {% endcase %}
-      {% endfor %}
+      {% comment %} {% endfor %} {% endcomment %}
     {% endunless %}
+    {% comment %} {% endcase %} {% endcomment %}
+
 
     <div class="product__accordion">
       <div class="accordion-item">
@@ -249,8 +251,6 @@
                 </p>
               </div>
             </li>
-
-
           </ul>
         </div>
       </div>
@@ -269,15 +269,15 @@
           <span class="accordion-item__icon">+</span>
         </div>
         <div class="accordion-item__body">
-          
-            <p class="accordion-sustainability__copy">Energy drinks, coffees, and sodas cause a lot of litter.  Pzaz is committed to being the most sustainable way to wake up:</p>
-            <ul class="accordion-sustainability__list">
-              <li class="accordion-sustainability__list-item">Every bottle of Pzaz uses 90% less plastic and materials than an equivalent number of energy drinks.<span>{% render 'icon-earth' %}</span></li>
-              <li class="accordion-sustainability__list-item">We manufacture every bottle of Pzaz in the United States with repurposed post-consumer recycled plastic.<span>{% render 'icon-lightning' %}</span></li>
-              <li class="accordion-sustainability__list-item">We recover, remove, and recycle litter around the world to offset 200% of our impact on the environment.<span>{% render 'icon-star' %}</span></li>
-            </ul>
-            
 
+          <p class="accordion-sustainability__copy">Energy drinks, coffees, and sodas cause a lot of litter.  Pzaz is committed to being the most sustainable way to wake up:</p>
+          <ul class="accordion-sustainability__list">
+            <li class="accordion-sustainability__list-item">Every bottle of Pzaz uses 90% less plastic and materials than an equivalent number of energy drinks.<span>{% render 'icon-earth' %}</span>
+            </li>
+            <li class="accordion-sustainability__list-item">We manufacture every bottle of Pzaz in the United States with repurposed post-consumer recycled plastic.<span>{% render 'icon-lightning' %}</span>
+            </li>
+            <li class="accordion-sustainability__list-item">We recover, remove, and recycle litter around the world to offset 200% of our impact on the environment.<span>{% render 'icon-star' %}</span>
+            </li>
           </ul>
         </div>
       </div>
@@ -287,18 +287,18 @@
       {% case block.type %}
         {% when '@app' %}
         {% render block %}
+      {% endcase %}
+    {% endfor %}
 
     <script type="application/json">
       {{ product.variants | json }}
     </script>
   </div>
-
 </div>
 
 
 
 <script src={{ "product.js" | asset_url }} defer="defer"></script>
-
 
 
 {% schema %}

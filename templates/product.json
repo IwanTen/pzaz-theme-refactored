@@ -2,29 +2,8 @@
   "sections": {
     "product": {
       "type": "pzaz-product",
-      "settings": {
-      }
-    },
-    "loox-product-reviews-app-section": {
-      "type": "apps",
-      "blocks": {
-        "c8bf87cf-4089-407b-b015-209838b84e4d": {
-          "type": "shopify:\/\/apps\/seal-subscriptions-loyalty\/blocks\/subscription-widget\/13b25004-a140-4ab7-b5fe-29918f759699",
-          "settings": {
-            "product": "pzaz"
-          }
-        }
-      },
-      "block_order": [
-        "c8bf87cf-4089-407b-b015-209838b84e4d"
-      ],
-      "settings": {
-        "include_margins": false
-      }
+      "settings": {}
     }
   },
-  "order": [
-    "product",
-    "loox-product-reviews-app-section"
-  ]
+  "order": ["product"]
 }

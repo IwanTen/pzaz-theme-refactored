@@ -138,6 +138,11 @@ window.addEventListener("load", function () {
 
 document.querySelectorAll(".accordion-item").forEach((item) => {
   item.addEventListener("click", (event) => {
+    document.querySelectorAll(".accordion-item").forEach((item) => {
+      if (item !== event.currentTarget) {
+        item.classList.remove("active");
+      }
+    });
     event.currentTarget.classList.toggle("active");
   });
 });

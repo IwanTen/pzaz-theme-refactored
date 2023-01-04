@@ -30,7 +30,7 @@
 
 @media (min-width: 768px) {
   .focus__copy {
-    font-size: var(--fs-4xl);
+    font-size: var(--fs-2xl);
   }
 }
 .focus__image {

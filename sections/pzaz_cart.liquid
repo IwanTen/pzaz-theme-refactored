@@ -4,10 +4,9 @@
 
 <pzaz-cart>
   <div class="cart">
-
     <div class="cart__main">
       <div class="cart__header">
-        <span class="cart__close">{% render "icon-plus" %}</span>
+        <span class="cart__close">X</span>
       </div>
       {% comment %} <div
       class="filler"></div> {% endcomment %}
@@ -39,7 +38,7 @@
         <div class="cart__line-info">
           <div>
             <span class="cart__line-info--original-price">
-              {{ cart.total_discount | money }}</span>
+              {{ cart.original_total_price | money }}</span>
             <span class="cart__line-info--total-price">
               {{ cart.total_price | money }}</span>
           </div>
@@ -107,10 +106,10 @@
               {% assign selected = false %}
               {% for item in cart.items %}
               {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="{% if selected == true %}
-                                                                                                             {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
-                                                                                                             {% else %}
-                                                                                                               {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
-                                                                                                             {% endif %}"data-ajax-cart-request-button>
+                                                                                                                                                                                             {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
+                                                                                                                                                                                             {% else %}
+                                                                                                                                                                                               {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
+                                                                                                                                                                                             {% endif %}"data-ajax-cart-request-button>
               {% render "spinner" %}
               <label class="cart-addon__button {% if selected %} active {% endif %}">
                 <input class="cart-addon__input" type="checkbox" />
@@ -131,7 +130,10 @@
       </div>
 
       <div class="cart-subscribe">
-        <div class="cart-subscribe__toggle">subscribe</div>
+        <div class="cart-subscribe__toggle">
+          <span>subscribed</span>
+          <span>subscribe</span>
+        </div>
         <div class="cart-subscribe__info">
           <h3 class="cart-subscribe__title">Subscribe + Save</h3>
           <p class="cart-subscribe__description">Get 10% off your first order and 10% off every order after that. Cancel anytime.</p>

@@ -40,7 +40,7 @@
 @media (min-width: 768px) {
   .reviews__copy,
   .map__copy {
-    font-size: var(--fs-4xl);
+    font-size: var(--fs-2xl);
   }
 }
 

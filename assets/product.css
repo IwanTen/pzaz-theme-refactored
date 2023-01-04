@@ -259,25 +259,24 @@
   height: auto;
   max-height: 0;
   overflow: hidden;
-  transition: 0.5s;
+  transition: 0.1s;
   border-bottom: 2px solid rgba(var(--color-dark), 1);
   padding-top: 0.5rem;
-  /* padding-bottom: 0.5rem; */
 }
 .accordion-item.active .accordion-item__body {
   max-height: 1000px;
-  transition: 0.5s;
+  transition: 0.1s;
   overflow: visible;
 }
 
 .accordion-item__icon {
-  transition: 0.3s;
+  transition: 0.2s;
   transform: rotate(0deg);
 }
 
 .accordion-item.active .accordion-item__icon {
   transform: rotate(225deg);
-  transition: 0.3s;
+  transition: 0.2s;
 }
 
 .accordion-item__icon {
