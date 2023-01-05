@@ -16,7 +16,6 @@
       <div class="embla__viewport ">
         <div class="embla__container">
           {% for variant in product.variants %}
-
             {% if variant.metafields.custom.variant_images %}
               {% assign carouselImage = variant.metafields.custom.variant_images.value | first | image_url %}
             {% elsif variant.metafields.custom.product_image %}
@@ -33,7 +32,8 @@
                   width="100"
                   height="100"
                   loading="lazy"
-                  alt="{{ variant.featured_media.alt | escape }}">
+                  alt="{{ variant.featured_media.alt | escape }}"
+                >
               </div>
             </div>
           {% endfor %}
@@ -41,17 +41,13 @@
       </div>
     </div>
 
-
-
     {% unless product.has_only_default_variant %}
       <fieldset class="variant-picker">
         <span class="discount-message">
           <p class="discount-message__text">
-            One tube, sixty sprays, $3.99.
-            Select a four-pack of your favorite flavor:
+            "Welcome to the world of fast, fun, and effective energy. Select a four-pack of your favorite flavor."
           </p>
         </span>
-
 
         {% for variant in product.variants %}
           {% for item in cart.items %}
@@ -66,11 +62,15 @@
             class="variant"
             data-id="{{ variant.id }}"
             data-quantity="{{ cart_item_quantity }}"
-            id="{{ variant.title | handle }}">
+            id="{{ variant.title | handle }}"
+          >
             <button
               data-id="{{ variant.id }}"
               data-action="subtract"
-              class="variant__button variant__button--subtract">{% render "icon-minus" %}</button>
+              class="variant__button variant__button--subtract"
+            >
+              {% render 'icon-minus' %}
+            </button>
             <span class="variant__content">
               <h3 class="variant__title">{{ variant.title }}</h3>
 
@@ -81,16 +81,16 @@
             <button
               data-id="{{ variant.id }}"
               data-action="add"
-              class="variant__button variant__button--add">{% render "icon-plus" %}</button>
+              class="variant__button variant__button--add"
+            >
+              {% render 'icon-plus' %}
+            </button>
           </div>
           {% assign cart_item_quantity = null %}
         {% endfor %}
 
-
-
         <label for="{{ variant.title }}"></label>
         <div class="product__info" data-ajax-cart-section>
-
           {% assign discount_size = cart.discount_applications | size %}
           {% assign og_individual_price = 400 %}
           {% assign og_serving_price = og_individual_price | divided_by: 10 %}
@@ -103,7 +103,7 @@
 
             {% for item in cart.items %}
               {% assign title = item.product.title | downcase %}
-              {% if title contains "pzaz" %}
+              {% if title contains 'pzaz' %}
                 {% assign product_count = product_count | plus: item.quantity %}
                 {% assign product_total = product_total | plus: item.final_line_price %}
               {% endif %}
@@ -130,23 +130,18 @@
             {{ serving_price | money }}
             per serving
           </p>
-          <p>
-            Contains natural caffeine, electrolytes, vitamins and minerals.
-          </p>
-          {% comment %} <p>
-          Free fast shipping unlocked.
-          </p> {% endcomment %}
-
-
+          <p>Contains natural caffeine, electrolytes, vitamins and minerals.</p>
+          {% comment %}
+            <p>
+            Free fast shipping unlocked.
+            </p>
+          {% endcomment %}
         </div>
-        <button type="submit" class="product__submit">
-          Check Out
-        </button>
+        <button type="submit" class="product__submit">Check Out</button>
       </fieldset>
       {% comment %} {% endfor %} {% endcomment %}
     {% endunless %}
     {% comment %} {% endcase %} {% endcomment %}
-
 
     <div class="product__accordion">
       <div class="accordion-item">
@@ -166,23 +161,27 @@
             </span>
             <h4 class="accordion-ingredients__heading">ON-THE-GO ENERGY BURST:</h4>
             <span class="accordion-ingredients__items">
-              <p class="accordion-ingredients__item">Natural Caffeine:
+              <p class="accordion-ingredients__item">
+                Natural Caffeine:
                 <span>24mg</span>
               </p>
-              <p class="accordion-ingredients__item">Vitamin B12:
+              <p class="accordion-ingredients__item">
+                Vitamin B12:
                 <span>10mcg</span>
               </p>
-              <p class="accordion-ingredients__item">Vitamin C:
+              <p class="accordion-ingredients__item">
+                Vitamin C:
                 <span>7mg</span>
               </p>
-              <p class="accordion-ingredients__item">Electrolytes:
+              <p class="accordion-ingredients__item">
+                Electrolytes:
                 <span>6mg</span>
               </p>
-              <p class="accordion-ingredients__item">Zinc:
+              <p class="accordion-ingredients__item">
+                Zinc:
                 <span>5mg</span>
               </p>
             </span>
-
           </div>
         </div>
       </div>
@@ -201,7 +200,9 @@
               </div>
               <div class="accordion-science__body">
                 <h4 class="accordion-science__heading">Fast Acting</h4>
-                <p class="accordion-science__text">Maximum bioavailability means you feel the power faster with no crash.</p>
+                <p class="accordion-science__text">
+                  Maximum bioavailability means you feel the power faster with no crash.
+                </p>
               </div>
             </li>
             <li class="accordion-science__item">
@@ -212,7 +213,9 @@
               </div>
               <div class="accordion-science__body">
                 <h4 class="accordion-science__heading">Personalized Power</h4>
-                <p class="accordion-science__text">3 sprays or 30? Choose your own level of energy throughout the day.</p>
+                <p class="accordion-science__text">
+                  3 sprays or 30? Choose your own level of energy throughout the day.
+                </p>
               </div>
             </li>
             <li class="accordion-science__item">
@@ -223,7 +226,9 @@
               </div>
               <div class="accordion-science__body">
                 <h4 class="accordion-science__heading">HEALTHY + CLEAN</h4>
-                <p class="accordion-science__text">0 calories, natural flavors, sugar free, vegan, and made in the USA.</p>
+                <p class="accordion-science__text">
+                  0 calories, natural flavors, sugar free, vegan, and made in the USA.
+                </p>
               </div>
             </li>
             <li class="accordion-science__item">
@@ -256,7 +261,8 @@
               </div>
               <div class="accordion-science__body">
                 <h4 class="accordion-science__heading">SUSTAINABLE</h4>
-                <p class="accordion-science__text">Less water, plastic, and carbon emissions than any bottled coffee or energy drink.
+                <p class="accordion-science__text">
+                  Less water, plastic, and carbon emissions than any bottled coffee or energy drink.
                 </p>
               </div>
             </li>
@@ -269,7 +275,9 @@
           <span class="accordion-item__icon">+</span>
         </div>
         <div class="accordion-item__body">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ipsa amet distinctio nihil, doloribus odit quibusdam illum neque. Corporis natus non aperiam distinctio sint doloremque atque nihil nemo quasi commodi.
+          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ipsa amet distinctio nihil, doloribus
+          odit quibusdam illum neque. Corporis natus non aperiam distinctio sint doloremque atque nihil nemo quasi
+          commodi.
         </div>
       </div>
       <div class="accordion-item">
@@ -278,14 +286,25 @@
           <span class="accordion-item__icon">+</span>
         </div>
         <div class="accordion-item__body">
-
-          <p class="accordion-sustainability__copy">Energy drinks, coffees, and sodas cause a lot of litter.  Pzaz is committed to being the most sustainable way to wake up:</p>
+          <p class="accordion-sustainability__copy">
+            Energy drinks, coffees, and sodas cause a lot of litter. Pzaz is committed to being the most sustainable way
+            to wake up:
+          </p>
           <ul class="accordion-sustainability__list">
-            <li class="accordion-sustainability__list-item">Every bottle of Pzaz uses 90% less plastic and materials than an equivalent number of energy drinks.<span>{% render 'icon-earth' %}</span>
+            <li class="accordion-sustainability__list-item">
+              Every bottle of Pzaz uses 90% less plastic and materials than an equivalent number of energy drinks.<span>
+                {%- render 'icon-earth' -%}
+              </span>
             </li>
-            <li class="accordion-sustainability__list-item">We manufacture every bottle of Pzaz in the United States with repurposed post-consumer recycled plastic.<span>{% render 'icon-lightning' %}</span>
+            <li class="accordion-sustainability__list-item">
+              We manufacture every bottle of Pzaz in the United States with repurposed post-consumer recycled plastic.<span>
+                {%- render 'icon-lightning' -%}
+              </span>
             </li>
-            <li class="accordion-sustainability__list-item">We recover, remove, and recycle litter around the world to offset 200% of our impact on the environment.<span>{% render 'icon-star' %}</span>
+            <li class="accordion-sustainability__list-item">
+              We recover, remove, and recycle litter around the world to offset 200% of our impact on the environment.<span>
+                {%- render 'icon-star' -%}
+              </span>
             </li>
           </ul>
         </div>
@@ -295,7 +314,7 @@
     {% for block in section.blocks %}
       {% case block.type %}
         {% when '@app' %}
-        {% render block %}
+          {% render block %}
       {% endcase %}
     {% endfor %}
 
@@ -305,33 +324,31 @@
   </div>
 </div>
 
-
-
-<script src={{ "product.js" | asset_url }} defer="defer"></script>
-
+<script src="{{ "product.js" | asset_url }}" defer="defer"></script>
 
 {% schema %}
-  {
-    "name": "product",
-    "tag": "section",
-    "class": "section bg-light",
-    "blocks": [
-      {
-        "type": "@app"
-      }, {
-        "type": "buy_buttons",
-        "name": "t:sections.main-product.blocks.buy_buttons.name",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "checkbox",
-            "id": "show_dynamic_checkout",
-            "default": true,
-            "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-            "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "product",
+  "tag": "section",
+  "class": "section bg-light",
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:sections.main-product.blocks.buy_buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "default": true,
+          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}
