@@ -1,28 +1,36 @@
 {{ 'hero.css' | asset_url | stylesheet_tag }}
 
 <div
-  class="container hero">
-  <video
-    class="hero__video">
-    <source
-      src="https://cdn.shopify.com/videos/c/o/v/ed401cb5728544efa59e8d125fe715fd.mp4"
-      type="video/mp4">
-  </video>
+  class="container hero"
+>
+  <canvas id="hero-canvas"> 
+</canvas>
+  {% comment %}
+    <video
+      class="hero__video"
+    >
+      <source
+        src="https://cdn.shopify.com/videos/c/o/v/ed401cb5728544efa59e8d125fe715fd.mp4"
+        type="video/mp4"
+      >
+    </video>
+  {% endcomment %}
   <span
-    class="hero__button">
-    {% render 'cta-button', color: 'light', border: true size: 'large', text: 'Shop Now' %}
+    class="hero__button"
+  >
+    {% render 'cta-button', color: 'light', border: true, size: 'large', text: 'Shop Now' %}
   </span>
 </div>
 
-
 <script
-  src="{{ 'hero.js' | asset_url }}"
-  defer="defer"></script>
+  src="{{ 'hero_canvas.js' | asset_url }}"
+  defer="defer"
+></script>
 {% schema %}
-  {
-    "name": "hero",
-    "tag": "section",
-    "class": "section bg-primary",
-    "settings": []
-  }
+{
+  "name": "hero",
+  "tag": "section",
+  "class": "section bg-primary",
+  "settings": []
+}
 {% endschema %}
