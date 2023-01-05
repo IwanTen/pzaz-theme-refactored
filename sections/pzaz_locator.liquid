@@ -1,10 +1,40 @@
-<div class="store-locator container padding-base"></div>
+{% style %}
+  .store-locator {
+    color: rgba(var(--color-primary));
+    text-align: center;
+  }
+{% endstyle %}
+
+
+<div class="store-locator container padding-base">
+  <h1 heading="{{-section.settings.title-}}"></h1>
+  <p>
+    {{- section.settings.copy -}}
+  </p>
+</div>
 
 {% schema %}
   {
     "name": "locator-section",
     "tag": "section",
     "class": "section bg-dark",
-    "settings": []
+    "settings": [
+      {
+        "type": "text",
+        "id": "title",
+        "label": "Title",
+        "default": "Find a store"
+      }, {
+        "type": "text",
+        "id": "copy",
+        "label": "Copy",
+        "default": "Find a store near you"
+      }
+    ],
+    "blocks": [
+      {
+        "type": "@app"
+      }
+    ]
   }
 {% endschema %}

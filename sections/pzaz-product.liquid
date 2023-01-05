@@ -16,7 +16,15 @@
       <div class="embla__viewport ">
         <div class="embla__container">
           {% for variant in product.variants %}
-            {% assign carouselImage = variant.metafields.custom.product_images.value | first | image_url %}
+
+            {% if variant.metafields.custom.variant_images %}
+              {% assign carouselImage = variant.metafields.custom.variant_images.value | first | image_url %}
+            {% elsif variant.metafields.custom.product_image %}
+              {% assign carouselImage = variant.metafields.custom.product_image.value | image_url %}
+            {% else %}
+              {% assign carouselImage = variant.featured_media.src %}
+            {% endif %}
+
             <div class="embla__slide">
               <div class="embla__slide__inner">
                 <img
@@ -94,7 +102,8 @@
             {% assign product_total = 0 %}
 
             {% for item in cart.items %}
-              {% if item.product.title == "Pzaz" %}
+              {% assign title = item.product.title | downcase %}
+              {% if title contains "pzaz" %}
                 {% assign product_count = product_count | plus: item.quantity %}
                 {% assign product_total = product_total | plus: item.final_line_price %}
               {% endif %}
