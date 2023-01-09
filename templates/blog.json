@@ -1,19 +1,12 @@
 {
   "sections": {
     "main": {
-      "type": "main-blog",
+      "type": "zazzy-blog",
       "settings": {
-        "layout": "collage",
-        "show_image": true,
-        "image_height": "medium",
-        "show_date": true,
-        "show_author": false,
-        "padding_top": 36,
-        "padding_bottom": 36
+        "sub_heading": "",
+        "image": "shopify://shop_images/Screen_Shot_2022-10-05_at_5.26.03_PM.png"
       }
     }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

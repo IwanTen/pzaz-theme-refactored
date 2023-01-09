@@ -14,7 +14,7 @@ console.log("removeButtons", removeButtons);
 if (addButtons) {
   addButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      console.log("add button clicked", event.currentTarget.dataset.id);
+      // console.log("add button clicked", event.currentTarget.dataset.id);
       AddToCart(event);
     });
   });
@@ -22,7 +22,7 @@ if (addButtons) {
 if (removeButtons) {
   removeButtons.forEach((button) => {
     button.addEventListener("click", (event) => {
-      console.log("remove button clicked", event.currentTarget.dataset.id);
+      // console.log("remove button clicked", event.currentTarget.dataset.id);
       SubtractFromCart(event);
     });
   });
@@ -72,8 +72,6 @@ function updateVariantCount(items) {
     };
   });
 
-  console.log(data);
-
   variants.forEach((variant) => {
     let match = data.find((item) => {
       return item.id == variant.dataset.id;
@@ -91,11 +89,8 @@ function updateVariantCount(items) {
 }
 
 function updateDiscountMessage(items, data) {
-  // const current = data.find((item) => item.count === count);
-  // document.querySelector(".discount-message").innerText = current.message;
   let count = 0;
   items.forEach((item) => {
-    console.log(item);
     if (item.handle == "pzaz") {
       count += item.quantity;
     }
@@ -120,7 +115,9 @@ document.querySelector(".product__submit").addEventListener("click", () => {
 });
 
 function handleAjaxResults() {
+  console.log(liquidAjaxCart.getCartState());
   const cart = liquidAjaxCart.getCartState().cart;
+  // console.log("cart", cart);
   updateVariantCount(cart.items);
   updateDiscountMessage(cart.items, discountMessageData);
 }

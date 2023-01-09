@@ -70,7 +70,33 @@ class PzazCart extends HTMLElement {
   toggleSubscriptions(event) {
     event.target.classList.toggle("active");
     this.querySelector(".cart-subscribe").classList.toggle("active");
+    this.addSellingPlan();
   }
+
+  addSellingPlan() {
+    console.log("attempting to add a selling plan");
+    const plan = 642941116;
+    const cart = liquidAjaxCart.getCartState().cart;
+    const data = cart.items.map((item, index) => {
+      return {
+        line: index + 1,
+        quantity: 6,
+      };
+    });
+    liquidAjaxCart.cartRequestUpdate(
+      {
+        updates: [
+          {
+            line: 1,
+            quantity: 6,
+          },
+        ],
+      },
+      { newQueue: true }
+    );
+  }
+
+  removeSellingPlan() {}
 }
 
 customElements.define("pzaz-cart", PzazCart);

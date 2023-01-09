@@ -1,0 +1,12 @@
+{
+  "sections": {
+    "main": {
+      "type": "zazzy-article",
+      "settings": {
+      }
+    }
+  },
+  "order": [
+    "main"
+  ]
+}

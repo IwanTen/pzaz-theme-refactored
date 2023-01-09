@@ -44,6 +44,7 @@
     {{ content_for_header }}
     {% render 'pzaz-fonts' %}
     <link href="{{ 'base.css' | asset_url }}"rel="stylesheet"type="text/css"media="all">
+    <link href="{{ 'wheelio.css' | asset_url }}"rel="stylesheet"type="text/css"media="all">
     <script>
       document.documentElement.className = document.documentElement.className.replace('no-js', 'js');
       if (Shopify.designMode) {
@@ -129,10 +130,10 @@
       <script type="module">
         import '{{ "liquid-ajax-cart-v1.10.3.js" | asset_url }}';
       </script>
-    
-	{{ shop.metafields.loox["global_html_body"] }}
-</body>
-  
-	{{ shop.metafields.loox["global_html_head"] }}
-</head>
+
+      {{ shop.metafields.loox["global_html_body"] }}
+    </body>
+
+    {{ shop.metafields.loox["global_html_head"] }}
+  </head>
 </html>

@@ -1,0 +1,207 @@
+{% render 'iwans-blog-css'%}
+{% assign custom_title = article.metafields.custom.title | metafield_text %}
+{% assign custom_headline = article.metafields.custom.headline | metafield_text %}
+
+  {% assign hero_image_url = section.settings.image %}
+
+
+<article class="zblog-wrapper">
+  <div class="zblog-hero-image__container">
+    {% if hero_image_url %}
+      <img src="{{ hero_image_url | img_url:'2000x' }}" class="zblog-hero-image" width="100" height="auto" loading="lazy">
+    {% endif %}
+  </div>
+  <div class="zblog-header contain">
+
+    <div class="zblog-header-main">
+      <h1 class="zblog-header-main__title">
+        research
+      </h1>
+      <h2 class="zblog-general__subheading">{{section.settings.sub_heading}}</h2></div>
+      {% if custom_headline.size > 0 %}
+        <h2 class="zblog-header-main__headline">
+          {{ article.metafields.custom.headline }}
+        </h2>
+      {% endif %}
+    </div>
+  </div>
+  <div class="zblog-content"></div>
+
+  <div class="zblog-main contain" style="overflow:hidden;">
+        {% for article in blog.articles %}
+          <div class="zblog-main__card">
+            <div class="zblog-main__card-image">
+              {% if article.metafields.custom.image%}
+                {% assign card_image_url = article.metafields.custom.image %}
+              {% else %}
+                {% assign card_image_url = article.image %}
+              {% endif %}
+              <a href="{{article.url}}">
+                <img src="{{ card_image_url | img_url:'2000x' }}"width="100" height="auto" loading="lazy">
+              </a>
+
+            </div>
+            <a href="{{article.url}}">
+              <div class="zblog-more__card-content">
+                <h2 class="zblog-more__card-title">
+                  {{article.title}}
+                </h2>
+                <h3 class="zblog-more__card-headline">
+                  {%if article.metafields.custom.headline %}
+                    {{article.metafields.custom.headline }}
+                  {% else %}
+                    Read More!
+                  {% endif %}
+                </h3>
+                <span class=" zblog-more__card-date">
+                  {{article.published_at | date: '%B %d, %Y'}}
+                </span>
+              </div>
+            </a>
+          </div>
+        {% endfor %}
+  </div>
+</article>
+
+{% unless blog.title == "Info" %}
+  {%- comment -%} <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      var swiper = new Swiper(".zblog-more__swiper", {
+        slidesPerView: 3,
+        spaceBetween: 25,
+        breakpoints: { // when window width is >= 320px
+          320: {
+            slidesPerView: 1,
+            spaceBetween: 20
+          },
+
+// when window width is >= 480px
+          480: {
+            slidesPerView: 2,
+            spaceBetween: 30
+          },
+
+// when window width is >= 640px
+          640: {
+            slidesPerView: 3,
+            spaceBetween: 40
+          }
+        },
+        pagination: {
+          el: ".swiper-pagination",
+          clickable: true
+        }
+      });
+    }, false);
+  </script> {%- endcomment -%}
+{% endunless %}
+
+{%- comment -%} 
+<script>
+  const popups = Array.from(document.querySelectorAll(".zblog-popup-img"));
+  const container = document.querySelector(".zblog-popups");
+  let pIndex = 0;
+
+  function startAnimation() {
+    revealImage(popups[0]);
+  }
+
+  function resetAnimation() {
+    pIndex = 0;
+    shuffle(popups);
+    for (let i = 0; i < popups.length; i++) {
+      popups[i].classList.remove("pShow");
+      popups[i].style.zIndex = i;
+    }
+  }
+
+  const revealImage = (img) => {
+    if (pIndex < popups.length) { // img.style.opacity = 1;
+      img.classList.add("pShow");
+      pIndex += 1;
+      setTimeout(() => {
+        revealImage(popups[pIndex]);
+      }, getRandomInterval(300, 700));
+    }
+  };
+
+  if (popups.length > 0) {
+    window.addEventListener('load', setTimeout(InitPopups, 2000))
+  }
+  function InitPopups() {
+    for (let item of popups) {
+      item.style.width = "auto";
+      let offX = Math.floor(Math.random() * (container.clientWidth - item.clientWidth));
+      let offY = Math.floor(Math.random() * (container.offsetHeight - item.scrollHeight));
+      console
+        .log("item Width", item.offsetWidth)
+        console
+        .log("container height", container.offsetHeight)
+        item
+        .style
+        .left = `${offX}px`;
+      item.style.top = `${offY}px`;
+
+// item.style.opacity = 0;
+      console.log("popups initialized");
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          startAnimation();
+        } else {
+          resetAnimation();
+        }
+      });
+    });
+
+    observer.observe(container);
+
+  }
+
+
+  function getRandomInterval(min = 500, max = 1000) {
+    return Math.random() * (max - min) + min;
+  }
+
+  function shuffle(array) {
+    let currentIndex = array.length,
+      randomIndex;
+
+// While there remain elements to shuffle.
+    while (currentIndex != 0) { // Pick a remaining element.
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex--;
+
+// And swap it with the current element.
+      [
+        array[currentIndex], array[randomIndex]
+      ] = [
+        array[randomIndex], array[currentIndex]
+      ];
+    }
+
+    return array;
+  }
+</script> {%- endcomment -%}
+
+
+{% schema %}
+  {
+    "name": "Zazzy Article",
+    "tag": "section",
+    "class": "section",
+    "settings": [
+      {
+        "type": "text",
+        "id": "sub_heading",
+        "label": "heading title"
+      }, {
+        "type": "image_picker",
+        "id": "image",
+        "label": "Image"
+      }
+    ]
+  }
+{% endschema %} 

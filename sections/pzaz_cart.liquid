@@ -4,180 +4,200 @@
 
 <pzaz-cart>
   <div class="cart">
-    <div class="cart__main">
-      <div class="cart__header">
-        <span class="cart__close">X</span>
+    <div class="cart__wrapper">
+      <div class="cart__header" data-ajax-cart-static-element>
+        <h3 class="cart__title">Your Cart</h3>
+        <span class="cart__close">{% render "icon-x" %}</span>
       </div>
-      {% comment %} <div
-      class="filler"></div> {% endcomment %}
-      {% comment %} <div class="cart cart-hidden">
-      Your cart is empty.
-      <p>test ets  test
-      </p>
-      {% render "zazzy-cta-button" %}
-      </div> {% endcomment %}
-      <h3 class="cart__title cart__title--line">
-        your flavors</h3>
-      <div class="cart__line" data-ajax-cart-section>
-        <div class="cart__line-items">
-          {% for item in cart.items %}
-            <div class="cart__line-item">
 
-              <h3 class="cart__line-item--info">
-                <span>{{ item.quantity }}x</span>
-                <span>
-                  {% unless item.selling_plan_allocation == nil %}
-                    <br/><span class="cart-selling-plan">{{ item.selling_plan_allocation.selling_plan.name }}</span>
-                  {% endunless %}
-                </span>
-                <span>{{ item.title }}</span><br>
-              </h3>
-            </div>
-          {% endfor %}
-        </div>
-        <div class="cart__line-info">
-          <div>
-            <span class="cart__line-info--original-price">
-              {{ cart.original_total_price | money }}</span>
-            <span class="cart__line-info--total-price">
-              {{ cart.total_price | money }}</span>
+      {% comment %} <div class="filler"></div> {% endcomment %}
+      <div class="cart__empty">
+        <p>
+          It appears that your cart is empty :(</p>
+        <a href="/products/pzaz-four-pack">
+          <button>Shop Pzaz</button>
+
+        </a>
+      </div>
+
+      <div class="cart__main">
+
+
+        {% comment %} <h3 class="cart__title cart__title--line"> your flavors</h3> {% endcomment %}
+        <div class="cart__line" data-ajax-cart-section>
+          <div class="cart__line-items">
+            {% for item in cart.items %}
+              <div class="cart__line-item">
+
+                <h3 class="cart__line-item--info">
+                  <span>{{ item.quantity }}x</span>
+                  <span>
+                    {% unless item.selling_plan_allocation == nil %}
+                      <br/><span class="cart-selling-plan">{{ item.selling_plan_allocation.selling_plan.name }}</span>
+                    {% endunless %}
+                  </span>
+                  <span>{{ item.title }}</span><br>
+                </h3>
+              </div>
+            {% endfor %}
           </div>
+          <div class="cart__line-info">
+            <div>
+              <span class="cart__line-info--original-price">
+                {{ cart.original_total_price | money }}</span>
+              <span class="cart__line-info--total-price">
+                {{ cart.total_price | money }}</span>
+            </div>
 
 
-          <a
-            class="cart__line-info--button"
-            data-ajax-cart-static-element
-            data-action="clear">EDIT</a>
+            <a
+              class="cart__line-info--button"
+              data-ajax-cart-static-element
+              data-action="clear">EDIT</a>
+          </div>
         </div>
-      </div>
-      <div class="cart__highlights" data-ajax-cart-section>
+        {% comment %} <div class="cart__highlights" data-ajax-cart-section>
         {% assign discount_size = cart.discount_applications | size %}
         {% assign og_individual_price = 400 %}
         {% assign og_serving_price = og_individual_price | divided_by: 10 %}
         {% if discount_size == 0 %}
-          {% assign individual_price = og_individual_price %}
-          {% assign serving_price = og_serving_price %}
+        {% assign individual_price = og_individual_price %}
+        {% assign serving_price = og_serving_price %}
         {% else %}
-          {% assign product_count = 0 %}
-          {% assign product_total = 0 %}
+        {% assign product_count = 0 %}
+        {% assign product_total = 0 %}
 
-          {% for item in cart.items %}
-            {% if item.product.title == "Pzaz" %}
-              {% assign product_count = product_count | plus: item.quantity %}
-              {% assign product_total = product_total | plus: item.final_line_price %}
-            {% endif %}
-          {% endfor %}
-          {% assign individual_count = product_count | times: 4 %}
-          {% assign individual_price = product_total | divided_by: individual_count %}
-          {% assign serving_price = individual_price | divided_by: 10 %}
-          {% assign current_discount = cart.discount_applications | first %}
+        {% for item in cart.items %}
+        {% if item.product.title == "Pzaz" %}
+        {% assign product_count = product_count | plus: item.quantity %}
+        {% assign product_total = product_total | plus: item.final_line_price %}
+        {% endif %}
+        {% endfor %}
+        {% assign individual_count = product_count | times: 4 %}
+        {% assign individual_price = product_total | divided_by: individual_count %}
+        {% assign serving_price = individual_price | divided_by: 10 %}
+        {% assign current_discount = cart.discount_applications | first %}
 
         {% endif %}
         <p class="cart-highlight text-left">{{ serving_price | money }} per serving</p>
         <p class="cart-highlight text-right">70+ 5 Star Reviews</p>
         <p class="cart-highlight text-left">% {{ current_discount.value }} off – You’ve Saved {{ current_discount.total_allocated_amount | money }}</p>
         <p class="cart-highlight text-right">Free Shipping</p>
-      </div>
+        </div> {% endcomment %}
 
-      <h3 class="cart__title cart__title--accessories">Accessorize?</h3>
-      <div class="cart__addons">
-        {% for addon in addons %}
-          <div class="cart-addon">
-            <img
-              class="cart-addon__image"
-              src="{{ addon.featured_image | img_url: 'medium' }}"
-              alt="{{ addon.title }}"
-              width="100"
-              height="70"
-              loading="lazy">
-            <div class="cart-addon__content">
-              <h3 class="cart-addon__name">{{ addon.title }}</h3>
-              <span class="cart-addon__price">{{ addon.price | money }}</span>
-            </div>
+        <h3 class="cart__title cart__title--accessories">Accessorize?</h3>
+        <div class="cart__addons">
+          {% for addon in addons %}
+            <div class="cart-addon">
+              <img
+                class="cart-addon__image"
+                src="{{ addon.featured_image | img_url: 'medium' }}"
+                alt="{{ addon.title }}"
+                width="100"
+                height="70"
+                loading="lazy">
+              <div class="cart-addon__content">
+                <h3 class="cart-addon__name">{{ addon.title }}</h3>
+                <span class="cart-addon__price">{{ addon.price | money }}</span>
+              </div>
 
-            {% assign selected = false %}
-            {% for item in cart.items %}
-              {% if item.id == addon.selected_or_first_available_variant.id %}
-                {% assign selected = true %}
-              {% endif %}
-            {% endfor %}
-            <a
-              data-ajax-cart-section
               {% assign selected = false %}
               {% for item in cart.items %}
-              {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="{% if selected == true %}
-                                                                                                                                                                                             {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
-                                                                                                                                                                                             {% else %}
-                                                                                                                                                                                               {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
-                                                                                                                                                                                             {% endif %}"data-ajax-cart-request-button>
-              {% render "spinner" %}
-              <label class="cart-addon__button {% if selected %} active {% endif %}">
-                <input class="cart-addon__input" type="checkbox" />
-                {% for item in cart.items %}{% endfor %}
-                <p class="cart-addon__button-text">
-                  {% if selected == true %}
-                    remove
-                  {% else %}
-                    add
+                {% if item.id == addon.selected_or_first_available_variant.id %}
+                  {% assign selected = true %}
+                {% endif %}
+              {% endfor %}
+              <a
+                data-ajax-cart-section
+                {% assign selected = false %}
+                {% for item in cart.items %}
+                {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="{% if selected == true %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     {% else %}
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     {% endif %}"data-ajax-cart-request-button>
+                {% render "spinner" %}
+                <label class="cart-addon__button {% if selected %} active {% endif %}">
+                  <input class="cart-addon__input" type="checkbox" />
+                  {% for item in cart.items %}{% endfor %}
+                  <p class="cart-addon__button-text">
+                    {% if selected == true %}
+                      remove
+                    {% else %}
+                      add
 
-                  {% endif %}
-                </p>
+                    {% endif %}
+                  </p>
 
-              </label>
-            </a>
+                </label>
+              </a>
+            </div>
+          {% endfor %}
+        </div>
+
+        <div class="cart-subscribe" data-ajax-cart-static-element>
+          <div class="cart-subscribe__toggle">
+            <span>subscribed</span>
+            <span>subscribe</span>
           </div>
+          <div class="cart-subscribe__info">
+            <h3 class="cart-subscribe__title">Subscribe + Save</h3>
+            <p class="cart-subscribe__description">Get 10% off your first order and 10% off every order after that. Cancel anytime.</p>
+          </div>
+        </div>
+
+        {% for block in section.blocks %}
+          {% case block.type %}
+            {% when '@app' %}
+            {% render block %}
+            ...
+          {% endcase %}
         {% endfor %}
+
       </div>
 
-      <div class="cart-subscribe">
-        <div class="cart-subscribe__toggle">
-          <span>subscribed</span>
-          <span>subscribe</span>
-        </div>
-        <div class="cart-subscribe__info">
-          <h3 class="cart-subscribe__title">Subscribe + Save</h3>
-          <p class="cart-subscribe__description">Get 10% off your first order and 10% off every order after that. Cancel anytime.</p>
-        </div>
-      </div>
 
-      {% for block in section.blocks %}
-        {% case block.type %}
-          {% when '@app' %}
-          {% render block %}
-          ...
-        {% endcase %}
-      {% endfor %}
+      <div class=cart__footer>
 
-    </div>
-
-
-    <div class=cart__footer>
-
-      <div class="cart__summary">
-        <h1 class="cart__title cart-title--summary">Summary</h1>
-        <div class="cart-summary__item" data-type="total">
+        <div class="cart__summary">
+          {% comment %} <h1 class="cart__title cart-title--summary">Summary</h1> {% endcomment %}
+          {% comment %} <div class="cart-summary__item" data-type="total">
           <h3 class="cart-summary__key">Product total</h3>
           <span class="cart-summary__value">{{ cart.original_total_price | money }}</span>
+          </div> {% endcomment %}
+            <div class="cart-summary__item" data-type="savings"> <h3 class="cart-summary__key">Total savings</h3>
+            <span class="cart-summary__value">{{ cart.total_discount | money }}</span>
+          </div>
+          <div class="cart-summary__item" data-type="shipping">
+            <h3 class="cart-summary__key">Shipping</h3>
+            <span class="cart-summary__value">Free Shipping</span>
+          </div>
         </div>
-        <div class="cart-summary__item" data-type="savings">
-          <h3 class="cart-summary__key">Total savings</h3>
-          <span class="cart-summary__value">{{ cart.total_discount | money }}</span>
+
+        <div class="cart__total">
+          <h3 class="cart-total__key">Cart Total</h3>
+          <span class="cart-total__value">{{ cart.total_price | money }}</span>
         </div>
-        <div class="cart-summary__item" data-type="shipping">
-          <h3 class="cart-summary__key">Shipping</h3>
-          <span class="cart-summary__value">Free Shipping</span>
-        </div>
+
+        {% form 'cart', cart %}{% endform %}
+
+        <form action="{{ routes.cart_url }}" method="post">
+          {% for item in cart.items %}
+            <!-- line item info -->
+          {% endfor %}
+
+          <button
+            type="submit"
+            class="cart__submit"
+            name="checkout"
+            value="Checkout">Buy Now</button>
+        </form>
+
+
+
       </div>
-
-      <div class="cart__total">
-        <h3 class="cart-total__key">Cart Total</h3>
-        <span class="cart-total__value">{{ cart.total_price | money }}</span>
-      </div>
-
-
     </div>
   </div>
-
 
   <script type="application/json">
     {{ cart | json }}
