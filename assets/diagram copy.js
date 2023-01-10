@@ -13,10 +13,29 @@ const __text = ".diagram__text";
 const __border = ".diagram__border";
 
 window.addEventListener("DOMContentLoaded", () => {
+  // ResizeDiagramItems();
   HandleDiagramCards();
   InitDiagramAnimation();
   InitScienceAnimation();
 });
+window.onresize = throttle(ResizeDiagramItems, 200);
+
+function ResizeDiagramItems() {
+  console.log("resize");
+  let items = document.querySelectorAll(`${__item} svg`);
+  let px = 16;
+  let py = 14;
+  items.forEach((item) => {
+    let text = item.querySelector(__text);
+    let border = item.querySelector(__border);
+    let textWidth = text.getBoundingClientRect().width;
+    let textHeight = text.getBoundingClientRect().height;
+    item.setAttribute("width", `${textWidth + px}px`);
+    item.setAttribute("height", `${textHeight + py}px`);
+    border.setAttribute("width", `${textWidth + px}px`);
+    border.setAttribute("height", `${textHeight + py}px`);
+  });
+}
 
 function InitDiagramAnimation() {
   const diagramItems = gsap.utils.toArray(".diagram__item");
@@ -28,6 +47,11 @@ function InitDiagramAnimation() {
       trigger: ".diagram",
       start: "top bottom",
       toggleActions: "play none none reset",
+      onLeaveBack: () => {
+        diagramItems.forEach((item) => {
+          item.querySelector(".diagram__border").classList.remove("active");
+        });
+      },
     },
   });
 
@@ -43,9 +67,15 @@ function InitDiagramAnimation() {
       {
         opacity: 0,
         scale: 0.1,
+        // y: -50,
         duration: 0.5,
         stagger: {
           amount: 1,
+          onStart: function () {
+            this.targets()[0]
+              .querySelector(".diagram__border")
+              .classList.add("active");
+          },
         },
       },
       "<0.2"

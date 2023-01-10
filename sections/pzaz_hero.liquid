@@ -1,10 +1,12 @@
 {{ 'hero.css' | asset_url | stylesheet_tag }}
 
 <div class="container hero">
+  <div class="hero__content" />
   <canvas id="hero-canvas"></canvas>
   <span class="hero__button">
     {% render 'cta-button', color: 'light', border: true, size: 'large', text: 'Shop Now' %}
   </span>
+  <div>
 </div>
 
 <script src="{{ 'hero_canvas.js' | asset_url }}" defer="defer"></script>
