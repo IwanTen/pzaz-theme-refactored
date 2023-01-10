@@ -48,6 +48,11 @@
   /* place-content: center; */
 }
 
+.sticky-wrapper {
+  grid-area: variants;
+  position: relative;
+}
+
 @media (min-width: 768px) {
   .product__grid {
     display: grid;
@@ -95,6 +100,8 @@
   gap: 0.5rem;
   opacity: 1;
   grid-area: variants;
+  position: sticky;
+  top: 10px;
 }
 
 .discount-message {

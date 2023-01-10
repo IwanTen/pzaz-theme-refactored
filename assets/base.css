@@ -192,7 +192,7 @@ button {
   overflow-y: hidden;
 }
 
-.overflow {
+.overflow-hidden {
   overflow: hidden;
 }
 
@@ -291,7 +291,7 @@ button {
 
 .section {
   position: relative;
-  overflow: hidden;
+  /* overflow: hidden; */
   /* overflow: clip; */
 }
 

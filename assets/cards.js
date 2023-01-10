@@ -14,8 +14,24 @@ function InitProductCardsEmbla() {
   };
   cardsEmbla = EmblaCarousel(emblaNode, options, plugins);
   createEmblaToggles(cardsEmbla, ".card__toggle");
+  cardsEmbla.on("select", onSelect); // Add event listener
   // convertSlidesToToggles(cardsEmbla);
 }
+
+const onSelect = (event) => {
+  console.log(event.target);
+  let slides = [...document.querySelectorAll(".card")];
+  slides.forEach((slide, index) => {
+    if (slide.classList.contains("is-selected")) {
+      [...document.querySelectorAll(`.card__toggle`)].forEach((node) => {
+        node.dataset.active = false;
+      });
+      [...document.querySelectorAll(`.card__toggle`)][
+        index
+      ].dataset.active = true;
+    }
+  });
+};
 
 const createEmblaToggles = (embla, selector) => {
   [...document.querySelectorAll(`${selector}`)].forEach((node, index) => {

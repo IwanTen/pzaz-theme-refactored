@@ -84,21 +84,17 @@
     </div>
   </div>
 
-  {% comment %} <div
-  class="card__toggles flex justify-center">
-  <span
-  class="card__toggle">{% render 'icon-plus' %}
-  </span>
-  <span
-  class="card__toggle">{% render 'icon-plus' %}
-  </span>
-  <span
-  class="card__toggle">{% render 'icon-plus' %}
-  </span>
-  <span
-  class="card__toggle">{% render 'icon-plus' %}
-  </span>
-  </div> {% endcomment %}</div>
+  <div class="card__toggles flex justify-center">
+    <span class="card__toggle" data-color="red">{% render 'icon-plus' %}
+    </span>
+    <span class="card__toggle" data-color="blue">{% render 'icon-plus' %}
+    </span>
+    <span class="card__toggle" data-color="green">{% render 'icon-plus' %}
+    </span>
+    <span class="card__toggle" data-color="black">{% render 'icon-plus' %}
+    </span>
+  </div>
+</div>
 
 
 <script src="{{ 'cards.js' | asset_url }}" defer="defer"></script>

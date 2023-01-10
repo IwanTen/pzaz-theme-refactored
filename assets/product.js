@@ -91,7 +91,10 @@ function updateVariantCount(items) {
 function updateDiscountMessage(items, data) {
   let count = 0;
   items.forEach((item) => {
-    if (item.handle == "pzaz") {
+    console.log("pzaz item", item);
+    console.log("pzaz item handle", item.handle);
+    let handle = item.handle;
+    if (handle.includes("pzaz")) {
       count += item.quantity;
     }
   });

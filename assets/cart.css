@@ -5,6 +5,7 @@
 .filler {
   padding-bottom: 5000px;
 }
+
 .cart {
   position: fixed;
   top: 0;
@@ -23,16 +24,13 @@
   display: block;
   height: 100%;
   overflow-y: auto;
+  overflow-y: scroll;
   padding: 0rem 2rem;
-  padding-bottom: calc(20rem);
+  padding-bottom: 20rem;
 }
 
 .js-ajax-cart-empty .cart__main {
   display: none;
-  height: 100%;
-  overflow-y: auto;
-  padding: 0rem 2rem;
-  padding-bottom: calc(20rem);
 }
 
 .cart.active {
@@ -80,6 +78,7 @@
   padding: 1rem;
   font-size: var(--fs-lg);
   font-weight: 800;
+  text-decoration: none;
 }
 
 .cart__empty p {
@@ -90,7 +89,9 @@
   display: block;
   border-radius: 10px;
   padding: 1rem 2rem;
+  line-height: 1;
   font-family: var(--font-heading);
+  font-style: italic;
   background-color: rgba(var(--color-primary, 1));
   outline: 2px solid black;
   box-shadow: 4px 4px black;

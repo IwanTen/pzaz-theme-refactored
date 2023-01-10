@@ -1,12 +1,14 @@
-console.clear();
-
 const canvas = document.getElementById("hero-canvas");
+const container = document.querySelector(".hero");
 const context = canvas.getContext("2d");
 const hash = "1EldeuKR_zW0oalo8ZDRdA";
 const frameName = "hero-frame";
+context.translate(0.5, 0.5);
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+canvas.width = container.offsetWidth;
+canvas.height = container.offsetHeight;
+//
+
 const frameCount = 70;
 const currentFrame = (index) =>
   `https://imagedelivery.net/${hash}/${frameName}-${index}/public`;
@@ -23,35 +25,71 @@ for (let i = 0; i < frameCount; i++) {
   images.push(img);
 }
 
-// images.forEach((image) => {
-//   let wrh = image.width / image.height;
-//   console.log(image.width, image.height);
-//   console.log("wrh", wrh);
-//   newWidth = canvas.width;
-//   newHeight = newWidth / wrh;
-//   if (newHeight > canvas.height) {
-//     newHeight = canvas.height;
-//     newWidth = newHeight * wrh;
-//   }
-//   console.log(newWidth, newHeight);
-//   image.width = newWidth;
-//   image.height = newHeight;
+// gsap.to(tube, {
+//   frame: frameCount - 1,
+//   snap: "frame",
+//   ease: "none",
+//   scrollTrigger: {
+//     trigger: ".hero",
+//     start: "top top",
+//     end: "40% top",
+//     scrub: 1,
+//     pin: true,
+//   },
+//   onUpdate: render, // use animation onUpdate instead of scrollTrigger's onUpdate
 // });
 
-gsap.to(tube, {
-  frame: frameCount - 1,
-  snap: "frame",
-  ease: "none",
+let tl = gsap.timeline({
+  defaults: { duration: 1 },
   scrollTrigger: {
-    scrub: 0.5,
     trigger: ".hero",
     start: "top top",
     end: "40% top",
-    scrub: 1,
+    scrub: 1.5,
     pin: true,
+    markers: true,
   },
-  onUpdate: render, // use animation onUpdate instead of scrollTrigger's onUpdate
 });
+
+tl.to(tube, {
+  frame: frameCount - 1,
+  snap: "frame",
+  ease: "none",
+  onUpdate: render,
+});
+
+tl.to(
+  canvas,
+  {
+    y: 100,
+  },
+  "<"
+);
+
+gsap.to(".hero-section", {
+  scrollTrigger: {
+    trigger: ".power",
+    start: "top 80%",
+    // end: "40% top",
+    toggleActions: "play none none reverse",
+    pin: false,
+    markers: true,
+  },
+  css: {
+    backgroundColor: "rgba(12,12,12)",
+  },
+});
+
+// gsap.to(canvas, {
+//   y: 100,
+//   scrollTrigger: {
+//     trigger: ".hero",
+//     start: "top top",
+//     end: "40% top",
+//     scrub: 1,
+//     pin: true,
+//   },
+// });
 
 images[0].onload = render;
 
@@ -62,11 +100,24 @@ function render() {
   context.drawImage(
     curImage,
     0,
-    canvas.height / 2 - images[tube.frame].height / 4,
+    canvas.height / 4,
     canvas.width,
     canvas.width / wrh
   );
 }
+
+// gsap.to(".hero-section", {
+//   scrollTrigger: {
+//     trigger: ".power",
+//     start: "top center",
+//     // end: "40% top",
+//     pin: false,
+//     markers: true,
+//   },
+//   css: {
+//     backgroundColor: "#000",
+//   },
+// });
 
 // context.drawImage(
 //   curImage,

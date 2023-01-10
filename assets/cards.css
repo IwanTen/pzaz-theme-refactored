@@ -6,11 +6,20 @@
   margin-top: 10rem;
 }
 
-@media (min-width: 768px) {
+/* @media (min-width: 768px) {
   .cards .embla {
     --slide-spacing: 1rem;
     --slide-height: 26rem;
     --slide-width: 21rem;
+    padding: 1.6rem;
+  }
+} */
+
+@media (min-width: 768px) {
+  .cards .embla {
+    --slide-spacing: 1rem;
+    --slide-height: 26rem;
+    --slide-width: 33vw;
     padding: 1.6rem;
   }
 }
@@ -146,7 +155,67 @@
   filter: drop-shadow(2px 1px 0px rgba(var(--color-primary)));
 }
 
+.card__toggle:hover,
+.card__toggle[data-active="true"] {
+  transform: scale(1.1);
+  transition: 0.2s;
+  border-color: rgba(var(--color-primary));
+  filter: drop-shadow(2px 1px 0px rgba(var(--color-primary)));
+}
+
 .card__toggle:hover polygon,
 .card__toggle[data-active="true"] polygon {
+  fill: rgba(var(--color-primary));
+}
+
+.card__toggle[data-color="blue"]:hover,
+.card__toggle[data-color="blue"][data-active="true"] {
+  transform: scale(1.1);
+  transition: 0.2s;
+  border-color: rgba(var(--color-blue));
+  filter: drop-shadow(2px 1px 0px rgba(var(--color-blue)));
+}
+
+.card__toggle[data-color="blue"]:hover polygon,
+.card__toggle[data-color="blue"][data-active="true"] polygon {
+  fill: rgba(var(--color-blue));
+}
+
+.card__toggle[data-color="red"]:hover,
+.card__toggle[data-color="red"][data-active="true"] {
+  transform: scale(1.1);
+  transition: 0.2s;
+  border-color: rgba(var(--color-red));
+  filter: drop-shadow(2px 1px 0px rgba(var(--color-red)));
+}
+
+.card__toggle[data-color="red"]:hover polygon,
+.card__toggle[data-color="red"][data-active="true"] polygon {
+  fill: rgba(var(--color-red));
+}
+
+.card__toggle[data-color="green"]:hover,
+.card__toggle[data-color="green"][data-active="true"] {
+  transform: scale(1.1);
+  transition: 0.2s;
+  border-color: rgba(var(--color-green));
+  filter: drop-shadow(2px 1px 0px rgba(var(--color-green)));
+}
+
+.card__toggle[data-color="green"]:hover polygon,
+.card__toggle[data-color="green"][data-active="true"] polygon {
+  fill: rgba(var(--color-green));
+}
+
+.card__toggle[data-color="black"]:hover,
+.card__toggle[data-color="black"][data-active="true"] {
+  transform: scale(1.1);
+  transition: 0.2s;
+  border-color: rgba(var(--color-primary));
+  filter: drop-shadow(2px 1px 0px rgba(var(--color-primary)));
+}
+
+.card__toggle[data-color="black"]:hover polygon,
+.card__toggle[data-color="black"][data-active="true"] polygon {
   fill: rgba(var(--color-primary));
 }
