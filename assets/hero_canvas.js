@@ -76,8 +76,12 @@ gsap.to(".hero-section", {
     start: "10% bottom",
     toggleActions: "play none none reverse",
     pin: false,
-
-    // markers: true,
+    onEnter: () => {
+      document.querySelector(".hero .button").classList.add("button--dark")
+    },
+    onLeaveBack: () => {
+      document.querySelector(".hero .button").classList.remove("button--dark")
+    }
   },
   css: {
     backgroundColor: "rgba(12,12,12)",
