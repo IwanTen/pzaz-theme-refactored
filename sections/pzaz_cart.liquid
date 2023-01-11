@@ -21,8 +21,6 @@
 
     <div class="cart__main">
 
-
-      {% comment %} <h3 class="cart__title cart__title--line"> your flavors</h3> {% endcomment %}
       <div class="cart__line" data-ajax-cart-section>
         <div class="cart__line-items">
           {% for item in cart.items %}
@@ -55,34 +53,6 @@
             data-action="clear">EDIT</a>
         </div>
       </div>
-      {% comment %} <div class="cart__highlights" data-ajax-cart-section>
-      {% assign discount_size = cart.discount_applications | size %}
-      {% assign og_individual_price = 400 %}
-      {% assign og_serving_price = og_individual_price | divided_by: 10 %}
-      {% if discount_size == 0 %}
-      {% assign individual_price = og_individual_price %}
-      {% assign serving_price = og_serving_price %}
-      {% else %}
-      {% assign product_count = 0 %}
-      {% assign product_total = 0 %}
-
-      {% for item in cart.items %}
-      {% if item.product.title == "Pzaz" %}
-      {% assign product_count = product_count | plus: item.quantity %}
-      {% assign product_total = product_total | plus: item.final_line_price %}
-      {% endif %}
-      {% endfor %}
-      {% assign individual_count = product_count | times: 4 %}
-      {% assign individual_price = product_total | divided_by: individual_count %}
-      {% assign serving_price = individual_price | divided_by: 10 %}
-      {% assign current_discount = cart.discount_applications | first %}
-
-      {% endif %}
-      <p class="cart-highlight text-left">{{ serving_price | money }} per serving</p>
-      <p class="cart-highlight text-right">70+ 5 Star Reviews</p>
-      <p class="cart-highlight text-left">% {{ current_discount.value }} off – You’ve Saved {{ current_discount.total_allocated_amount | money }}</p>
-      <p class="cart-highlight text-right">Free Shipping</p>
-      </div> {% endcomment %}
 
       <h3 class="cart__title cart__title--accessories">Accessorize?</h3>
       <div class="cart__addons">
@@ -111,10 +81,10 @@
               {% assign selected = false %}
               {% for item in cart.items %}
               {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="{% if selected == true %}
-                                                                                                    {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
-                                                                                                    {% else %}
-                                                                                                    {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
-                                                                                                    {% endif %}"data-ajax-cart-request-button>
+                              {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
+                              {% else %}
+                              {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
+                              {% endif %}"data-ajax-cart-request-button>
               {% render "spinner" %}
               <label class="cart-addon__button {% if selected %} active {% endif %}">
                 <input class="cart-addon__input" type="checkbox" />

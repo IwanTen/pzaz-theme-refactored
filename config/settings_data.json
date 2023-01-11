@@ -206,7 +206,17 @@
       "pzaz_cart": {
         "type": "pzaz_cart",
         "settings": {
-          "collection": "pzaz-acessories"
+          "collection": "accessories"
+        }
+      },
+      "pzaz_header": {
+        "type": "pzaz_header",
+        "settings": {
+        }
+      },
+      "pzaz_footer": {
+        "type": "pzaz_footer",
+        "settings": {
         }
       }
     },
