@@ -8,7 +8,7 @@
 {% assign test = 5 %}
 <div class="product container">
   <div class="product__header">
-    <a class="product__to-home" href="/">X</a>
+    <a class="product__to-home" href="/">{% render "icon-x" %}</a>
   </div>
   <div class="product__grid">
     {% comment %} <div class="product__media"> {% endcomment %}
@@ -277,7 +277,7 @@
         <div class="accordion-item__body">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ipsa amet distinctio nihil, doloribus
           odit quibusdam illum neque. Corporis natus non aperiam distinctio sint doloremque atque nihil nemo quasi
-                                                                                          commodi.
+                                                                                                                        commodi.
         </div>
       </div>
       <div class="accordion-item">
@@ -340,6 +340,10 @@
         "limit": 1,
         "settings": [
           {
+            "type": "product",
+            "id": "product",
+            "label": "Main Product"
+          }, {
             "type": "checkbox",
             "id": "show_dynamic_checkout",
             "default": true,

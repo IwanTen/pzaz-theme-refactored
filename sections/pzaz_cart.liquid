@@ -25,7 +25,11 @@ console.log("{{ addon.title }}")
     </div>
 
     <div class="cart__main">
-
+      <ul>
+        {% for shipping_rate in shipping_rates %}
+          <li>{{ shipping_rate.title }} - {{ shipping_rate.price | money }}</li>
+        {% endfor %}
+      </ul>
       <div class="cart__line" data-ajax-cart-section>
         <div class="cart__line-items">
           {% for item in cart.items %}
@@ -134,17 +138,15 @@ console.log("{{ addon.title }}")
     <div class=cart__footer>
 
       <div class="cart__summary">
-        {% comment %} <h1 class="cart__title cart-title--summary">Summary</h1> {% endcomment %}
-        {% comment %} <div class="cart-summary__item" data-type="total">
-        <h3 class="cart-summary__key">Product total</h3>
-        <span class="cart-summary__value">{{ cart.original_total_price | money }}</span>
-        </div> {% endcomment %}
           <div class="cart-summary__item" data-type="savings"> <h3 class="cart-summary__key">Total savings</h3>
           <span class="cart-summary__value">{{ cart.total_discount | money }}</span>
         </div>
         <div class="cart-summary__item" data-type="shipping">
           <h3 class="cart-summary__key">Shipping</h3>
-          <span class="cart-summary__value">Free Shipping</span>
+          <span class="cart-summary__value">
+            {{product.metafields.custom.free_shipping.value}}
+            Free Shipping
+            </span>
         </div>
       </div>
 
@@ -164,11 +166,8 @@ console.log("{{ addon.title }}")
           type="submit"
           class="cart__submit"
           name="checkout"
-          value="Checkout">Buy Now</button>
+          value="Checkout">Instant Checkout</button>
       </form>
-
-
-
     </div>
   </div>
 
@@ -191,6 +190,11 @@ console.log("{{ addon.title }}")
         "type": "collection",
         "id": "collection",
         "label": "Collection"
+      },
+      {
+      "type": "product",
+      "id": "product",
+      "label": "Main Product"
       }
     ],
     "blocks": [
