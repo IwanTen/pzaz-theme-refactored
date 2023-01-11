@@ -118,6 +118,11 @@
     "predictive_search_show_vendor": false,
     "predictive_search_show_price": false,
     "currency_code_enabled": true,
+    "checkout_header_image": "shopify:\/\/shop_images\/Screen_Shot_2022-10-05_at_5.26.03_PM.png",
+    "checkout_logo_image": "shopify:\/\/shop_images\/B3D94728-6F39-40F3-9E62-48E38B249BD5_b26b8f78-786f-40dd-a870-517969d7c4b2.gif",
+    "checkout_accent_color": "#121212",
+    "checkout_button_color": "#121212",
+    "checkout_error_color": "#ff0000",
     "sections": {
       "announcement-bar": {
         "type": "announcement-bar",
