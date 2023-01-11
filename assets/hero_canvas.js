@@ -25,17 +25,13 @@ const tube = {
 for (let i = 0; i < frameCount; i++) {
   const img = new Image();
   img.src = currentFrame(i);
-  if (i == 0) {
-    img.addEventListener("load", () => {
-      console.log("image loaded", img.width, img.height);
-    });
-  }
-
   images.push(img);
 }
 
+// Get first image and set canvas height using image aspect (WORKS BC ALL IMAGES ARE SAME SIZE)
+
 images[0].onload = (event) => {
-  console.log("first image loaded", event.target.width, event.target.height);
+  // console.log("first image loaded", event.target.width, event.target.height);
   wrh = event.target.width / event.target.height;
   canvas.height = canvas.width / wrh;
   initHeroCanvas();
@@ -44,26 +40,26 @@ images[0].onload = (event) => {
 //Once the first image is loaded, set the canvas size to the image size and get the width/height ratio
 
 function initHeroCanvas() {
-  let tl = gsap.timeline({
+  let heroTimeline = gsap.timeline({
     defaults: { duration: 1 },
     scrollTrigger: {
       trigger: ".hero",
       start: "top top",
       end: "40% top",
-      scrub: 1.5,
+      scrub: 1,
       pin: true,
-      markers: true,
+      // markers: true,
     },
   });
 
-  tl.to(tube, {
+  heroTimeline.to(tube, {
     frame: frameCount - 1,
     snap: "frame",
     ease: "none",
     onUpdate: render,
   });
 
-  tl.to(
+  heroTimeline.to(
     ".hero__content",
     {
       y: 100,
@@ -77,15 +73,16 @@ function initHeroCanvas() {
 gsap.to(".hero-section", {
   scrollTrigger: {
     trigger: ".power",
-    start: "top bottom",
-    // end: "40% top",
+    start: "10% bottom",
     toggleActions: "play none none reverse",
     pin: false,
-    markers: true,
+
+    // markers: true,
   },
   css: {
     backgroundColor: "rgba(12,12,12)",
   },
+  duration: 0.3,
 });
 
 function render() {
@@ -93,25 +90,3 @@ function render() {
   context.clearRect(0, 0, canvas.width, canvas.height);
   context.drawImage(curImage, 0, 0, canvas.width, canvas.width / wrh);
 }
-
-// context.drawImage(
-//   curImage,
-//   canvas.width / 2 - images[tube.frame].width / 4,
-//   canvas.height / 2 - images[tube.frame].height / 4,
-//   images[tube.frame].width / 2,
-//   images[tube.frame].height / 2
-// );
-
-// gsap.to(tube, {
-//   frame: frameCount - 1,
-//   snap: "frame",
-//   ease: "none",
-//   scrollTrigger: {
-//     trigger: ".hero",
-//     start: "top top",
-//     end: "40% top",
-//     scrub: 1,
-//     pin: true,
-//   },
-//   onUpdate: render, // use animation onUpdate instead of scrollTrigger's onUpdate
-// });

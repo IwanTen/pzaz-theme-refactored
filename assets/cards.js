@@ -11,15 +11,14 @@ function InitProductCardsEmbla() {
     align: "center",
     inViewThreshold: 1,
     loop: false,
+    startIndex: 2,
   };
   cardsEmbla = EmblaCarousel(emblaNode, options, plugins);
   createEmblaToggles(cardsEmbla, ".card__toggle");
-  cardsEmbla.on("select", onSelect); // Add event listener
-  // convertSlidesToToggles(cardsEmbla);
+  cardsEmbla.on("select", onSelect);
+  [...document.querySelectorAll(".card__toggle")][2].dataset.active = true;
 }
-
 const onSelect = (event) => {
-  console.log(event.target);
   let slides = [...document.querySelectorAll(".card")];
   slides.forEach((slide, index) => {
     if (slide.classList.contains("is-selected")) {

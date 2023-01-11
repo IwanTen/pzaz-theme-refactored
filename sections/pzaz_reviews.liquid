@@ -71,22 +71,25 @@
       </div>
     </div>
   </div>
-  {% for block in section.blocks %}
-    {% case block.type %}
-      {% when '@app' %}
-      {% render block %}
-    {% endcase %}
-  {% endfor %}
-
-  <h1 class="heading-main map__title">Check us out</h1>
+  {% comment %} {% for block in section.blocks %}
+  {% case block.type %}
+  {% when '@app' %}
+  {% render block %}
+  {% endcase %}
+  {% endfor %} {% endcomment %}<h1 class="heading-main map__title">Check us out</h1>
   <p class="map__copy">Find us at more than<br> 200+ locations nationwide.</p>
-  <div class="map__cta"><img
+  {% comment %} <div id="map__parawrapper"> {% endcomment %}
+  <div class="map__cta">
+    <img
+      class="map__image"
       src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/boxes_illustration-cropped.jpg?v=1672694709"
       width="auto"
       height="auto"
-      loading="lazy" />
-    {% render "cta-button" color: "light" size: "small" border: true text: "Store locator" %}</div>
+      loading="lazy">
+    {% render "cta-button" color: "light" size: "small" border: true text: "Store locator" %}
 
+  </div>
+  {% comment %} </div> {% endcomment %}
 </div>
 
 <script src="{{ 'reviews.js' | asset_url }}" defer="defer"></script>

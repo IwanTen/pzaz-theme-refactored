@@ -110,15 +110,6 @@
   margin-left: 1rem !important;
 }
 
-@keyframes rainbow_animation {
-  100% {
-    background-position: 0 !important;
-  }
-  50% {
-    background-position: 100% !important;
-  }
-}
-
 .wlo-content #wlo-continue-btn,
 .wlo-content #wlo-submit-btn {
   background-image: none !important;
@@ -203,8 +194,8 @@ div#wlo-submit-btn span {
 }
 .trigger-button-holder {
   top: unset !important;
-  bottom: 3% !important;
-  left: 3% !important;
+  bottom: 0 !important;
+  left: 0 !important;
 }
 
 .wlo-wheel .wlo-small-logo {
@@ -236,7 +227,7 @@ div#wlo-submit-btn span {
     left: 3% !important;
     display: none;
   }
-} /* PING PONG LOGO ANIMATION */
+} /* PING PONG LOGO ANIMATION
 :root {
   --wheelio-button-size-x: 95px;
   --wheelio-button-size-y: 90px;
@@ -286,7 +277,7 @@ div#wlo-submit-btn span {
       transform: translateY(calc(250px - var(--wheelio-button-size-y)));
     }
   }
-}
+} */
 
 @media only screen and (max-width: 1180px) and(min-width: 991px) {
   .wlo-holder .wlo-content #title p {
@@ -298,7 +289,7 @@ div#wlo-trigger-button {
 }
 div#wlo-trigger-image {
   background-image: url("https://cdn.shopify.com/s/files/1/0532/8234/1052/files/PZAZ-Web_FreeZaz-01.png?v=1650398779") !important;
-  background-size: 87px !important;
+  background-size: 72px !important;
 }
 div#wlo-notification {
   background-color: transparent !important;
