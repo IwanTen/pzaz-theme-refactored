@@ -94,46 +94,46 @@ function HandleDiagramCards() {
   });
 }
 
-// function InitTestimonialAnimation() {
-//   const testimonials = gsap.utils.toArray(".testimonial .embla__slide__inner");
-//   let testimonialTimeline = gsap.timeline({
-//     defaults: { duration: 1, ease: "ease1" },
-//     scrollTrigger: {
-//       // markers: true,
-//       id: "testimonial",
-//       trigger: ".testimonial",
-//       start: "top bottom",
-//       toggleActions: "play none none reset",
-//       onLeaveBack: () => {},
-//     },
-//   });
-
-//   testimonialTimeline.from(testimonials, {
-//     opacity: 0,
-//     scale: 1,
-//     duration: 0.5,
-//     stagger: {
-//       amount: 1,
-//       onStart: function () {},
-//     },
-//   });
-}
-
-function InitScienceAnimation() {
-  const scienceItems = gsap.utils.toArray(".science__item");
-  let scienceTimeline = gsap.timeline({
+function InitTestimonialAnimation() {
+  const testimonials = gsap.utils.toArray(".testimonial .embla__slide__inner");
+  let testimonialTimeline = gsap.timeline({
     defaults: { duration: 1, ease: "ease1" },
     scrollTrigger: {
-      markers: true,
-      id: "science",
-      trigger: ".science",
-      start: "50% bottom",
+      // markers: true,
+      id: "testimonial",
+      trigger: ".testimonial",
+      start: "top bottom",
       toggleActions: "play none none reset",
       onLeaveBack: () => {},
     },
   });
 
-  scienceTimeline.from(scienceItems, {
+  testimonialTimeline.from(testimonials, {
+    opacity: 0,
+    scale: 1,
+    duration: 0.5,
+    stagger: {
+      amount: 1,
+      onStart: function () {},
+    },
+  });
+}
+
+function InitScienceAnimation() {
+  const testimonials = gsap.utils.toArray(".science__item");
+  let testimonialTimeline = gsap.timeline({
+    defaults: { duration: 1, ease: "ease1" },
+    scrollTrigger: {
+      // markers: true,
+      id: "science",
+      trigger: ".science",
+      start: "top bottom",
+      toggleActions: "play none none reset",
+      onLeaveBack: () => {},
+    },
+  });
+
+  testimonialTimeline.from(testimonials, {
     opacity: 0,
     scale: 1,
     y: 50,

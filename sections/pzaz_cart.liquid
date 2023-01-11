@@ -1,6 +1,11 @@
 {{ "cart.css" | asset_url | stylesheet_tag }}
 
 {% assign addons = section.settings.collection.products %}
+<script>
+{% for addon in addons  %}
+console.log("{{ addon.title }}")
+{% endfor %}
+</script>
 
 <pzaz-cart>
   <div class="cart">
@@ -81,10 +86,10 @@
               {% assign selected = false %}
               {% for item in cart.items %}
               {% if item.id == addon.selected_or_first_available_variant.id %}{% assign selected = true %}{% endif %}{% endfor %}href="{% if selected == true %}
-                              {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
-                              {% else %}
-                              {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
-                              {% endif %}"data-ajax-cart-request-button>
+                                                                              {{ routes.cart_change_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=0
+                                                                              {% else %}
+                                                                              {{ routes.cart_add_url }}?id={{ addon.selected_or_first_available_variant.id }}&quantity=1
+                                                                              {% endif %}"data-ajax-cart-request-button>
               {% render "spinner" %}
               <label class="cart-addon__button {% if selected %} active {% endif %}">
                 <input class="cart-addon__input" type="checkbox" />

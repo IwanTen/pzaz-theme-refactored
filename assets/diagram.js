@@ -16,6 +16,7 @@ window.addEventListener("DOMContentLoaded", () => {
   HandleDiagramCards();
   InitDiagramAnimation();
   InitScienceAnimation();
+  InitFocusAnimation();
 });
 
 function InitDiagramAnimation() {
@@ -90,27 +91,64 @@ function InitTestimonialAnimation() {
 }
 
 function InitScienceAnimation() {
-  const testimonials = gsap.utils.toArray(".science__item");
-  let testimonialTimeline = gsap.timeline({
-    defaults: { duration: 1, ease: "ease1" },
+  const scienceItems = gsap.utils.toArray(".science__item");
+  gsap.from(scienceItems, {
     scrollTrigger: {
-      // markers: true,
       id: "science",
       trigger: ".science",
-      start: "top bottom",
-      toggleActions: "play none none reset",
-      onLeaveBack: () => {},
+      start: "50% bottom",
+      // toggleActions: "play none none reset",
+      // markers: true,
     },
-  });
-
-  testimonialTimeline.from(testimonials, {
     opacity: 0,
     scale: 1,
     y: 50,
     duration: 0.5,
     stagger: {
-      amount: 1,
+      amount: 0.7,
       onStart: function () {},
     },
   });
 }
+
+function InitFocusAnimation() {
+  gsap.from(".focus__image", {
+    scrollTrigger: {
+      trigger: ".focus",
+      start: "top 60%",
+      // scrub: 1,
+      markers: true,
+      onEnter: () => console.log("onEnter"),
+      onLeave: () => console.log("onLeave"),
+    },
+    duration: 1,
+    x: "50%",
+    opacity: 0,
+  });
+}
+
+// function InitScienceAnimation() {
+//   const scienceItems = gsap.utils.toArray(".science__item");
+//   let scienceTimeline = gsap.timeline({
+//     defaults: { duration: 1, ease: "ease1" },
+//     scrollTrigger: {
+//       // markers: true,
+//       id: "science",
+//       trigger: ".science",
+//       start: "50% bottom",
+//       // toggleActions: "play none none reset",
+//       onLeaveBack: () => {},
+//     },
+//   });
+
+//   scienceTimeline.from(scienceItems, {
+//     opacity: 0,
+//     scale: 1,
+//     y: 50,
+//     duration: 0.5,
+//     stagger: {
+//       amount: 0.7,
+//       onStart: function () {},
+//     },
+//   });
+// }

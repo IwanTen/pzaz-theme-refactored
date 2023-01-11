@@ -1,17 +1,17 @@
-const canvas = document.getElementById("hero-canvas");
+const hcanvas = document.getElementById("hero-canvas");
 const container = document.querySelector(".hero");
-const context = canvas.getContext("2d");
+const context = hcanvas.getContext("2d");
 const hash = "1EldeuKR_zW0oalo8ZDRdA";
 const frameName = "hero-frame";
 let wrh = null;
 heroPadding = 20;
 context.translate(0.5, 0.5);
 
-canvas.width = container.offsetWidth;
+hcanvas.width = container.offsetWidth;
 // canvas.height = container.offsetHeight;
 
 context.fillStyle = "blue";
-context.fillRect(0, 0, canvas.width, canvas.height);
+context.fillRect(0, 0, hcanvas.width, hcanvas.height);
 
 const frameCount = 70;
 const currentFrame = (index) =>
@@ -33,13 +33,13 @@ for (let i = 0; i < frameCount; i++) {
 images[0].onload = (event) => {
   // console.log("first image loaded", event.target.width, event.target.height);
   wrh = event.target.width / event.target.height;
-  canvas.height = canvas.width / wrh;
-  initHeroCanvas();
+  hcanvas.height = hcanvas.width / wrh;
+  initDiagramCanvas();
 };
 
 //Once the first image is loaded, set the canvas size to the image size and get the width/height ratio
 
-function initHeroCanvas() {
+function initDiagramCanvas() {
   let heroTimeline = gsap.timeline({
     defaults: { duration: 1 },
     scrollTrigger: {
@@ -87,6 +87,6 @@ gsap.to(".hero-section", {
 
 function render() {
   let curImage = images[tube.frame];
-  context.clearRect(0, 0, canvas.width, canvas.height);
-  context.drawImage(curImage, 0, 0, canvas.width, canvas.width / wrh);
+  context.clearRect(0, 0, hcanvas.width, hcanvas.height);
+  context.drawImage(curImage, 0, 0, hcanvas.width, hcanvas.width / wrh);
 }

@@ -1,4 +1,6 @@
-{{ 'button.css' | asset_url | stylesheet_tag }}<a
+{% comment %} {% assign button_color = color %}
+  {% assign button_size = size %}
+  {% assign button_text = text %} {% endcomment %}<a
     class="button
     {% if color == "dark" %}
       button--dark
@@ -14,18 +16,15 @@
     {% elsif size == "small" %}
       button--small
     {% endif %}
+    {% if border == true %}
+      button--border
+    {% endif %}
+
     "
     href="/products/pzaz-four-pack">
-    <span
-      class="button__text">
-      {% if text %}
-        {{ text }}
-      {% else %}
-        Shop Now
-      {% endif %}
-    </span>
-    <span
-      class="button__left"></span>
-    <span
-      class="button__right"></span>
+    {% if text %}
+      {{ text }}
+    {% else %}
+      Shop Now
+    {% endif %}
   </a>
