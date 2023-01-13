@@ -1,17 +1,16 @@
 {{ 'product.css' | asset_url | stylesheet_tag }}
-
-<script>
-  window.discountStrings = {{product.metafields.custom.discount_data.value  }}
-</script>
+{% comment %}
+  <script>
+    window.discountStrings = {{product.metafields.custom.discount_data.value  }}
+  </script>
+{% endcomment %}
 {% assign product_price = product.price %}
 
-{% assign test = 5 %}
 <div class="product container">
   <div class="product__header">
-    <a class="product__to-home" href="/">{% render "icon-x" %}</a>
+    <a class="product__to-home" href="/">{% render 'icon-x' %}</a>
   </div>
   <div class="product__grid">
-    {% comment %} <div class="product__media"> {% endcomment %}
     <div class="embla">
       <div class="embla__viewport ">
         <div class="embla__container">
@@ -32,7 +31,8 @@
                   width="100"
                   height="100"
                   loading="lazy"
-                  alt="{{ variant.featured_media.alt | escape }}">
+                  alt="{{ variant.featured_media.alt | escape }}"
+                >
               </div>
             </div>
           {% endfor %}
@@ -61,11 +61,13 @@
               class="variant"
               data-id="{{ variant.id }}"
               data-quantity="{{ cart_item_quantity }}"
-              id="{{ variant.title | handle }}">
+              id="{{ variant.title | handle }}"
+            >
               <button
                 data-id="{{ variant.id }}"
                 data-action="subtract"
-                class="variant__button variant__button--subtract">
+                class="variant__button variant__button--subtract"
+              >
                 {% render 'icon-minus' %}
               </button>
               <span class="variant__content">
@@ -78,7 +80,8 @@
               <button
                 data-id="{{ variant.id }}"
                 data-action="add"
-                class="variant__button variant__button--add">
+                class="variant__button variant__button--add"
+              >
                 {% render 'icon-plus' %}
               </button>
             </div>
@@ -127,21 +130,14 @@
               per serving
             </p>
             <p>Contains natural caffeine, electrolytes, vitamins and minerals.</p>
-            {% comment %} {% for item in cart.items %}
-            <p>
-            {{ item.product.handle }}
-            </p>
-            {% endfor %} {% endcomment %}
-
-            <p>
-              Free fast shipping unlocked.
-            </p>
-
+            {% if cart.total_price > 3100 %}
+              <p>Free fast shipping unlocked.</p>
+            {% endif %}
           </div>
           <button type="submit" class="product__submit">Check Out</button>
         </fieldset>
-      </div>
-    {% endunless %}
+      {% endunless %}
+    </div>
 
     <div class="product__accordion">
       <div class="accordion-item">
@@ -277,7 +273,7 @@
         <div class="accordion-item__body">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis ipsa amet distinctio nihil, doloribus
           odit quibusdam illum neque. Corporis natus non aperiam distinctio sint doloremque atque nihil nemo quasi
-                                                                                                                        commodi.
+          commodi.
         </div>
       </div>
       <div class="accordion-item">
@@ -311,12 +307,21 @@
       </div>
     </div>
 
-    {% for block in section.blocks %}
-      {% case block.type %}
-        {% when '@app' %}
-        {% render block %}
-      {% endcase %}
-    {% endfor %}
+    {% comment %}
+      {% for block in section.blocks %}
+        {% case block.type %}
+          {% when '@app' %}
+            {% render block %}
+        {% endcase %}
+      {% endfor %}
+
+      <div
+        class="loox-rating"
+        data-id="{{ product.id }}"
+        data-rating="{{ product.metafields.loox.avg_rating }}"
+        data-raters="{{ product.metafields.loox.num_reviews }}"
+      ></div>
+    {% endcomment %}
 
     <script type="application/json">
       {{ product.variants | json }}
@@ -327,31 +332,35 @@
 <script src="{{ "product.js" | asset_url }}" defer="defer"></script>
 
 {% schema %}
-  {
-    "name": "product",
-    "tag": "section",
-    "class": "section bg-light",
-    "blocks": [
-      {
-        "type": "@app"
-      }, {
-        "type": "buy_buttons",
-        "name": "t:sections.main-product.blocks.buy_buttons.name",
-        "limit": 1,
-        "settings": [
-          {
-            "type": "product",
-            "id": "product",
-            "label": "Main Product"
-          }, {
-            "type": "checkbox",
-            "id": "show_dynamic_checkout",
-            "default": true,
-            "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
-            "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
-          }
-        ]
-      }
-    ]
-  }
+{
+  "name": "product-section",
+  "tag": "section",
+  "class": "section bg-light",
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Main Product"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    },
+    {
+      "type": "buy_buttons",
+      "name": "t:sections.main-product.blocks.buy_buttons.name",
+      "limit": 1,
+      "settings": [
+        {
+          "type": "checkbox",
+          "id": "show_dynamic_checkout",
+          "default": true,
+          "label": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.label",
+          "info": "t:sections.main-product.blocks.buy_buttons.settings.show_dynamic_checkout.info"
+        }
+      ]
+    }
+  ]
+}
 {% endschema %}

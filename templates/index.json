@@ -46,7 +46,7 @@
             "itemBackgroundColor": "#020202",
             "starsColor": "#fdff02",
             "starsBackgroundColor": "#020202",
-            "arrows_backgroundColor": "#FFFFFF",
+            "arrows_backgroundColor": "#ffffff",
             "arrows_iconColor": "#020202",
             "shadow": "offset-dark",
             "border_active": true,

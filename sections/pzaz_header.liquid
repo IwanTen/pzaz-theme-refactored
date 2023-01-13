@@ -1,33 +1,38 @@
 {{ 'header.css' | asset_url | stylesheet_tag }}
 
 <div class="header">
-  <a class="header__logo" {% if template.name != "index" %}href="/"{% endif %}>
+  <a
+    class="header__logo"
+    {% if template.name != 'index' %}
+      href="/"
+    {% endif %}
+  >
     <img
       src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/Pzaz_BreathSpray_Logo-25_10031bf3-bbc6-4258-990e-170168d8a48e.png?v=1666200627"
       alt="Logo"
       class="logo"
       width="auto"
       height="auto"
-      loading="lazy">
+      loading="lazy"
+    >
   </a>
   <a class="cart-toggle" data-cart-view="data-cart-view">
     {% render 'icon-cart' %}
     <span class="cart-toggle__quantity" data-ajax-cart-section>{{ cart.item_count }}</span>
   </a>
 </div>
-{% schema %}
-  {
-    "name": "Header",
-    "settings": []
-  }
-{% endschema %}
-
 <script>
-  let templateName = "{{ template.name}}";
-  console.log("template name", templateName);
-  if (templateName == "index") {
-    document.querySelector(".header__logo").addEventListener("click", function() {
+  let templateName = '{{ template.name}}';
+  console.log('template name', templateName);
+  if (templateName == 'index') {
+    document.querySelector('.header__logo').addEventListener('click', function () {
       window.scrollTo(0, 0);
     });
   }
 </script>
+{% schema %}
+{
+  "name": "Header",
+  "settings": []
+}
+{% endschema %}

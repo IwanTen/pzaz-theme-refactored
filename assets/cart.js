@@ -31,29 +31,12 @@ document.querySelector(overlayClass).addEventListener("click", function () {
   closeCart();
 });
 
-// function updateDiscountMessage() {
-//   const discountMessages = [
-//     ...document.querySelectorAll(".discount-message__text"),
-//   ];
-//   console.log("discount messages", discountMessages);
-//   const discountData = discountMessageData.find((item) => {
-//     return item.count == parseInt(CartJS.cart.item_count);
-//   });
-//   if (!discountData) return;
-//   discountMessages.forEach((message) => {
-//     message.innerText = discountData.message;
-//     gsap.from(message, { opacity: 0, duration: 0.8 });
-//   });
-// }
-
 function openCart() {
-  console.log("cart opened");
   document.querySelector(cartClass).classList.add("active");
   document.querySelector(overlayClass).classList.add("active");
 }
 
 function closeCart() {
-  console.log("cart closed");
   document.querySelector(cartClass).classList.remove("active");
   document.querySelector(overlayClass).classList.remove("active");
 }
@@ -68,37 +51,64 @@ class PzazCart extends HTMLElement {
   }
 
   toggleSubscriptions(event) {
+    const items  = liquidAjaxCart.getCartState().cart.items;
+    const hasSubscriptions = items.some((item) => item.selling_plan_allocation);
+    if (hasSubscriptions) {
+      this.removeSellingPlan(items);
+    } else {
+      this.addSellingPlan(items);
+    }
     event.target.classList.toggle("active");
-    this.querySelector(".cart-subscribe").classList.toggle("active");
-    this.addSellingPlan();
   }
 
-  addSellingPlan() {
+  addSellingPlan(items) {
     console.log("attempting to add a selling plan");
-    const plan = 642941116;
-    const cart = liquidAjaxCart.getCartState().cart;
-    const data = cart.items.map((item, index) => {
+    const plan = 3532390643;
+    const data = items.map((item, index) => {
       return {
         line: index + 1,
-        quantity: 6,
+        quantity: item.quantity,
+        selling_plan: plan,
       };
     });
-    liquidAjaxCart.cartRequestUpdate(
-      {
-        updates: [
-          {
-            line: 1,
-            quantity: 6,
-          },
-        ],
-      },
-      { newQueue: true }
-    );
-  }
+    data.forEach((item, index) => {
+      liquidAjaxCart.cartRequestChange({
+        line: item.line,
+        quantity: item.quantity,
+        selling_plan: item.selling_plan,
+      },{newQueue: index == 0? true : false , lastComplete: ( requestState ) => {
+        if(index >= data.length -1)
+        this.querySelector(".cart-subscribe").classList.toggle("active");
+        console.log("requestState", requestState)
+      },});
 
-  removeSellingPlan() {}
+     })
+    console.log("data", data);
 }
 
+removeSellingPlan(items) {
+  console.log("attempting to remove all items from selling plan");
+ const data = items.map((item, index) => {
+    return {
+      line: index+1,
+      quantity: item.quantity,
+      selling_plan: "",
+    };
+  });
+  data.forEach((item,index) => {
+    liquidAjaxCart.cartRequestChange({
+      line: item.line,
+      quantity: item.quantity,
+      selling_plan: item.selling_plan,
+    },{newQueue: index == 0? true : false, lastComplete: ( requestState ) => {
+      if(index >= data.length -1)
+      this.querySelector(".cart-subscribe").classList.toggle("active");
+    },});
+
+   })
+  console.log("data", data);
+}
+}
 customElements.define("pzaz-cart", PzazCart);
 
 document.querySelector("*[data-action=clear]").addEventListener("click", () => {
@@ -106,8 +116,12 @@ document.querySelector("*[data-action=clear]").addEventListener("click", () => {
   console.log("cart clear button clicked");
 });
 
-window.addEventListener("load", function () {
-  liquidAjaxCart.subscribeToCartSectionsUpdate((sections) => {
-    console.log("Sections are updated: ", sections);
-  });
-});
+// window.addEventListener("load", function () {
+//   liquidAjaxCart.subscribeToCartSectionsUpdate((sections) => {
+//     console.log("Sections are updated: ", sections);
+//   });
+// });
+
+
+
+

@@ -7,9 +7,9 @@ function debounce(fn, wait) {
 }
 
 let addButtons = [...document.querySelectorAll("[data-action=add]")];
-console.log("addButtons", addButtons);
+// console.log("addButtons", addButtons);
 let removeButtons = [...document.querySelectorAll("[data-action=subtract]")];
-console.log("removeButtons", removeButtons);
+// console.log("removeButtons", removeButtons);
 
 if (addButtons) {
   addButtons.forEach((button) => {
@@ -71,7 +71,6 @@ function updateVariantCount(items) {
       quantity: item.quantity,
     };
   });
-
   variants.forEach((variant) => {
     let match = data.find((item) => {
       return item.id == variant.dataset.id;
@@ -91,14 +90,13 @@ function updateVariantCount(items) {
 function updateDiscountMessage(items, data) {
   let count = 0;
   items.forEach((item) => {
-    console.log("pzaz item", item);
-    console.log("pzaz item handle", item.handle);
+    // console.log("pzaz item", item);
+    // console.log("pzaz item handle", item.handle);
     let handle = item.handle;
     if (handle.includes("pzaz")) {
       count += item.quantity;
     }
   });
-
   if (count >= data.length) {
     count = data.length - 1;
     document.querySelector(".discount-message p").innerText =
@@ -118,7 +116,6 @@ document.querySelector(".product__submit").addEventListener("click", () => {
 });
 
 function handleAjaxResults() {
-  console.log(liquidAjaxCart.getCartState());
   const cart = liquidAjaxCart.getCartState().cart;
   // console.log("cart", cart);
   updateVariantCount(cart.items);
@@ -155,10 +152,10 @@ const emblaoptions = {
 };
 
 const productEmbla = EmblaCarousel(emblaNode, emblaoptions);
-console.log("product page carousel intialized");
+// console.log("product page carousel intialized");
 
-console.log(productEmbla.scrollSnapList());
-console.log(productEmbla.slideNodes());
+// console.log(productEmbla.scrollSnapList());
+// console.log(productEmbla.slideNodes());
 
 function initEmblaVariantToggles() {
   [...document.querySelectorAll(".variant")].forEach((variant, index) => {

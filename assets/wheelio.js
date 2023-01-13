@@ -12,7 +12,7 @@ function initWheelioButton() {
     start: "top bottom",
     // markers: { startColor: "white", endColor: "white" },
     onEnter: addWheelio,
-    onLeaveBack: removeWheelio,
+    onLeaveBack: removeWheelio, 
   });
 }
 
@@ -22,6 +22,8 @@ function addWheelio() {
     "style",
     "position:absolute; top:0 !important; left:50% !important; display:block; transform:translate(-50%,0)"
   );
+  document.getElementById("wlo-trigger-image").setAttribute("style", "background-size: 150px !important;");
+  document.getElementById("wlo-trigger-button").setAttribute("style", "width: 150px !important; height: 150px !important;");
   footerContainer.appendChild(button);
 }
 
@@ -29,8 +31,10 @@ function removeWheelio() {
   const button = document.querySelector(wheelio);
   button.setAttribute(
     "style",
-    `position:fixed; top:inherit; left:inherit; display:"" transform:inherit;`
+    `position:fixed; top:""; left:""; display:""; transform: "";`
   );
+  document.getElementById("wlo-trigger-image").setAttribute("style", "background-size:''");
+  document.getElementById("wlo-trigger-button").setAttribute("style", "width: ''; height: '';");
 }
 
 function waitForElm(selector) {

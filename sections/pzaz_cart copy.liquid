@@ -29,7 +29,15 @@
                 {% unless item.selling_plan_allocation == null %}
                   <span class="cart-selling-plan">{{ item.selling_plan_allocation.selling_plan.name }}</span>
                   <span>LINE LEVEL DISCOUNT: {{ item.line_level_total_discount }}</span>
-                  <span>LINE LEVEL DISCOUNT: {{ item.line_level_total_discount }}</span>
+                  {% assign spa = item.selling_plan_allocation.selling_plan.price_adjustments %}
+                  <span>
+                    Selling plan allocation adjust:
+                    {% for a in spa %}
+                      {{ a.value }}
+                      {{ a.value_type }}
+                    {% endfor %}
+                  </span>
+                  <scriptconsole.log({{ item | json }})
                 {% endunless %}
               </h3>
             </div>
@@ -156,9 +164,9 @@
     </div>
   </div>
 
-  <script type="application/json">
+  <scriptconsole.log type="application/json">
     {{ cart | json }}
-  </script>
+  </scriptconsole.log>
 </pzaz-cart>
 
 <script src="{{ 'cart.js' | asset_url }}" defer="defer"></script>

@@ -1,114 +1,153 @@
-{{
-   "reviews.css" | asset_url | stylesheet_tag }}
+{{ 'reviews.css' | asset_url | stylesheet_tag }}
 
 <div
-  class="reviews container padding-base color-primary">
-
+  class="reviews container padding-base color-primary"
+>
   <h1
-    class="heading-main reviews__title">Energy<br> Your Way</h1>
+    class="heading-main reviews__title"
+  >
+    Energy<br>
+    Your Way
+  </h1>
   <p
-    class="reviews__copy">Pzaz powers up creatives, athletes, students,
-    professionals, travelers, and entertainers.</p>
+    class="reviews__copy"
+  >
+    Pzaz powers up creatives, athletes, students, professionals, travelers, and entertainers.
+  </p>
 
   <div
-    class="reviews__carousel embla">
+    class="reviews__carousel embla"
+  >
     <div
-      class="embla__container">
+      class="embla__container"
+    >
       <div
-        class="embla__slide">
+        class="embla__slide"
+      >
         <div
-          class="embla__slide__inner">
-
+          class="embla__slide__inner"
+        >
           <img
             src="https://cdn.shopify.com/s/files/1/0685/9076/4328/files/903581E8-D2F7-4B58-93AB-7F120F04ED29.jpg?v=1671570767"
             alt="review"
             class="reviews__image"
             width="auto"
             height="auto"
-            loading="lazy">
+            loading="lazy"
+          >
           <div
-            class="fixed-atop">
-            {% render "cta-button" border: true color: "light" size: "small" text: "Shop Berry" %}
+            class="fixed-atop"
+          >
+            {% render 'cta-button', border: true, color: 'light', size: 'small', text: 'Shop Berry' %}
           </div>
         </div>
       </div>
       <div
-        class="embla__slide">
+        class="embla__slide"
+      >
         <div
-          class="embla__slide__inner">
-
-
+          class="embla__slide__inner"
+        >
           <img
             src="https://cdn.shopify.com/s/files/1/0685/9076/4328/files/F7B4C7DF-6B8F-4F5C-8DD1-D7012E889A92.jpg?v=1671570766"
             alt="review"
             class="reviews__image"
             width="auto"
             height="auto"
-            loading="lazy">
+            loading="lazy"
+          >
           <div
-            class="fixed-atop">
-            {% render "cta-button" border: true color: "light" size: "small" text: "Shop Sour" %}
+            class="fixed-atop"
+          >
+            {% render 'cta-button', border: true, color: 'light', size: 'small', text: 'Shop Sour' %}
           </div>
         </div>
       </div>
       <div
-        class="embla__slide">
+        class="embla__slide"
+      >
         <div
-          class="embla__slide__inner">
-
+          class="embla__slide__inner"
+        >
           <img
             src="https://cdn.shopify.com/s/files/1/0685/9076/4328/files/44BCD2C1-2A84-4A12-890C-CE2978257CE3_1_105_c.jpg?v=1671570785"
             alt="review"
             class="reviews__image"
             width="auto"
             height="auto"
-            loading="lazy">
+            loading="lazy"
+          >
           <div
-            class="fixed-atop">
-            {% render "cta-button" border: true color: "light" size: "small" text: "Shop Mint" %}
+            class="fixed-atop"
+          >
+            {% render 'cta-button', border: true, color: 'light', size: 'small', text: 'Shop Mint' %}
           </div>
         </div>
       </div>
       <div
-        class="embla__slide">
+        class="embla__slide"
+      >
         <div
-          class="embla__slide__inner">
+          class="embla__slide__inner"
+        >
           <img
             src="https://cdn.shopify.com/s/files/1/0685/9076/4328/files/74EA3B61-234F-46A2-9433-57082C985ECE_1_105_c.jpg?v=1671570807"
             alt="review"
             class="reviews__image"
             width="auto"
             height="auto"
-            loading="lazy">
+            loading="lazy"
+          >
           <div
-            class="fixed-atop">
-            {% render "cta-button" border: true color: "light" size: "small" text: "Shop Strong" %}
+            class="fixed-atop"
+          >
+            {% render 'cta-button', border: true, color: 'light', size: 'small', text: 'Shop Strong' %}
           </div>
         </div>
       </div>
     </div>
   </div>
-  {% comment %} {% for block in section.blocks %}
-  {% case block.type %}
-  {% when '@app' %}
-  {% render block %}
-  {% endcase %}
-  {% endfor %} {% endcomment %}<h1
-    class="heading-main map__title">Check us out</h1>
+
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when '@app' %}
+        {% render block %}
+    {% endcase %}
+  {% endfor %}
+
+  <div
+    class="loox-rating"
+    data-id="{{ product.id }}"
+    data-rating="{{ product.metafields.loox.avg_rating }}"
+    data-raters="{{ product.metafields.loox.num_reviews }}"
+  ></div>
+
+  <h1
+    class="heading-main map__title"
+  >
+    Check us out
+  </h1>
   <p
-    class="map__copy">Find us at more than<br> 200+ locations nationwide.</p>
+    class="map__copy"
+  >
+    Find us at more than<br>
+    200+ locations nationwide.
+  </p>
   {% comment %} <div id="map__parawrapper"> {% endcomment %}
   <div
-    class="map__cta">
+    class="map__cta"
+  >
     <img
       class="map__image"
       src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/boxes_illustration-cropped.jpg?v=1672694709"
       width="auto"
       height="auto"
-      loading="lazy">
+      loading="lazy"
+    >
     <div
-      class="map__cta-wrapper">
-      {% render "cta-button" color: "light" size: "small" border: true text: "Store locator" %}
+      class="map__cta-wrapper"
+    >
+      {% render 'cta-button', color: 'light', size: 'small', border: true, text: 'Store locator' %}
     </div>
   </div>
   {% comment %} </div> {% endcomment %}
@@ -116,20 +155,19 @@
 
 <script
   src="{{ 'reviews.js' | asset_url }}"
-  defer="defer"></script>
-
+  defer="defer"
+></script>
 
 {% schema %}
-  {
-    "name": "reviews-section",
-    "tag": "section",
-    "class": "section bg-dark",
-    "settings": [],
-    "blocks": [
-      {
-        "type": "@app"
-      }
-    ]
-
-  }
+{
+  "name": "reviews-section",
+  "tag": "section",
+  "class": "section bg-dark",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
 {% endschema %}

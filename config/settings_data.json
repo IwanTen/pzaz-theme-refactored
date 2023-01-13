@@ -211,7 +211,8 @@
       "pzaz_cart": {
         "type": "pzaz_cart",
         "settings": {
-          "collection": "accessories"
+          "collection": "accessories",
+          "product": "pzaz-four-pack"
         }
       },
       "pzaz_header": {
