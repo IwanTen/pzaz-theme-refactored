@@ -2,12 +2,8 @@
   "sections": {
     "product": {
       "type": "pzaz-product",
-      "settings": {
-        "product": "pzaz-four-pack"
-      }
+      "settings": {}
     }
   },
-  "order": [
-    "product"
-  ]
+  "order": ["product"]
 }
