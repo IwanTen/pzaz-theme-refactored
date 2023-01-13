@@ -4,7 +4,7 @@
   }
   .careers__item {
     display: flex;
-    margin-bottom: 100px;
+    margin-bottom: 3rem;
   }
 
   .careers__item .careers__wrapper:first-child {
@@ -14,11 +14,16 @@
   .careers__title {
     font-family: var(--font-heading);
     font-size: var(--fs-xl);
-
+    font-style: italic;
     font-weight: var(--fw-heading-heavy);
     text-transform: uppercase;
     margin-bottom: 2rem;
   }
+
+  .careers__copy {
+    font-size: var(--fs-base);
+  }
+
   @media (max-width: 768px) {
     .careers__item {
       flex-direction: column;
@@ -29,6 +34,7 @@
   }
 
   .roles {
+    margin-bottom: 2rem;
   }
 
   .role {
@@ -38,11 +44,14 @@
     margin-bottom: 1rem;
     border: 2px solid black;
     border-radius: 10px;
-    padding: 0.5em;
+    padding: 0.5em 0.75em;
   }
 
   .role__title {
     font-weight: var(--fw-body-bold);
+    font-size: var(--fs-base);
+    text-decoration: none;
+    color: black;
   }
 
   .role__icon svg {
@@ -84,7 +93,6 @@
                 <h2 class="role__title">{{ block.settings.title }}</h2>
                 <span class="role__icon">{% render 'icon-star' %} </span>
               </a>
-              ...
           {% endcase %}
         {% endfor %}
       </div>
