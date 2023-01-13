@@ -1,72 +1,84 @@
-{% render 'iwans-blog-css'%}
+{% render 'iwans-blog-css' %}
 {% assign custom_title = article.metafields.custom.title | metafield_text %}
 {% assign custom_headline = article.metafields.custom.headline | metafield_text %}
 {% assign custom_tagline = article.metafields.custom.tagline | metafield_text %}
 
-{% if article.metafields.custom.image%}
+{% if article.metafields.custom.image %}
   {% assign hero_image_url = article.metafields.custom.image %}
 {% else %}
   {% assign hero_image_url = article.image %}
 {% endif %}
 
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/Swiper/8.4.5/swiper-bundle.min.js"
+  integrity="sha512-wdUM0BxMyMC/Yem1RWDiIiXA6ssXMoxypihVEwxDc+ftznGeRu4s9Fmxl8PthpxOh5CQ0eqjqw1Q8ScgNA1moQ=="
+  crossorigin="anonymous"
+  referrerpolicy="no-referrer"
+  defer
+></script>
 <article class="zblog-wrapper">
   <div class="zblog-hero-image__container">
     {% if hero_image_url %}
-      <img src="{{ hero_image_url | img_url:'2000x' }}" class="zblog-hero-image" width="100" height="auto" loading="lazy">
-      {% endif %}
+      <img
+        src="{{ hero_image_url | img_url:'2000x' }}"
+        class="zblog-hero-image"
+        width="100"
+        height="auto"
+        loading="lazy"
+      >
+    {% endif %}
   </div>
   <div class="zblog-header contain">
- {% unless blog.title == "Company Pages" %}
-    <div class="zblog-header-info">
-     
-      <span class="zblog-header-info__date">Updated: {{article.updated_at | date: '%B %d, %Y'}}
-      </span>
-    </br>
-    <span class="zblog-header-info__author">Written by:
-      {{article.author}}
-    </span>
-  </div>
-   {% endunless %}
-  <div class="zblog-header-main">
-    <h1 class="zblog-header-main__title">
-      {% if custom_title.size > 0 %}
-        {{- article.metafields.custom.title -}}
-      {% else %}
-        {{ article.title }}
+    {% unless blog.title == 'Company Pages' %}
+      <div class="zblog-header-info">
+        <span class="zblog-header-info__date">Updated: {{ article.updated_at | date: '%B %d, %Y' }} </span>
+        <br>
+        <span class="zblog-header-info__author"
+          >Written by:
+          {{ article.author }}
+        </span>
+      </div>
+    {% endunless %}
+    <div class="zblog-header-main">
+      <h1 class="zblog-header-main__title">
+        {% if custom_title.size > 0 %}
+          {{- article.metafields.custom.title -}}
+        {% else %}
+          {{ article.title }}
+        {% endif %}
+      </h1>
+      {% if custom_headline.size > 0 %}
+        <h2 class="zblog-header-main__headline">
+          {{- article.metafields.custom.headline -}}
+        </h2>
       {% endif %}
-    </h1>
-    {% if custom_headline.size > 0 %}
-      <h2 class="zblog-header-main__headline">
-        {{- article.metafields.custom.headline -}}
-      </h2>
-    {% endif %}
       {% if custom_tagline.size > 0 %}
         <h3 class="zblog-header-main__tagline">
           {{- article.metafields.custom.tagline -}}
         </h3>
-    {% endif %}
-  </div>
-</div>
-<div class="zblog-content">
-  {% assign article_paragraphs = article.content | split:"content_break"%}
-  {% for paragraph in article_paragraphs %}
-    {% if paragraph contains "blog-callout" %}
-     {% assign callout = paragraph | remove:"blog-callout" | split: "callout-content" %}
-    {%- assign callout-title = callout.first | strip_html -%}
-    {%- assign callout-content = callout.last -%}
-        {% render "blog-callout", content:callout-content, title:callout-title %}
-      {% elsif paragraph contains "blog-learn" %}
-          {% render "blog-canvas-popup"%}
-        {% elsif paragraph contains "blog-swiper" %}
-            {% render "blog-swiper", article: article %}
-        {% else %}
-          <div class="contain">
-            {{paragraph}}
-          </div>
-    {% endif %}
-      {% endfor %}
+      {% endif %}
     </div>
-  {% unless blog.title == "Company Pages" %}
+  </div>
+  <div class="zblog-content">
+    {% assign article_paragraphs = article.content | split: 'content_break' %}
+    {% for paragraph in article_paragraphs %}
+      {% if paragraph contains 'blog-callout' %}
+        {% assign callout = paragraph | remove: 'blog-callout' | split: 'callout-content' %}
+        {%- assign callout-title = callout.first | strip_html -%}
+        {%- assign callout-content = callout.last -%}
+        {% render 'blog-callout', content: callout-content, title: callout-title %}
+      {% elsif paragraph contains 'blog-learn' %}
+        {% render 'blog-canvas-popup' %}
+      {% elsif paragraph contains 'blog-swiper' %}
+        {% render 'blog-swiper', article: article %}
+      {% else %}
+        <div class="contain">
+          {{ paragraph }}
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  {% unless blog.title == 'Company Pages' %}
     <div class="zblog-more contain" style="overflow:hidden;">
       <h1 class="zblog-more__title">MORE RESEARCH:</h1>
       <div class="swiper zblog-more__swiper">
@@ -74,32 +86,37 @@
           {% for article in blog.articles %}
             <div class="zblog-more__card swiper-slide">
               <div class="zblog-more__card-image">
-                {% if article.metafields.custom.image%}
+                {% if article.metafields.custom.image %}
                   {% assign card_image_url = article.metafields.custom.image %}
                 {% else %}
                   {% assign card_image_url = article.image %}
                 {% endif %}
-                <a href = "{{article.url}}">
-                <img src="{{ card_image_url | img_url:'2000x' }}" class="zblog-hero-image" width="100" height="auto" loading="lazy">
+                <a href="{{article.url}}">
+                  <img
+                    src="{{ card_image_url | img_url:'2000x' }}"
+                    class="zblog-hero-image"
+                    width="100"
+                    height="auto"
+                    loading="lazy"
+                  >
                 </a>
-
               </div>
-              <a href = "{{article.url}}">
-              <div class="zblog-more__card-content">
-                <h2 class="zblog-more__card-title">
-                  {{article.title}}
-                </h2>
-                <h3 class="zblog-more__card-headline">
-                  {%if article.metafields.custom.headline %}
-                    {{article.metafields.custom.headline }}
-                  {% else %}
-                    Read More!
-                  {% endif %}
-                </h3>
-                <span class=" zblog-more__card-date">
-                  {{article.published_at | date: '%B %d, %Y'}}
-                </span>
-              </div>
+              <a href="{{article.url}}">
+                <div class="zblog-more__card-content">
+                  <h2 class="zblog-more__card-title">
+                    {{ article.title }}
+                  </h2>
+                  <h3 class="zblog-more__card-headline">
+                    {% if article.metafields.custom.headline %}
+                      {{ article.metafields.custom.headline }}
+                    {% else %}
+                      Read More!
+                    {% endif %}
+                  </h3>
+                  <span class=" zblog-more__card-date">
+                    {{ article.published_at | date: '%B %d, %Y' }}
+                  </span>
+                </div>
               </a>
             </div>
           {% endfor %}
@@ -110,59 +127,62 @@
   {% endunless %}
 </article>
 
-{% unless blog.title == "Info" %}
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      console.log("CREATING BLOG SWIPER WRAPPER")
-      var swiper = new Swiper(".zblog-more__swiper", {
-        slidesPerView: 3,
-        spaceBetween: 25,
-        breakpoints: { // when window width is >= 320px
-          320: {
-            slidesPerView: 1,
-            spaceBetween: 20
-          },
+{% unless blog.title == 'Info' %}
+  <script defer>
+    document.addEventListener(
+      'DOMContentLoaded',
+      function () {
+        console.log('CREATING BLOG SWIPER WRAPPER');
+        var swiper = new Swiper('.zblog-more__swiper', {
+          slidesPerView: 3,
+          spaceBetween: 25,
+          breakpoints: {
+            // when window width is >= 320px
+            320: {
+              slidesPerView: 1,
+              spaceBetween: 20,
+            },
 
-// when window width is >= 480px
-          480: {
-            slidesPerView: 2,
-            spaceBetween: 30
-          },
+            // when window width is >= 480px
+            480: {
+              slidesPerView: 2,
+              spaceBetween: 30,
+            },
 
-// when window width is >= 640px
-          640: {
-            slidesPerView: 3,
-            spaceBetween: 40
-          }
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true
-        }
-      });
-    }, false);
+            // when window width is >= 640px
+            640: {
+              slidesPerView: 3,
+              spaceBetween: 40,
+            },
+          },
+          pagination: {
+            el: '.swiper-pagination',
+            clickable: true,
+          },
+        });
+      },
+      false
+    );
   </script>
 {% endunless %}
 
-
 {% schema %}
-  {
-    "name": "Zazzy Article",
-    "tag": "section",
-    "class": "section",
-    "settings": [
-      {
-        "type": "checkbox",
-        "id": "blog_show_date",
-        "default": true,
-        "label": "show date"
-
-      }, {
-        "type": "text",
-        "id": "article_headline",
-        "label": "Article Headline"
-
-      }
-    ]
-  }
-{% endschema %} 
+{
+  "name": "Zazzy Article",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "blog_show_date",
+      "default": true,
+      "label": "show date"
+    },
+    {
+      "type": "text",
+      "id": "article_headline",
+      "label": "Article Headline"
+    }
+  ]
+}
+{% endschema %}

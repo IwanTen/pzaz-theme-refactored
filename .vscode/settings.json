@@ -22,7 +22,6 @@
     "sections/featured-blog.liquid": true,
     "sections/featured-collection.liquid": true,
     "sections/featured-product.liquid": true,
-    "sections/footer.liquid": true,
     "sections/header.liquid": true,
     "sections/image-banner.liquid": true,
     "sections/image-with-text.liquid": true,
@@ -39,7 +38,6 @@
     "sections/main-list-collections.liquid": true,
     "sections/main-login.liquid": true,
     "sections/main-order.liquid": true,
-    "sections/main-page.liquid": true,
     "sections/main-password-footer.liquid": true,
     "sections/main-password-header.liquid": true,
     "sections/main-product.liquid": true,
@@ -53,7 +51,6 @@
     "sections/predictive-search.liquid": true,
     "sections/product-recommendations.liquid": true,
     "sections/pzaz_collage.liquid": true,
-    "sections/pzaz_footer.liquid": true,
     "sections\\rich-text.liquid": true,
     "sections\\slideshow.liquid": true,
     "sections\\video.liquid": true,
@@ -63,7 +60,8 @@
     "sections\\pzaz_cards-backup.liquid": true,
     "assets\\cards-old-style.css": true,
     "assets\\reward-bar.css": true,
-    "assets\\reward.js": true
+    "assets\\reward.js": true,
+    "sections\\footer.liquid": true
   },
   "hide-files.files": []
 }

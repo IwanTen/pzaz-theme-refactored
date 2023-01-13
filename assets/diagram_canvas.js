@@ -8,15 +8,15 @@ heroPadding = 20;
 dcontext.translate(0.5, 0.5);
 
 dcanvas.width = dcontainer.offsetWidth;
-// canvas.height = dcontainer.offsetHeight;
+// dcanvas.height = dcontainer.offsetHeight;
 
 dcontext.fillStyle = "blue";
 dcontext.fillRect(0, 0, dcanvas.width, dcanvas.height);
 
-const dframeCount = 70;
+const dframeCount = 95;
 const dcurrentFrame = (index) =>
   `https://imagedelivery.net/${dhash}/${dframeName}-${index}/public`;
-
+ 
 const dimages = [];
 const spray = {
   frame: 0,
@@ -33,7 +33,7 @@ for (let i = 0; i < dframeCount; i++) {
 dimages[0].onload = (event) => {
   // console.log("first image loaded", event.target.width, event.target.height);
   dwrh = event.target.width / event.target.height;
-  dcanvas.height = dcanvas.width / dwrh;
+  // dcanvas.height = (dcanvas.width/2) / dwrh;
   initDiagramCanvas();
 };
 
@@ -43,12 +43,12 @@ function initDiagramCanvas() {
   let diagramTimeline = gsap.timeline({
     defaults: { duration: 1 },
     scrollTrigger: {
-      trigger: ".power",
-      start: "top bottom",
-      // end: "40% top",
+      trigger: ".dtest",
+      start: "top top",
+      end: "bottom top",
       scrub: 1,
       pin: true,
-      // markers: true,
+      markers: true,
     },
   });
 
@@ -56,12 +56,13 @@ function initDiagramCanvas() {
     frame: dframeCount - 1,
     snap: "frame",
     ease: "none",
-    onUpdate: render,
+    onUpdate: renderd,
   });
 }
 
-function render() {
-  let curImage = dimages[tube.frame];
+function renderd() {
+  console.log("renderd");
+  let curImage = dimages[spray.frame];
   dcontext.clearRect(0, 0, dcanvas.width, dcanvas.height);
-  dcontext.drawImage(curImage, 0, 0, dcanvas.width, dcanvas.width / dwrh);
+  dcontext.drawImage(curImage, (dcanvas.width/2)-(curImage.width/2)+100,(dcanvas.height/2)-(curImage.height/2), dcanvas.width/2, dcanvas.width / dwrh/2);
 }

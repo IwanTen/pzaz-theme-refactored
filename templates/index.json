@@ -10,6 +10,11 @@
       "settings": {
       }
     },
+    "diagram": {
+      "type": "pzaz_diagram",
+      "settings": {
+      }
+    },
     "testimonials": {
       "type": "pzaz_testimonials",
       "settings": {
@@ -66,6 +71,7 @@
   "order": [
     "hero",
     "power",
+    "diagram",
     "testimonials",
     "focus",
     "science",

@@ -1,40 +1,64 @@
 {% style %}
   .store-locator {
     color: rgba(var(--color-primary));
-    text-align: center;
+  }
+
+  .store-locator h1 {
+    text-transform: uppercase;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: var(--fs-5xl);
+  }
+
+  .store-locator p {
+    font-weight: var(fw-body-bold);
+    padding-bottom: 4rem;
   }
 {% endstyle %}
 
-
-<div class="store-locator container padding-base">
-  <h1 heading="{{-section.settings.title-}}"></h1>
+<div class="store-locator container padding-base full-height">
+  <h1>{{- section.settings.title }}</h1>
   <p>
     {{- section.settings.copy -}}
   </p>
+
+  <div class="closeby-embed-77dc4bbd3fa21c5bf464044a3fcc35a0"></div>
+  <script>
+    window.closeby = { mapKey: '77dc4bbd3fa21c5bf464044a3fcc35a0', options: { embed: true, height: 700 } };
+  </script>
+  <script src="https://embed.closeby.co/v1.js" async defer></script>
+
+  {% for block in section.blocks %}
+    {% case block.type %}
+      {% when '@app' %}
+        {% render block %}
+    {% endcase %}
+  {% endfor %}
 </div>
 
 {% schema %}
-  {
-    "name": "locator-section",
-    "tag": "section",
-    "class": "section bg-dark",
-    "settings": [
-      {
-        "type": "text",
-        "id": "title",
-        "label": "Title",
-        "default": "Find a store"
-      }, {
-        "type": "text",
-        "id": "copy",
-        "label": "Copy",
-        "default": "Find a store near you"
-      }
-    ],
-    "blocks": [
-      {
-        "type": "@app"
-      }
-    ]
-  }
+{
+  "name": "store-locator-section",
+  "tag": "section",
+  "class": "section bg-dark",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "check us out"
+    },
+    {
+      "type": "text",
+      "id": "copy",
+      "label": "Copy",
+      "default": "Find Pzaz for only $3.99 per tube at more than 200+ retailers nationwide."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "@app"
+    }
+  ]
+}
 {% endschema %}

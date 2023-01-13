@@ -1,10 +1,38 @@
 {
   "sections": {
     "main": {
-      "type": "main-page",
+      "type": "pzaz_careers",
+      "blocks": {
+        "2f553b96-9662-47e2-a2fe-45994cabba29": {
+          "type": "role",
+          "settings": {
+            "title": "Social Media Manager",
+            "link": ""
+          }
+        },
+        "5e2137e9-54af-49a9-b70c-528942f04011": {
+          "type": "role",
+          "settings": {
+            "title": "Marketing Lead",
+            "link": ""
+          }
+        },
+        "aab61922-e180-407f-bdfe-22f5485fe2bf": {
+          "type": "role",
+          "settings": {
+            "title": "College Marketing Associate",
+            "link": ""
+          }
+        }
+      },
+      "block_order": [
+        "2f553b96-9662-47e2-a2fe-45994cabba29",
+        "5e2137e9-54af-49a9-b70c-528942f04011",
+        "aab61922-e180-407f-bdfe-22f5485fe2bf"
+      ],
       "settings": {
-        "padding_top": 28,
-        "padding_bottom": 28
+        "title": "check us out",
+        "copy": "Find Pzaz for only $3.99 per tube at more than 200+ retailers nationwide."
       }
     }
   },

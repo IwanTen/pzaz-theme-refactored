@@ -10,13 +10,13 @@ function InitTestimonialsEmbla() {
     dragFree: true,
   };
   const testimonials = EmblaCarousel(emblaNode, options, plugins);
-  convertSlidesToToggles(testimonials);
+  // convertSlidesToToggles(testimonials);
 }
 
-const convertSlidesToToggles = (embla) => {
-  embla.slideNodes().forEach((slide, index) => {
-    slide.addEventListener("click", () => {
-      embla.scrollTo(index);
-    });
-  });
-};
+// const convertSlidesToToggles = (embla) => {
+//   embla.slideNodes().forEach((slide, index) => {
+//     slide.addEventListener("click", () => {
+//       embla.scrollTo(index);
+//     });
+//   });
+// };

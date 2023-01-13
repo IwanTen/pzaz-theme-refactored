@@ -34,12 +34,12 @@ images[0].onload = (event) => {
   // console.log("first image loaded", event.target.width, event.target.height);
   wrh = event.target.width / event.target.height;
   hcanvas.height = hcanvas.width / wrh;
-  initDiagramCanvas();
+  initHeroCanvas();
 };
 
 //Once the first image is loaded, set the canvas size to the image size and get the width/height ratio
 
-function initDiagramCanvas() {
+function initHeroCanvas() {
   let heroTimeline = gsap.timeline({
     defaults: { duration: 1 },
     scrollTrigger: {

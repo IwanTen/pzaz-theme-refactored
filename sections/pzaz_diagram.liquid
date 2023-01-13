@@ -1,0 +1,84 @@
+{{ 'diagram.css' | asset_url | stylesheet_tag }}
+
+<div class="diagram container">
+  <div class="diagram__content">
+    <canvas
+      id="diagram-canvas"
+      width="1000"
+      height="1000"
+    ></canvas>
+
+    {% comment %}
+      <img
+        width="auto"
+        height="auto"
+        class="diagram__image"
+        src="https://cdn.shopify.com/s/files/1/0532/8234/1052/files/bottle-spray.png?v=1669854211"
+        loading="lazy"
+      >
+    {% endcomment %}
+    <div class="diagram__item" data-item="zinc">
+      <h2 class="diagram__text">zinc💎</h2>
+
+      <span class="diagram__card">
+        Zinc is an essential mineral that stimulates our metabolism and supports muscular function.
+      </span>
+    </div>
+    <div class="diagram__item" data-item="caffeine">
+      <h2 class="diagram__text">Natural Caffeine🌱</h2>
+
+      <span class="diagram__card">
+        Every spray contains caffeine from green tea leaves for a natural, high-energy sense of power and focus. It also
+        contain calming l-theanine.
+      </span>
+    </div>
+    <div class="diagram__item" data-item="vit-c">
+      <rect
+        x="0"
+        y="0"
+        rx="10"
+        ry="10"
+        width="150"
+        height="60"
+        class="diagram__border"
+      />
+      <h2 class="diagram__text">Vitamin C💫</h2>
+
+      <span class="diagram__card"> Vitamin C fights fatigue and brain fog while supporting the immune system. </span>
+    </div>
+    <div class="diagram__item" data-item="vit-b">
+      <h2 class="diagram__text">Vitamin B⚡</h2>
+
+      <span class="diagram__card">
+        Every spray contains Vitamin B12, essential for the body to metabolize glucose and carbohydrates into cellular
+        energy.
+      </span>
+    </div>
+    <div class="diagram__item" data-item="calories">
+      <h2 class="diagram__text">Zero Calories😇</h2>
+
+      <span class="diagram__card"> Pzaz contains zero calories, zero sugar, and zero artificial flavors. </span>
+    </div>
+    <div class="diagram__item" data-item="electrolytes">
+      <h2 class="diagram__text">Electrolytes💦</h2>
+
+      <span class="diagram__card">
+        Pzaz contains electrolytes which recharge the body by supporting hydration and sparking optimal cell function.
+      </span>
+    </div>
+  </div>
+</div>
+<div class="button-wrapper">
+  {% render 'cta-button', color: 'dark', size: 'small', text: 'Power Up' %}
+</div>
+
+<script src="{{ 'diagram_canvas.js' | asset_url }}" defer="defer"></script>
+
+{% schema %}
+{
+  "name": "diagram-section",
+  "tag": "section",
+  "class": "section bg-dark overflow-hidden dtest",
+  "settings": []
+}
+{% endschema %}

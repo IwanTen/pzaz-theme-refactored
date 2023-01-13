@@ -138,8 +138,12 @@
       <script src="{{ 'wheelio.js' | asset_url }}" defer></script>
 
       {{ shop.metafields.loox.global_html_body }}
-    </body>
+    
+	{{ shop.metafields.loox["global_html_body"] }}
+</body>
 
     {{ shop.metafields.loox.global_html_head }}
-  </head>
+  
+	{{ shop.metafields.loox["global_html_head"] }}
+</head>
 </html>
